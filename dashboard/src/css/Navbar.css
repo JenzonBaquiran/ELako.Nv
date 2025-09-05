@@ -1,0 +1,244 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  position: fixed; /* Change from sticky to fixed */
+  top: 0;
+  left: 0;
+  width: 100%;     /* Make it full width */
+  z-index: 50;
+  background-color: #313131;
+  border-bottom: 1px solid var(--border);
+
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 6rem; /* Adjusted height from 4.5rem to 3.5rem for a more compact navbar */
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+
+
+}
+
+.logo-img {
+  display: block;
+  height: 3rem; /* Increased from 2.5rem to 3rem */
+ left: 60px;
+}
+
+.search-section {
+  display: none;
+  flex: 1;
+  max-width: 40rem;
+  margin: 0 2rem;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  width: 70%;
+  padding: 1rem 3rem 1rem 1rem; /* Increased vertical padding for taller search bar */
+  border: 1px solid #444 !important;
+  border-radius: 0.375rem;
+  background-color: #222 !important;
+  color: #fff !important;
+  font-size: 1rem;
+  border-radius: 0.375rem!important;
+}
+
+.search-input:focus {
+  outline: none;
+  border-radius: 0.375rem!important;
+}
+
+.search-button {
+  position: absolute;
+  right: 2rem; /* Adjusted to align with search bar edge */
+  top: 50%;
+  transform: translateY(-50%);
+  height: 3rem; /* Match search bar height */
+  width: 3rem;  /* Make it square and consistent */
+  border-radius: 0.4rem; /* Match search bar border radius */
+  padding: 0;
+  background-color: #222 !important; /* Match search bar background */
+  color: #fff !important;            /* Match search bar text color */
+  border: 1px solid #444 !important; /* Match search bar border */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.search-button:hover {
+  background-color: #333 !important; /* Slightly lighter on hover */
+}
+
+.nav-section {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding-left: 1.5rem; /* Move icons and buttons to the left */
+}
+
+.nav-button {
+  
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.2s;
+  font-size: larger;  
+  font-weight: 500;
+}
+
+.nav-button-ghost {
+  background-color: transparent;
+  color: var(--foreground);
+ 
+}
+
+
+
+.nav-button-outline {
+  background-color: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+}
+
+
+.nav-button-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.nav-button-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.mobile-menu-button {
+  display: none;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #fff !important; /* Changed to white */
+}
+
+.mobile-search {
+  display: none;
+  padding-bottom: 1rem;
+}
+
+.mobile-menu {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 1rem 0;
+}
+
+.mobile-menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobile-menu-button {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .search-section {
+    display: none;
+  }
+
+  .nav-section {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: flex;
+  }
+
+  .mobile-search {
+    display: block;
+  }
+
+  .mobile-menu.open {
+    display: block;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+  .search-section {
+    display: flex;
+  }
+
+  .nav-section {
+    display: flex;
+  }
+}
+
+.search-input,
+.nav-button,
+.nav-button-ghost,
+.nav-button-outline {
+  color: #fff !important;
+}
+
+.search-input {
+  background-color: #222 !important;
+  border: 1px solid #444 !important;
+}
+
+.search-button {
+  background-color: #92fe75 !important;
+  color: #000000 !important;
+}
+
+.nav-button-outline {
+  border: 1px solid #fff !important;
+}
+
+.nav-button-primary {
+  background-color: #92fe75 !important;
+  color: #000000 !important;
+}
+
+.nav-button-primary:hover,
+.search-button:hover {
+  background-color: #92fe75 !important;
+}
+
+/* Optional: Make placeholder text visible */
+.search-input::placeholder {
+  color: #ccc;
+}
