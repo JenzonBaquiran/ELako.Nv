@@ -1,0 +1,342 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+/* Full background image */
+.signup-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 150vh;
+  background: url('../pictures/blog_184.png') center center/cover no-repeat;
+}
+
+.text {
+  color: #ffffff;
+  margin-bottom: 0px;
+  margin-top: -8px; /* Move text closer to logo */
+  text-align: center;
+
+}
+.signup-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  z-index: 1;
+}
+
+.signup-form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:   rgba(31, 31, 31, 0.7); /* semi-transparent overlay */
+  min-width: 400px;
+  max-width: 50vw;
+  margin-left: auto;
+  height: 100vh;
+  box-shadow: -10px 0 30px 0 rgba(0,0,0,0.2);
+}
+
+.signup-form-content {
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 2;
+}
+
+.logo-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.brand-logo {
+  width: 250px;
+  max-width: 100%;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.signup-input {
+  margin-bottom: 10px !important;
+}
+
+.signup-input .MuiOutlinedInput-root {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.signup-input .MuiInputBase-input {
+  color: #fff !important;
+  padding: 15px !important;
+}
+
+.signup-input .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.input-outline {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.signup-links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;      /* Smaller text size */
+  color: #ffffff !important;
+  text-decoration: none !important;
+  margin: 5px 0 0px 0;
+  font-weight: 600;        /* Slightly bolder */
+  letter-spacing: 0.5px;   /* Optional: improve readability */
+}
+
+.signup-link {
+  cursor: pointer;
+  opacity: 0.8;
+  color: #fff !important;
+  text-transform: none !important;
+  font-size: 12px !important;   /* Smaller text size */
+  font-weight: 200 !important;     /* Slightly bolder */
+  padding: 8px 12px !important;   /* More padding for better click area */
+  border-radius: 4px !important;  /* Consistent border radius */
+}
+
+.signup-link:hover {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+.signup-btn {
+  background: #1a1a1a !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  font-weight: 800 !important;         /* Make font bolder */
+  font-size: 1rem !important;
+  padding: 20px 0 !important;
+  text-transform: uppercase !important;
+  box-shadow: none !important;
+  width: 60% !important;               /* Make button width smaller */
+  margin: 0 auto !important;           /* Center the button */
+}
+
+.signup-btn:hover {
+  background: #7ed957 !important;
+  color: black !important;
+}
+
+/* Hide any default MUI password visibility toggle if present */
+input[type="password"] + .MuiInputAdornment-root .MuiButtonBase-root:not(:last-child) {
+  display: none !important;
+}
+
+/* Tab switcher styles */
+.signup-tabs {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.signup-tab-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-tab-btn {
+  background: none !important;
+  color: #fff !important;
+  border-bottom: 2px solid transparent;
+  border-radius: 0 !important;
+  font-size: 28px !important;
+  transition: border-bottom 0.2s;
+}
+
+.signup-tab-btn.active {
+  border-bottom: 2px solid #fff !important;
+}
+
+.signup-tab-label {
+  color: #fff;
+  font-size: 1rem;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+  font-weight: normal;
+}
+
+.signup-tab-col.active .signup-tab-label {
+  font-weight: bold;
+}
+
+/* Align category to end */
+.category-align-end {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Input widths for MSME form */
+.category-box,
+.business-box,
+.username-box,
+.password-box,
+.confirm-box {
+  width: 205px !important;
+    max-width: 100% !important;
+    padding-bottom: 20px !important;
+}
+
+/* Category dropdown font color */
+.category-box .MuiInputBase-input,
+.category-box .MuiSelect-select {
+  color: #fff !important;
+}
+
+.category-box .MuiInputLabel-root {
+  color: #fff !important;
+  opacity: 0.9;
+}
+
+.category-box .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255,255,255,0.2) !important;
+}
+
+.category-box .MuiSelect-icon {
+  color: #fff !important;
+}
+
+.category-box .Mui-selected {
+  color: #fff !important;
+}
+
+/* Make category dropdown font color white, including selected value */
+.signup-input .MuiInputBase-input,
+.signup-input .MuiSelect-select {
+  color: #fff !important;
+}
+
+.signup-input .MuiInputLabel-root {
+  color: #fff !important;
+  opacity: 0.9;
+}
+
+.signup-input .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255,255,255,0.2) !important;
+}
+
+.signup-input .MuiSelect-icon {
+  color: #fff !important;
+}
+
+.signup-input .Mui-selected {
+  color: #fff !important;
+}
+
+/* Add padding-bottom to all input boxes */
+.signup-input .MuiInputBase-input,
+.signup-input .MuiSelect-select {
+  padding-bottom: 18px !important;
+}
+
+/* For MSME input boxes if you use specific classes */
+.category-box .MuiInputBase-input,
+.business-box .MuiInputBase-input,
+.username-box .MuiInputBase-input,
+.password-box .MuiInputBase-input,
+.confirm-box .MuiInputBase-input {
+  padding-bottom: 18px !important;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 600px) {
+  .signup-input .MuiInputBase-input,
+  .signup-input .MuiSelect-select,
+  .category-box .MuiInputBase-input,
+  .business-box .MuiInputBase-input,
+  .username-box .MuiInputBase-input,
+  .password-box .MuiInputBase-input,
+  .confirm-box .MuiInputBase-input {
+    padding-bottom: 16px !important;
+  }
+}
+
+/* Ensure all input text uses Poppins font */
+.signup-input .MuiInputBase-input,
+.signup-input .MuiSelect-select,
+.signup-input .MuiInputLabel-root,
+.category-box .MuiInputBase-input,
+.category-box .MuiSelect-select,
+.category-box .MuiInputLabel-root,
+.business-box .MuiInputBase-input,
+.username-box .MuiInputBase-input,
+.password-box .MuiInputBase-input,
+.confirm-box .MuiInputBase-input {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif !important;
+}
+
+/* Apply Poppins font to all elements */
+body,
+.signup-bg,
+.signup-container,
+.signup-form,
+.signup-form-content,
+.logo-container,
+.brand-logo,
+.signup-input,
+.signup-links,
+.signup-link,
+.signup-btn {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif !important;
+}
+
+/* Link styles */
+.link {
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.link:hover {
+  background: #7ed957 !important;
+  color: #1a1a1a !important;
+ 
+}
+
+/* Responsive for signup form */
+@media (max-width: 900px) {
+  .signup-form {
+    max-width: 100vw;
+    min-width: unset;
+  }
+  .signup-form-content {
+    width: 90vw;
+    max-width: 100vw;
+  }
+}
+
+/* Responsive input and button widths */
+@media (max-width: 600px) {
+  .signup-input,
+  .category-box,
+  .business-box,
+  .username-box,
+  .password-box,
+  .confirm-box {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .signup-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    font-size: 0.95rem !important;
+    padding: 16px 0 !important;
+  }
+}
+
+

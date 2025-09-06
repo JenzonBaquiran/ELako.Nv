@@ -1,3 +1,13 @@
+body{
+  font-family: 'Poppins', sans-serif !important;
+  margin-top: 20px;
+  margin-right: 5px;
+  padding: 10px;
+  padding-left: 50px;
+   padding-right: 50px;
+  box-sizing: border-box;
+}
+
 :root {
   --primary: #313131;
   --secondary: #7ed957;
@@ -562,6 +572,24 @@
   display: flex;
   justify-content: center;
 }
+/* Make all view all buttons the same size in mobile view */
+@media (max-width: 600px) {
+  .hot-picks-viewall,
+  .top-rated-viewall,
+  .top-stores-viewall,
+  .recently-joined-viewall,
+  .recently-joined-viewall-btn {
+    width: 100% !important;
+    height: 60px !important;
+    font-size: 18px !important;
+    padding: 0rem 3rem !important;
+    text-align: center;
+    border-radius: 6px;
+    display: inline-block;
+    
+   
+  }
+}
 
 .recently-joined-list {
   display: grid;
@@ -589,8 +617,8 @@
 .store-logo {
   width: 48px;
   height: 48px;
-  object-fit: contain;
-  border-radius: 0.5rem;
+  object-fit: cover;
+  border-radius: 50%;
   margin-bottom: 0.5rem;
 }
 

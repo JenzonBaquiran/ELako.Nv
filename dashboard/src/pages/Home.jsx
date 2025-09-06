@@ -68,7 +68,7 @@ function Home() {
         </div>
       </div>
       <section className="hot-picks">
-        <div className="hot-picks-header">
+        <div className="hot-picks-header" data-aos="fade-right">
           {/* <span className="hot-pick-icon">🔥</span> */}
           <h1></h1>
           <h2>Hot Picks</h2>
@@ -82,7 +82,7 @@ function Home() {
         <div className="hot-picks-list-container">
           <div className="hot-picks-list">
             {cards.map((card, idx) => (
-              <div className="hot-pick-card" key={idx}>
+              <div className="hot-pick-card" key={idx} data-aos="zoom-in">
                 <img src={heroPic} alt="Service" />
                 <div className={`hot-pick-label ${card.labelClass}`}>{card.label}</div>
                 <h3>{card.title}</h3>

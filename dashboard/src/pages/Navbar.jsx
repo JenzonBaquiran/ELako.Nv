@@ -1,6 +1,5 @@
-"use client"
-
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import SearchIcon from "@mui/icons-material/Search"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import MenuIcon from "@mui/icons-material/Menu"
@@ -10,6 +9,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ChatIcon from '@mui/icons-material/Chat';
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const navigate = useNavigate()
 
   return (
     <header className="header">
@@ -45,8 +45,8 @@ function Header() {
               <NotificationsIcon fontSize="medium" />
             </button>
         
-            <button className="nav-button nav-button-outline">Login</button>
-            <button className="nav-button nav-button-primary">Register</button>
+            <button className="nav-button nav-button-outline" onClick={() => navigate('/login')}>Login</button>
+            <button className="nav-button nav-button-primary" onClick={() => navigate('/signup')}>Register</button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -80,10 +80,10 @@ function Header() {
               Notifications
             </button>
            
-            <button className="nav-button nav-button-outline mobile-menu-button">
+            <button className="nav-button nav-button-outline mobile-menu-button" onClick={() => navigate('/login')}>
               Login
             </button>
-            <button className="nav-button nav-button-primary mobile-menu-button">
+            <button className="nav-button nav-button-primary mobile-menu-button" onClick={() => navigate('/signup')}>
               Register
             </button>
           </div>
