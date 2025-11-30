@@ -110,7 +110,7 @@ const AdminMsmeOversight = () => {
 
   // Check if a store has an active badge
   const hasActiveBadge = (msmeId) => {
-    return badgeData.some(badge => badge.storeId._id === msmeId);
+    return badgeData.some(badge => badge.storeId && badge.storeId._id === msmeId);
   };
 
   // Update MSME data with real statistics
