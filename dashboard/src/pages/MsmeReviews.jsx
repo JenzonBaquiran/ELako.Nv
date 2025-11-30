@@ -219,6 +219,7 @@ const MsmeReviews = () => {
       createdAt: feedback.createdAt || new Date(),
       selectedVariant: feedback.selectedVariant || null,
       selectedSize: feedback.selectedSize || null,
+      hidden: feedback.hidden || false, // Include the hidden property
     })).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) : [];
     
 
@@ -262,13 +263,16 @@ const MsmeReviews = () => {
     setTogglingVisibility(prev => ({ ...prev, [reviewId]: true }));
     
     try {
+      const msmeId = user._id || user.id;
+      console.log('Toggling review visibility:', { reviewId, currentHiddenStatus, msmeId, newStatus: !currentHiddenStatus });
+      
       const response = await fetch(`http://localhost:1337/api/reviews/${reviewId}/visibility`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          msmeId: user._id || user.id,
+          msmeId: msmeId,
           hidden: !currentHiddenStatus, // Toggle the current status
         }),
       });
