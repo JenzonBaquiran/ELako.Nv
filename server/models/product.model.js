@@ -72,6 +72,19 @@ const productSchema = new mongoose.Schema(
           required: true,
           enum: ["ml", "L", "g", "kg", "oz", "lb"],
         },
+        price: {
+          type: Number,
+          required: false,
+          min: [0.01, "Size option price must be greater than 0"],
+          default: 0,
+          validate: {
+            validator: function (v) {
+              return v === 0 || v > 0; // Allow 0 for default/fallback but validate on save
+            },
+            message:
+              "Size option price must be a positive number greater than 0",
+          },
+        }, // Individual price for this size option
       },
     ],
     hashtags: [

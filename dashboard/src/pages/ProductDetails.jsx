@@ -183,10 +183,15 @@ const ProductDetails = () => {
             <p className="product-details-description">{product.description}</p>
             
             <div className="product-details-price">
-              ₱{selectedVariant?.price || product.price}
+              ₱{selectedVariant?.price || selectedSize?.price || product.price}
               {selectedVariant && (
                 <span className="product-details-price-note">
                   {selectedVariant.name} variant
+                </span>
+              )}
+              {!selectedVariant && selectedSize && (
+                <span className="product-details-price-note">
+                  {selectedSize.size} {selectedSize.unit}
                 </span>
               )}
             </div>
@@ -210,6 +215,7 @@ const ProductDetails = () => {
                       onClick={() => handleVariantSelection(variant)}
                     >
                       <span className="variant-name">{variant.name}</span>
+                      {variant.price && <span className="variant-price">₱{variant.price}</span>}
                     </button>
                   ))}
                 </div>
@@ -232,13 +238,15 @@ const ProductDetails = () => {
                       className={`product-details-size-btn ${selectedSize?.id === size.id ? 'selected' : ''}`}
                       onClick={() => setSelectedSize(size)}
                     >
-                      {size.size} {size.unit}
+                      <span className="size-name">{size.size} {size.unit}</span>
+                      {size.price !== undefined && <span className="size-price">₱{size.price}</span>}
                     </button>
                   ))}
                 </div>
                 {selectedSize && (
                   <div className="product-details-selected-size">
                     Selected Size: <strong>{selectedSize.size} {selectedSize.unit}</strong>
+                    {selectedSize.price !== undefined && <span> - ₱{selectedSize.price}</span>}
                   </div>
                 )}
               </div>

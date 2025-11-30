@@ -1806,28 +1806,55 @@ app.put("/api/admin/msme/:id/update", async (req, res) => {
       clientProfilingNumber,
     } = req.body;
 
-    // Validate email format if provided
-    if (email && email.trim() !== "") {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
+    // Validate and handle email
+    let updateFields = {
+      username,
+      businessName,
+      category,
+      contactNumber,
+      clientProfilingNumber,
+      updatedAt: new Date(),
+    };
+
+    // Only update email if it's provided and not empty
+    if (email !== undefined) {
+      if (email.trim() === "") {
         return res.status(400).json({
           success: false,
-          error: "Invalid email format",
+          error:
+            "Email cannot be empty. Please provide a valid email or leave it blank.",
         });
+      }
+
+      if (email.trim() !== "") {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          return res.status(400).json({
+            success: false,
+            error: "Invalid email format",
+          });
+        }
+
+        // Check for duplicate email (excluding current record)
+        const existingMSME = await MSME.findOne({
+          email: email,
+          id: { $ne: req.params.id },
+        });
+
+        if (existingMSME) {
+          return res.status(400).json({
+            success: false,
+            error: "Email already exists. Please use a different email.",
+          });
+        }
+
+        updateFields.email = email;
       }
     }
 
     const updatedMSME = await MSME.findOneAndUpdate(
       { id: req.params.id },
-      {
-        username,
-        businessName,
-        email: email || "",
-        category,
-        contactNumber,
-        clientProfilingNumber,
-        updatedAt: new Date(),
-      },
+      updateFields,
       { new: true, select: "-password" }
     );
 
@@ -9328,6 +9355,20 @@ app.post("/api/products", upload.array("pictures", 10), async (req, res) => {
           typeof sizeOptions === "string"
             ? JSON.parse(sizeOptions)
             : sizeOptions;
+
+        // Validate size option prices
+        for (const sizeOption of parsedSizeOptions) {
+          if (sizeOption.price !== undefined && sizeOption.price !== null) {
+            const price = parseFloat(sizeOption.price);
+            if (isNaN(price) || price <= 0) {
+              return res.status(400).json({
+                success: false,
+                error: `Size option "${sizeOption.size} ${sizeOption.unit}" price must be a positive number greater than 0`,
+              });
+            }
+            sizeOption.price = price; // Ensure it's stored as a number
+          }
+        }
       } catch (e) {
         parsedSizeOptions = [];
       }

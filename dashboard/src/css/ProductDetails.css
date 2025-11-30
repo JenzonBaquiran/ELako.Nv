@@ -1158,6 +1158,17 @@
   gap: 2px;
 }
 
+.product-details-size-btn .size-name {
+  font-weight: 500;
+}
+
+.product-details-size-btn .size-price {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.8;
+  color: #7ed957;
+}
+
 .product-details-variant-btn .variant-name {
   font-weight: 500;
 }

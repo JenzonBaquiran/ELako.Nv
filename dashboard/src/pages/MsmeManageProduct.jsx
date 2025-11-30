@@ -51,7 +51,7 @@ const MsmeManageProduct = () => {
   const [imagePreview, setImagePreview] = useState([]);
   const [existingImages, setExistingImages] = useState([]); // Track existing images from server
   const [currentVariant, setCurrentVariant] = useState({ name: '', price: '' });
-  const [currentSize, setCurrentSize] = useState({ size: '', unit: 'ml' });
+  const [currentSize, setCurrentSize] = useState({ size: '', unit: 'ml', price: '' });
   const [showVariantForm, setShowVariantForm] = useState(false);
   const [showSizeForm, setShowSizeForm] = useState(false);
   const [editingVariantId, setEditingVariantId] = useState(null);
@@ -349,7 +349,7 @@ const MsmeManageProduct = () => {
     setImagePreview([]);
     setExistingImages([]);
     setCurrentVariant({ name: '', price: '' });
-    setCurrentSize({ size: '', unit: 'ml' });
+    setCurrentSize({ size: '', unit: 'ml', price: '' });
     setShowVariantForm(false);
     setShowSizeForm(false);
     setEditingVariantId(null);
@@ -495,12 +495,16 @@ const MsmeManageProduct = () => {
   };
 
   const addSizeOption = () => {
-    if (!currentSize.size.trim()) return;
+    if (!currentSize.size.trim() || !currentSize.price) return;
+    
+    const priceValue = parseFloat(currentSize.price);
+    if (priceValue <= 0) return;
     
     const newSize = {
       id: Date.now(),
       size: currentSize.size.trim(),
-      unit: currentSize.unit
+      unit: currentSize.unit,
+      price: priceValue
     };
     
     setFormData(prev => ({
@@ -508,7 +512,7 @@ const MsmeManageProduct = () => {
       sizeOptions: [...(prev.sizeOptions || []), newSize]
     }));
     
-    setCurrentSize({ size: '', unit: 'ml' });
+    setCurrentSize({ size: '', unit: 'ml', price: '' });
     setShowSizeForm(false);
   };
 
@@ -693,7 +697,7 @@ const MsmeManageProduct = () => {
     
     // Clear any form-related states
     setCurrentVariant({ name: '', price: '' });
-    setCurrentSize({ size: '', unit: 'ml' });
+    setCurrentSize({ size: '', unit: 'ml', price: '' });
     setShowVariantForm(false);
     setShowSizeForm(false);
     setEditingVariantId(null);
@@ -1128,14 +1132,17 @@ const MsmeManageProduct = () => {
                   )}
                 </div>
 
-                {/* Size Options for Beverages */}
-                {formData.category === 'beverages' && (
+                {/* Size Options for Beverages - Disabled, using variants instead */}
+                {false && formData.category === 'beverages' && (
                   <div className="form-group">
                     <label>Size Options</label>
                     <div className="size-options-container">
                       {(formData.sizeOptions || []).map((size) => (
                         <div key={size.id} className="size-option-item">
-                          <span>{size.size} {size.unit}</span>
+                          <div className="size-info">
+                            <span className="size-name">{size.size} {size.unit}</span>
+                            <span className="size-price">₱{size.price}</span>
+                          </div>
                           <button
                             type="button"
                             onClick={() => removeSizeOption(size.id)}
@@ -1160,7 +1167,10 @@ const MsmeManageProduct = () => {
                               e.stopPropagation();
                               if (e.key === 'Enter') {
                                 e.preventDefault();
-                                addSizeOption();
+                                // Move to price field or add if price is filled
+                                if (currentSize.price) {
+                                  addSizeOption();
+                                }
                               }
                             }}
                             placeholder="Size (e.g., 250, 500)"
@@ -1179,6 +1189,15 @@ const MsmeManageProduct = () => {
                             <option value="oz">oz</option>
                             <option value="lb">lb</option>
                           </select>
+                          <input
+                            type="number"
+                            value={currentSize.price}
+                            onChange={(e) => setCurrentSize(prev => ({ ...prev, price: e.target.value }))}
+                            placeholder="Price (₱)"
+                            min="0.01"
+                            step="0.01"
+                            className="size-price-input"
+                          />
                           <button type="button" onClick={addSizeOption} className="add-btn">Add</button>
                           <button type="button" onClick={() => setShowSizeForm(false)} className="cancel-btn">Cancel</button>
                         </div>
@@ -1195,8 +1214,8 @@ const MsmeManageProduct = () => {
                   </div>
                 )}
 
-                {/* Variants/Flavors for Food */}
-                {(formData.category === 'processed-foods' || formData.category === 'baked-goods' || formData.category === 'confectionery') && (
+                {/* Variants/Flavors for Food and Beverages */}
+                {(formData.category === 'processed-foods' || formData.category === 'baked-goods' || formData.category === 'confectionery' || formData.category === 'beverages') && (
                   <div className="form-group">
                     <label>Product Variants/Flavors</label>
                     <div className="variants-container">

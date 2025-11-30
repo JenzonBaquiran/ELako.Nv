@@ -615,13 +615,19 @@ const AdminUserManagement = () => {
           email: editUserFormData.email
         };
       } else if (editingUser.type === 'MSME') {
+        // Validate email if provided
+        if (editUserFormData.email && editUserFormData.email.trim() === "") {
+          throw new Error("Email cannot be empty. Please provide a valid email or leave it blank.");
+        }
+        
         endpoint = `http://localhost:1337/api/admin/msme/${editingUser.id}/update`;
         requestBody = {
           username: editUserFormData.username,
           businessName: editUserFormData.businessName,
           category: editUserFormData.category,
           contactNumber: editUserFormData.contactNumber,
-          clientProfilingNumber: editUserFormData.clientProfilingNumber
+          clientProfilingNumber: editUserFormData.clientProfilingNumber,
+          email: editUserFormData.email
         };
       } else if (editingUser.type === 'Customer') {
         endpoint = `http://localhost:1337/api/admin/customers/${editingUser.id}/update`;
