@@ -9003,6 +9003,36 @@ app.get("/api/badges/admin/stores", async (req, res) => {
   }
 });
 
+// Manually award a Top Store badge to a specific store (Admin only)
+app.post("/api/badges/admin/award-store/:storeId", async (req, res) => {
+  try {
+    const { storeId } = req.params;
+
+    console.log(`🏆 Admin manually awarding badge to store: ${storeId}`);
+
+    const result = await BadgeService.manuallyAwardStoreBadge(storeId);
+
+    if (result.success) {
+      res.json({
+        success: true,
+        message: result.message,
+        badge: result.badge,
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        message: result.message,
+      });
+    }
+  } catch (error) {
+    console.error("Error manually awarding store badge:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to award badge: " + error.message,
+    });
+  }
+});
+
 // --- Badge System API Endpoints ---
 
 // Get store badge status

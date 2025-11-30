@@ -585,6 +585,53 @@
   outline-offset: 2px;
 }
 
+.admin-msme-reports__award-btn {
+  background: #FF6B35;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  padding: 6px 8px;
+  transition: all 0.2s ease;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative;
+  z-index: 1;
+  margin-left: 8px;
+}
+
+.admin-msme-reports__award-btn:hover {
+  background: #FF8C42;
+  transform: translateY(-1px);
+}
+
+.admin-msme-reports__award-btn:active {
+  transform: translateY(0);
+}
+
+.admin-msme-reports__award-btn:focus {
+  outline: 2px solid rgba(255, 107, 53, 0.5);
+  outline-offset: 2px;
+}
+
+.admin-msme-reports__award-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.admin-msme-reports__award-btn:disabled:hover {
+  background: #ccc;
+  transform: none;
+}
+
 /* Modal Styles */
 .admin-msme-reports__modal-overlay {
   position: fixed;

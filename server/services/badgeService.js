@@ -350,6 +350,78 @@ class BadgeService {
       console.error("Error marking celebration as shown:", error);
     }
   }
+
+  // Manually award a Top Store badge to a specific store
+  async manuallyAwardStoreBadge(storeId) {
+    try {
+      // Check if store exists
+      const store = await MSME.findById(storeId);
+      if (!store) {
+        throw new Error("Store not found");
+      }
+
+      // Check if store already has an active badge for current week
+      const now = new Date();
+      const startOfWeek = new Date(now);
+      startOfWeek.setDate(now.getDate() - now.getDay());
+      startOfWeek.setHours(0, 0, 0, 0);
+
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setDate(startOfWeek.getDate() + 6);
+      endOfWeek.setHours(23, 59, 59, 999);
+
+      let existingBadge = await StoreBadge.findOne({
+        storeId: storeId,
+        weekStart: { $lte: now },
+        weekEnd: { $gte: now },
+        isActive: true,
+        expiresAt: { $gt: now },
+      });
+
+      if (existingBadge) {
+        return {
+          success: false,
+          message: "Store already has an active badge for this week",
+        };
+      }
+
+      // Create or update badge for current week
+      let badge = await StoreBadge.findOne({
+        storeId: storeId,
+        weekStart: { $lte: now },
+        weekEnd: { $gte: now },
+      });
+
+      if (!badge) {
+        badge = await StoreBadge.createWeeklyBadge(storeId);
+      }
+
+      // Manually set badge as active and qualified
+      badge.isActive = true;
+      badge.manuallyAwarded = true;
+      badge.awardedAt = new Date();
+
+      // Set all criteria as met for manually awarded badges
+      badge.criteria.storeRating.met = true;
+      badge.criteria.productRatings.met = true;
+      badge.criteria.profileViews.met = true;
+
+      await badge.save();
+
+      console.log(
+        `🏆 Manually awarded Top Store badge to ${store.businessName}`
+      );
+
+      return {
+        success: true,
+        message: "Badge awarded successfully",
+        badge: badge,
+      };
+    } catch (error) {
+      console.error("Error manually awarding store badge:", error);
+      throw error;
+    }
+  }
 }
 
 module.exports = new BadgeService();

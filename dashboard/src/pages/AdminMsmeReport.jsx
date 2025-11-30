@@ -11,6 +11,7 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import BusinessIcon from '@mui/icons-material/Business';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import CloseIcon from '@mui/icons-material/Close';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 const AdminMsmeReport = () => {
   const { showSuccess, showError } = useNotification();
@@ -309,6 +310,38 @@ const AdminMsmeReport = () => {
     setSelectedMsme(null);
   };
 
+  const handleAwardBadge = async (storeId, businessName) => {
+    try {
+      console.log('Awarding badge to:', storeId, businessName);
+      setLoading(true);
+      
+      const response = await fetch(`http://localhost:1337/api/badges/admin/award-store/${storeId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      console.log('Response status:', response.status);
+      const data = await response.json();
+      console.log('Response data:', data);
+      
+      if (data.success) {
+        showSuccess(`🏆 Top Store badge awarded to ${businessName}!`);
+        // Refresh badges data to show the new badge
+        await fetchBadgesData();
+      } else {
+        console.error('Badge award failed:', data);
+        showError(data.message || 'Failed to award badge');
+      }
+    } catch (error) {
+      console.error('Error awarding badge:', error);
+      showError('Failed to award badge: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const getRatingClass = (category) => {
     switch (category) {
       case 'excellent':
@@ -340,7 +373,8 @@ const AdminMsmeReport = () => {
   // Helper function to get badge information for a store
   const getStoreBadgeInfo = (storeId) => {
     const badge = badgesData.find(badge => {
-      // Handle both string IDs and populated objects
+      // Handle both string IDs and populated objects, and null values
+      if (!badge.storeId) return false;
       const badgeStoreId = typeof badge.storeId === 'object' ? badge.storeId._id : badge.storeId;
       return badgeStoreId === storeId;
     });
@@ -630,6 +664,20 @@ const AdminMsmeReport = () => {
                           >
                             <VisibilityIcon sx={{ fontSize: 16 }} />
                           </button>
+                          {(() => {
+                            const badgeInfo = getStoreBadgeInfo(report._id);
+                            console.log(`Store ${report.businessName} (${report._id}): hasActiveBadge =`, badgeInfo.hasActiveBadge);
+                            return !badgeInfo.hasActiveBadge ? (
+                              <button 
+                                className="admin-msme-reports__award-btn"
+                                onClick={() => handleAwardBadge(report._id, report.businessName)}
+                                title="Award Top Store Badge"
+                                disabled={loading}
+                              >
+                                <EmojiEventsIcon sx={{ fontSize: 16 }} />
+                              </button>
+                            ) : null;
+                          })()}
                         </div>
                       </td>
                     </tr>
