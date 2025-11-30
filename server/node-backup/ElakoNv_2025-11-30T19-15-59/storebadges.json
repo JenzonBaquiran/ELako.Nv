@@ -1,0 +1,1239 @@
+[
+  {
+    "_id": "68ed17732435601cf0bbc798",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.8,
+        "required": 4.5,
+        "met": true
+      },
+      "productRatings": {
+        "current": 5,
+        "required": 4.5,
+        "met": true
+      },
+      "profileViews": {
+        "current": 61,
+        "required": 50,
+        "met": true
+      },
+      "blogViews": {
+        "current": 30,
+        "required": 20,
+        "met": true
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-10-13T15:15:21.979Z",
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-10-13T15:14:59.460Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ed2fe36adf01650297a62c",
+    "storeId": "68ced76b18ad6af637734e4a",
+    "badgeType": "top_store",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.5,
+        "required": 4.5,
+        "met": true
+      },
+      "productRatings": {
+        "current": 4.5,
+        "required": 4.5,
+        "met": true
+      },
+      "profileViews": {
+        "current": 1,
+        "required": 50,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 20,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-10-13T16:59:15.287Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ed2fe36adf01650297a63a",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.6,
+        "required": 4.5,
+        "met": true
+      },
+      "productRatings": {
+        "current": 5,
+        "required": 4.5,
+        "met": true
+      },
+      "profileViews": {
+        "current": 0,
+        "required": 50,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 20,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-10-13T16:59:15.309Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b397e84311ac1340ad62b",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.8,
+        "required": 4,
+        "met": true
+      },
+      "productRatings": {
+        "current": 4.742857142857143,
+        "required": 4,
+        "met": true
+      },
+      "profileViews": {
+        "current": 7,
+        "required": 25,
+        "met": false
+      },
+      "blogViews": {
+        "current": 20,
+        "required": 10,
+        "met": true
+      }
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:04:30.320Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b397e84311ac1340ad655",
+    "storeId": "68ced76b18ad6af637734e4a",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.8,
+        "required": 4,
+        "met": true
+      },
+      "productRatings": {
+        "current": 5,
+        "required": 4,
+        "met": true
+      },
+      "profileViews": {
+        "current": 1,
+        "required": 25,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:04:30.350Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b397e84311ac1340ad669",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.7,
+        "required": 4,
+        "met": true
+      },
+      "productRatings": {
+        "current": 4.964285714285714,
+        "required": 4,
+        "met": true
+      },
+      "profileViews": {
+        "current": 1,
+        "required": 25,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:04:30.365Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b3f7f6f8e3c8915f34a11",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-16T15:30:07.659Z",
+    "weekEnd": "2025-11-22T15:30:07.659Z",
+    "criteria": {
+      "storeRating": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 53,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T15:30:07.659Z",
+    "expiresAt": "2025-11-22T15:30:07.659Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:30:07.666Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b3f7f6f8e3c8915f34a13",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-16T15:30:07.659Z",
+    "weekEnd": "2025-11-22T15:30:07.659Z",
+    "criteria": {
+      "storeRating": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 44,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T15:30:07.659Z",
+    "expiresAt": "2025-11-22T15:30:07.659Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:30:07.672Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b40183c5337d85ac4fb48",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-16T15:32:40.225Z",
+    "weekEnd": "2025-11-22T15:32:40.225Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.75,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 53,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T15:32:40.225Z",
+    "expiresAt": "2025-11-22T15:32:40.225Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:32:40.232Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b40183c5337d85ac4fb4a",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-16T15:32:40.225Z",
+    "weekEnd": "2025-11-22T15:32:40.225Z",
+    "criteria": {
+      "storeRating": {
+        "current": 3.5,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 44,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T15:32:40.225Z",
+    "expiresAt": "2025-11-22T15:32:40.225Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:32:40.238Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b42a1199751b872c849aa",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-16T15:43:29.108Z",
+    "weekEnd": "2025-11-22T15:43:29.108Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.75,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 53,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T15:43:29.108Z",
+    "expiresAt": "2025-11-22T15:43:29.108Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:43:29.114Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b42a1199751b872c849ac",
+    "storeId": "68ced76b18ad6af637734e4a",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-16T15:43:29.108Z",
+    "weekEnd": "2025-11-22T15:43:29.108Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.8,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 31,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T15:43:29.108Z",
+    "expiresAt": "2025-11-22T15:43:29.108Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:43:29.120Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b434a8eb32bed7a59d911",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-16T15:46:18.471Z",
+    "weekEnd": "2025-11-22T15:46:18.471Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.875,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 44,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T15:46:18.471Z",
+    "expiresAt": "2025-11-22T15:46:18.471Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:46:18.478Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b434a8eb32bed7a59d913",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-16T15:46:18.471Z",
+    "weekEnd": "2025-11-22T15:46:18.471Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.75,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 53,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T15:46:18.471Z",
+    "expiresAt": "2025-11-22T15:46:18.471Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:46:18.483Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b434a8eb32bed7a59d915",
+    "storeId": "68ced76b18ad6af637734e4a",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-16T15:46:18.471Z",
+    "weekEnd": "2025-11-22T15:46:18.471Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.8,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 31,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T15:46:18.471Z",
+    "expiresAt": "2025-11-22T15:46:18.471Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:46:18.485Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b44d85fd3a2d1072dbf9a",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-16T15:52:56.595Z",
+    "weekEnd": "2025-11-22T15:52:56.595Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.875,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 44,
+        "required": 25,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T15:52:56.595Z",
+    "expiresAt": "2025-11-22T15:52:56.595Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:52:56.601Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b44d85fd3a2d1072dbf9d",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-16T15:52:56.595Z",
+    "weekEnd": "2025-11-22T15:52:56.595Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.75,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 53,
+        "required": 25,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T15:52:56.595Z",
+    "expiresAt": "2025-11-22T15:52:56.595Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:52:56.606Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b44d85fd3a2d1072dbf9f",
+    "storeId": "68ced76b18ad6af637734e4a",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-16T15:52:56.595Z",
+    "weekEnd": "2025-11-22T15:52:56.595Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.8,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 31,
+        "required": 25,
+        "met": false
+      },
+      "blogViews": {
+        "current": 0,
+        "required": 10,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T15:52:56.595Z",
+    "expiresAt": "2025-11-22T15:52:56.595Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:52:56.609Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b47f9253a0cd53ef5eebd",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-15T16:06:17.065Z",
+    "weekEnd": "2025-11-21T16:06:17.065Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.875,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 44,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T16:06:17.065Z",
+    "expiresAt": "2025-11-21T16:06:17.065Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T16:06:17.071Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b47f9253a0cd53ef5eebf",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-15T16:06:17.065Z",
+    "weekEnd": "2025-11-21T16:06:17.065Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.75,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 53,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T16:06:17.065Z",
+    "expiresAt": "2025-11-21T16:06:17.065Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T16:06:17.077Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b47f9253a0cd53ef5eec1",
+    "storeId": "68ced76b18ad6af637734e4a",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-15T16:06:17.065Z",
+    "weekEnd": "2025-11-21T16:06:17.065Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.8,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 31,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T16:06:17.065Z",
+    "expiresAt": "2025-11-21T16:06:17.065Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T16:06:17.080Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b4804299f190568ce4981",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-15T16:06:28.761Z",
+    "weekEnd": "2025-11-21T16:06:28.761Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.875,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 44,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T16:06:28.761Z",
+    "expiresAt": "2025-11-21T16:06:28.761Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T16:06:28.767Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b4804299f190568ce4983",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-15T16:06:28.761Z",
+    "weekEnd": "2025-11-21T16:06:28.761Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.75,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 53,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T16:06:28.761Z",
+    "expiresAt": "2025-11-21T16:06:28.761Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T16:06:28.772Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b4804299f190568ce4985",
+    "storeId": "68ced76b18ad6af637734e4a",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-15T16:06:28.761Z",
+    "weekEnd": "2025-11-21T16:06:28.761Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.8,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 31,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-17T16:06:28.761Z",
+    "expiresAt": "2025-11-21T16:06:28.761Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T16:06:28.775Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "6928b0ec06f4cf2ce30d207a",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-22T20:13:32.968Z",
+    "weekEnd": "2025-11-28T20:13:32.968Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.70909090909091,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 25,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-27T20:13:32.968Z",
+    "expiresAt": "2025-11-28T20:13:32.968Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-27T20:13:32.974Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "6928b0ec06f4cf2ce30d207c",
+    "storeId": "68ced76b18ad6af637734e4a",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-22T20:13:32.968Z",
+    "weekEnd": "2025-11-28T20:13:32.968Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.866666666666666,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 5,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-27T20:13:32.968Z",
+    "expiresAt": "2025-11-28T20:13:32.968Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-27T20:13:32.980Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "6928b0ec06f4cf2ce30d207e",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-22T20:13:32.968Z",
+    "weekEnd": "2025-11-28T20:13:32.968Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.75,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 7,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-27T20:13:32.968Z",
+    "expiresAt": "2025-11-28T20:13:32.968Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-27T20:13:32.983Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab686a59f746772a70a5b",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-22T16:00:00.000Z",
+    "weekEnd": "2025-11-29T15:59:59.999Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.7,
+        "required": 4,
+        "met": true
+      },
+      "productRatings": {
+        "current": 3.7,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 21,
+        "required": 25,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-12-06T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:01:58.905Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab686a59f746772a70a94",
+    "storeId": "68ced76b18ad6af637734e4a",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-22T16:00:00.000Z",
+    "weekEnd": "2025-11-29T15:59:59.999Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.8,
+        "required": 4,
+        "met": true
+      },
+      "productRatings": {
+        "current": 3.7000000000000006,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 4,
+        "required": 25,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-12-06T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:01:58.916Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab686a59f746772a70aad",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-22T16:00:00.000Z",
+    "weekEnd": "2025-11-29T15:59:59.999Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.8,
+        "required": 4,
+        "met": true
+      },
+      "productRatings": {
+        "current": 4.8,
+        "required": 4,
+        "met": true
+      },
+      "profileViews": {
+        "current": 7,
+        "required": 25,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-12-06T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:01:58.925Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab686a59f746772a70ae4",
+    "storeId": "6929d61006f6fb9208a7843b",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-22T16:00:00.000Z",
+    "weekEnd": "2025-11-29T15:59:59.999Z",
+    "criteria": {
+      "storeRating": {
+        "current": 1,
+        "required": 4,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 3,
+        "required": 25,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-12-06T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:01:58.935Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab6df52d9dae0215eadb1",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-23T09:03:27.532Z",
+    "weekEnd": "2025-11-29T09:03:27.532Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.75,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 7,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-29T09:03:27.532Z",
+    "expiresAt": "2025-11-29T09:03:27.532Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:03:27.537Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab6df52d9dae0215eadb3",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-23T09:03:27.532Z",
+    "weekEnd": "2025-11-29T09:03:27.532Z",
+    "criteria": {
+      "storeRating": {
+        "current": 3.5,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 21,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-29T09:03:27.532Z",
+    "expiresAt": "2025-11-29T09:03:27.532Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:03:27.542Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab846350e3158d55e41f5",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-23T09:09:26.653Z",
+    "weekEnd": "2025-11-29T09:09:26.653Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.75,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 7,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-29T09:09:26.653Z",
+    "expiresAt": "2025-11-29T09:09:26.653Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:09:26.659Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab846350e3158d55e41f7",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-23T09:09:26.653Z",
+    "weekEnd": "2025-11-29T09:09:26.653Z",
+    "criteria": {
+      "storeRating": {
+        "current": 3.5,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 21,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": false,
+    "awardedAt": "2025-11-29T09:09:26.653Z",
+    "expiresAt": "2025-11-29T09:09:26.653Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:09:26.663Z",
+    "updatedAt": "2025-11-29T09:10:14.384Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab8762fc43e3f3363041f",
+    "storeId": "68ded9143255b574542dacdd",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-29T16:00:00.000Z",
+    "weekEnd": "2025-12-06T15:59:59.999Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.75,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 30,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": true,
+    "awardedAt": "2025-11-29T09:10:14.402Z",
+    "expiresAt": "2025-12-13T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:10:14.430Z",
+    "updatedAt": "2025-11-29T09:10:14.430Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab8762fc43e3f3363042d",
+    "storeId": "68bdd2b9f6471b6d7433e524",
+    "badgeType": "top_store",
+    "weekStart": "2025-11-29T16:00:00.000Z",
+    "weekEnd": "2025-12-06T15:59:59.999Z",
+    "criteria": {
+      "storeRating": {
+        "current": 4.75,
+        "required": 4,
+        "met": false
+      },
+      "profileViews": {
+        "current": 30,
+        "required": 25,
+        "met": false
+      },
+      "productRatings": {
+        "current": 0,
+        "required": 4,
+        "met": false
+      }
+    },
+    "isActive": true,
+    "awardedAt": "2025-11-29T09:10:14.402Z",
+    "expiresAt": "2025-12-13T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:10:14.438Z",
+    "updatedAt": "2025-11-29T09:10:14.438Z",
+    "__v": 0
+  }
+]

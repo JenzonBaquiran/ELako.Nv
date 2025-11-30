@@ -1,0 +1,1273 @@
+[
+  {
+    "_id": "68ee10a9f0e0a99d477ed909",
+    "customerId": "68bddb09925ffeb350700783",
+    "badgeType": "suki",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      },
+      "blogEngagement": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      }
+    },
+    "loyaltyStore": {
+      "storeId": "68bdd2b9f6471b6d7433e524",
+      "storeName": "florevo",
+      "interactionCount": 11
+    },
+    "isActive": false,
+    "awardedAt": "2025-10-14T09:32:48.194Z",
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": true,
+    "createdAt": "2025-10-14T08:58:17.338Z",
+    "updatedAt": "2025-11-17T15:04:30.555Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ee19e849d136f254204563",
+    "customerId": "68ecba887a0e55e09e3ee66b",
+    "badgeType": "suki",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 6,
+        "required": 5,
+        "met": true
+      },
+      "blogEngagement": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      }
+    },
+    "loyaltyStore": {
+      "storeId": "68bdd2b9f6471b6d7433e524",
+      "storeName": "florevo",
+      "interactionCount": 11
+    },
+    "isActive": false,
+    "awardedAt": "2025-10-14T09:40:59.471Z",
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": true,
+    "createdAt": "2025-10-14T09:37:44.906Z",
+    "updatedAt": "2025-11-17T15:04:30.555Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ee1a6149d136f254204b18",
+    "customerId": "68deb24e716ed01a446e800a",
+    "badgeType": "suki",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      },
+      "blogEngagement": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      }
+    },
+    "loyaltyStore": {
+      "storeId": "68bdd2b9f6471b6d7433e524",
+      "storeName": "florevo",
+      "interactionCount": 8
+    },
+    "isActive": false,
+    "awardedAt": "2025-10-14T09:42:35.007Z",
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": true,
+    "createdAt": "2025-10-14T09:39:45.397Z",
+    "updatedAt": "2025-11-17T15:04:30.555Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ee1b0a45cdc986ff0a2887",
+    "customerId": "68ce67ff178e4d2540df5e4e",
+    "badgeType": "suki",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      },
+      "blogEngagement": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      }
+    },
+    "loyaltyStore": {
+      "storeId": "68bdd2b9f6471b6d7433e524",
+      "storeName": "florevo",
+      "interactionCount": 8
+    },
+    "isActive": false,
+    "awardedAt": "2025-10-14T09:42:34.782Z",
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-10-14T09:42:34.788Z",
+    "updatedAt": "2025-11-17T15:04:30.555Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ee1b0a45cdc986ff0a28e3",
+    "customerId": "68d43c1d960d44ca8b8fd4cc",
+    "badgeType": "suki",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      },
+      "blogEngagement": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      }
+    },
+    "loyaltyStore": {
+      "storeId": "68bdd2b9f6471b6d7433e524",
+      "storeName": "florevo",
+      "interactionCount": 7
+    },
+    "isActive": false,
+    "awardedAt": "2025-10-14T09:42:34.842Z",
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-10-14T09:42:34.844Z",
+    "updatedAt": "2025-11-17T15:04:30.555Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ee1b0a45cdc986ff0a294e",
+    "customerId": "68d4b16ac4ebfaeb3fa781f6",
+    "badgeType": "suki",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      },
+      "blogEngagement": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      }
+    },
+    "loyaltyStore": {
+      "storeId": "68bdd2b9f6471b6d7433e524",
+      "storeName": "florevo",
+      "interactionCount": 7
+    },
+    "isActive": false,
+    "awardedAt": "2025-10-14T09:42:34.899Z",
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-10-14T09:42:34.902Z",
+    "updatedAt": "2025-11-17T15:04:30.555Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ee1b0a45cdc986ff0a29ce",
+    "customerId": "68d4b26fc4ebfaeb3fa78383",
+    "badgeType": "suki",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      },
+      "blogEngagement": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      }
+    },
+    "loyaltyStore": {
+      "storeId": "68bdd2b9f6471b6d7433e524",
+      "storeName": "florevo",
+      "interactionCount": 7
+    },
+    "isActive": false,
+    "awardedAt": "2025-10-14T09:42:34.953Z",
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-10-14T09:42:34.956Z",
+    "updatedAt": "2025-11-17T15:04:30.555Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ee1b0b45cdc986ff0a2af5",
+    "customerId": "68e93649ab9caf944bb19388",
+    "badgeType": "suki",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      },
+      "blogEngagement": {
+        "current": 5,
+        "required": 5,
+        "met": true
+      }
+    },
+    "loyaltyStore": {
+      "storeId": "68bdd2b9f6471b6d7433e524",
+      "storeName": "florevo",
+      "interactionCount": 7
+    },
+    "isActive": false,
+    "awardedAt": "2025-10-14T09:42:35.065Z",
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-10-14T09:42:35.068Z",
+    "updatedAt": "2025-11-17T15:04:30.555Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ee2e94869b323e2cdce71b",
+    "customerId": "68ee2dc1ad81c25d27e54e29",
+    "badgeType": "top_fan",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-10-14T11:05:56.615Z",
+    "updatedAt": "2025-10-14T11:05:56.623Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ee2e94869b323e2cdce71d",
+    "customerId": "68ee2dc1ad81c25d27e54e29",
+    "badgeType": "top_fan",
+    "weekStart": "2025-10-11T16:00:00.000Z",
+    "weekEnd": "2025-10-18T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-10-25T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-10-14T11:05:56.616Z",
+    "updatedAt": "2025-10-14T11:05:56.627Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ff06599beb47b69b462e76",
+    "customerId": "68bddb09925ffeb350700783",
+    "badgeType": "top_fan",
+    "weekStart": "2025-10-25T16:00:00.000Z",
+    "weekEnd": "2025-11-01T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-08T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-10-27T05:42:49.566Z",
+    "updatedAt": "2025-10-27T05:42:49.581Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ff06599beb47b69b462e78",
+    "customerId": "68bddb09925ffeb350700783",
+    "badgeType": "top_fan",
+    "weekStart": "2025-10-25T16:00:00.000Z",
+    "weekEnd": "2025-11-01T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-08T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-10-27T05:42:49.567Z",
+    "updatedAt": "2025-10-27T05:42:49.582Z",
+    "__v": 0
+  },
+  {
+    "_id": "690861e204f93f627403f6d9",
+    "customerId": "68bddb09925ffeb350700783",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-01T16:00:00.000Z",
+    "weekEnd": "2025-11-08T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-15T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-03T08:03:46.298Z",
+    "updatedAt": "2025-11-03T08:03:46.355Z",
+    "__v": 0
+  },
+  {
+    "_id": "690861e204f93f627403f6db",
+    "customerId": "68bddb09925ffeb350700783",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-01T16:00:00.000Z",
+    "weekEnd": "2025-11-08T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-15T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-03T08:03:46.303Z",
+    "updatedAt": "2025-11-03T08:03:46.358Z",
+    "__v": 0
+  },
+  {
+    "_id": "6919be3c0917ad2f39c22158",
+    "customerId": "68bddb09925ffeb350700783",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 7,
+        "required": 5,
+        "met": true
+      }
+    },
+    "loyaltyStore": {
+      "storeId": "68bdd2b9f6471b6d7433e524",
+      "storeName": "florevo",
+      "interactionCount": 4
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-16T12:06:20.384Z",
+    "updatedAt": "2025-11-21T08:47:52.040Z",
+    "__v": 0
+  },
+  {
+    "_id": "6919be3c0917ad2f39c2215b",
+    "customerId": "68bddb09925ffeb350700783",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 5,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-16T12:06:20.387Z",
+    "updatedAt": "2025-11-16T12:06:20.404Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b397e84311ac1340ad605",
+    "customerId": "68ce67ff178e4d2540df5e4e",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:04:30.284Z",
+    "updatedAt": "2025-11-17T15:04:30.298Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b397e84311ac1340ad60f",
+    "customerId": "68d43c1d960d44ca8b8fd4cc",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:04:30.303Z",
+    "updatedAt": "2025-11-17T15:04:30.313Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b397e84311ac1340ad714",
+    "customerId": "68d4b16ac4ebfaeb3fa781f6",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:04:30.464Z",
+    "updatedAt": "2025-11-17T15:04:30.472Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b397e84311ac1340ad71d",
+    "customerId": "68d4b26fc4ebfaeb3fa78383",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:04:30.474Z",
+    "updatedAt": "2025-11-17T15:04:30.483Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b397e84311ac1340ad726",
+    "customerId": "68deb24e716ed01a446e800a",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:04:30.485Z",
+    "updatedAt": "2025-11-17T15:04:30.494Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b397e84311ac1340ad72f",
+    "customerId": "68e93649ab9caf944bb19388",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:04:30.497Z",
+    "updatedAt": "2025-11-17T15:04:30.505Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b397e84311ac1340ad738",
+    "customerId": "68ecba887a0e55e09e3ee66b",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:04:30.508Z",
+    "updatedAt": "2025-11-17T15:04:30.516Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b397e84311ac1340ad741",
+    "customerId": "6919bd330917ad2f39c20e37",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 1,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:04:30.519Z",
+    "updatedAt": "2025-11-17T15:08:25.760Z",
+    "__v": 0
+  },
+  {
+    "_id": "691b397e84311ac1340ad74a",
+    "customerId": "6919bdbd0917ad2f39c215fe",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 4,
+        "required": 3,
+        "met": true
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-17T15:04:30.533Z",
+    "updatedAt": "2025-11-17T17:17:35.269Z",
+    "__v": 0
+  },
+  {
+    "_id": "691ec1f7255cbfe4b9015037",
+    "customerId": "691ec061255cbfe4b90148bf",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-20T07:23:35.851Z",
+    "updatedAt": "2025-11-20T07:23:35.920Z",
+    "__v": 0
+  },
+  {
+    "_id": "691ec1f7255cbfe4b9015039",
+    "customerId": "691ec061255cbfe4b90148bf",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-20T07:23:35.854Z",
+    "updatedAt": "2025-11-20T07:23:35.906Z",
+    "__v": 0
+  },
+  {
+    "_id": "691edcd4c7486f303dff06ee",
+    "customerId": "691edcbcc7486f303dff0588",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 1,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-20T09:18:12.770Z",
+    "updatedAt": "2025-11-20T11:41:36.641Z",
+    "__v": 0
+  },
+  {
+    "_id": "691edcd4c7486f303dff06f0",
+    "customerId": "691edcbcc7486f303dff0588",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-20T09:18:12.774Z",
+    "updatedAt": "2025-11-20T09:18:12.814Z",
+    "__v": 0
+  },
+  {
+    "_id": "691fcace68e2b85835c592d0",
+    "customerId": "691fc69768e2b85835c57c33",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-21T02:13:34.477Z",
+    "updatedAt": "2025-11-21T02:13:34.570Z",
+    "__v": 0
+  },
+  {
+    "_id": "691fcace68e2b85835c592d2",
+    "customerId": "691fc69768e2b85835c57c33",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-21T02:13:34.480Z",
+    "updatedAt": "2025-11-21T02:13:34.567Z",
+    "__v": 0
+  },
+  {
+    "_id": "6920748d26e178d6aa9fe137",
+    "customerId": "6920746926e178d6aa9fdfbf",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-21T14:17:49.842Z",
+    "updatedAt": "2025-11-21T14:17:49.875Z",
+    "__v": 0
+  },
+  {
+    "_id": "6920748d26e178d6aa9fe139",
+    "customerId": "6920746926e178d6aa9fdfbf",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-15T16:00:00.000Z",
+    "weekEnd": "2025-11-22T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-11-29T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-21T14:17:49.843Z",
+    "updatedAt": "2025-11-21T14:17:49.873Z",
+    "__v": 0
+  },
+  {
+    "_id": "69241c59673ce6e40f6d3efc",
+    "customerId": "68bddb09925ffeb350700783",
+    "badgeType": "suki",
+    "weekStart": "2025-11-22T16:00:00.000Z",
+    "weekEnd": "2025-11-29T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 9,
+        "required": 3,
+        "met": true
+      }
+    },
+    "loyaltyStore": {
+      "storeId": "68bdd2b9f6471b6d7433e524",
+      "storeName": "Florevo",
+      "interactionCount": 19
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-12-06T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-24T08:50:33.773Z",
+    "updatedAt": "2025-11-29T09:01:58.952Z",
+    "__v": 0
+  },
+  {
+    "_id": "69241c59673ce6e40f6d3efe",
+    "customerId": "68bddb09925ffeb350700783",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-22T16:00:00.000Z",
+    "weekEnd": "2025-11-29T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-12-06T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-24T08:50:33.775Z",
+    "updatedAt": "2025-11-24T08:50:33.788Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab686a59f746772a70aff",
+    "customerId": "68ce67ff178e4d2540df5e4e",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-22T16:00:00.000Z",
+    "weekEnd": "2025-11-29T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-12-06T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:01:58.955Z",
+    "updatedAt": "2025-11-29T09:01:58.964Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab686a59f746772a70b08",
+    "customerId": "68d43c1d960d44ca8b8fd4cc",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-22T16:00:00.000Z",
+    "weekEnd": "2025-11-29T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-12-06T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:01:58.967Z",
+    "updatedAt": "2025-11-29T09:01:58.974Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab686a59f746772a70b11",
+    "customerId": "692a61ced9b4902ae703c38e",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-22T16:00:00.000Z",
+    "weekEnd": "2025-11-29T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-12-06T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:01:58.977Z",
+    "updatedAt": "2025-11-29T09:01:58.984Z",
+    "__v": 0
+  },
+  {
+    "_id": "692ab686a59f746772a70b1a",
+    "customerId": "692a6274d9b4902ae703caa4",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-22T16:00:00.000Z",
+    "weekEnd": "2025-11-29T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-12-06T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-29T09:01:58.986Z",
+    "updatedAt": "2025-11-29T09:01:58.994Z",
+    "__v": 0
+  },
+  {
+    "_id": "692c099047db61efe3922e43",
+    "customerId": "68bddb09925ffeb350700783",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-29T16:00:00.000Z",
+    "weekEnd": "2025-12-06T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-12-13T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-30T09:08:32.173Z",
+    "updatedAt": "2025-11-30T09:08:32.191Z",
+    "__v": 0
+  },
+  {
+    "_id": "692c099047db61efe3922e45",
+    "customerId": "68bddb09925ffeb350700783",
+    "badgeType": "top_fan",
+    "weekStart": "2025-11-29T16:00:00.000Z",
+    "weekEnd": "2025-12-06T15:59:59.999Z",
+    "criteria": {
+      "ratingsGiven": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      },
+      "blogEngagement": {
+        "current": 0,
+        "required": 3,
+        "met": false
+      }
+    },
+    "loyaltyStore": {
+      "storeId": null,
+      "storeName": "",
+      "interactionCount": 0
+    },
+    "isActive": false,
+    "awardedAt": null,
+    "expiresAt": "2025-12-13T15:59:59.999Z",
+    "celebrationShown": false,
+    "createdAt": "2025-11-30T09:08:32.174Z",
+    "updatedAt": "2025-11-30T09:08:32.193Z",
+    "__v": 0
+  }
+]

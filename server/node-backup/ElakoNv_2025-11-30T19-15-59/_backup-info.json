@@ -1,0 +1,28 @@
+{
+  "database": "ElakoNv",
+  "timestamp": "2025-11-30T19:15:59.629Z",
+  "collections": [
+    "follows",
+    "auditlogs",
+    "customers",
+    "notifications",
+    "reviews",
+    "admins",
+    "pageviews",
+    "blogviews",
+    "weeklybadges",
+    "dashboards",
+    "msmeblogposts",
+    "storebadges",
+    "msmes",
+    "conversations",
+    "products",
+    "messages",
+    "blogposts",
+    "customernotifications",
+    "badgeactivities",
+    "customerbadges"
+  ],
+  "totalCollections": 20,
+  "backupPath": "D:\\1.THESIS\\ELAKO.NV2\\ELako.Nv\\server\\node-backup\\ElakoNv_2025-11-30T19-15-59"
+}

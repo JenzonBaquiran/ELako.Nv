@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "68ee136f5299e959de83b3a8",
+    "customerId": "68bddb09925ffeb350700783",
+    "blogId": "68ee136f5299e959de83b3a6",
+    "blogTitle": "Florevo's Amazing Blog Post 1",
+    "blogAuthor": "Florevo Store",
+    "pageType": "blog",
+    "viewDate": "2025-10-11T16:00:00.000Z",
+    "dateString": "2025-10-11",
+    "viewDuration": 42.080371708866565,
+    "createdAt": "2025-10-11T16:00:00.000Z",
+    "metadata": {
+      "storeName": "Florevo",
+      "category": "business",
+      "tags": [
+        "florevo",
+        "business",
+        "local"
+      ]
+    }
+  },
+  {
+    "_id": "68ee136f5299e959de83b3ac",
+    "customerId": "68bddb09925ffeb350700783",
+    "blogId": "68ee136f5299e959de83b3aa",
+    "blogTitle": "Florevo's Amazing Blog Post 2",
+    "blogAuthor": "Florevo Store",
+    "pageType": "blog",
+    "viewDate": "2025-10-12T04:00:00.000Z",
+    "dateString": "2025-10-12",
+    "viewDuration": 60.00415698367686,
+    "createdAt": "2025-10-12T04:00:00.000Z",
+    "metadata": {
+      "storeName": "Florevo",
+      "category": "business",
+      "tags": [
+        "florevo",
+        "business",
+        "local"
+      ]
+    }
+  }
+]

@@ -1,0 +1,1060 @@
+[
+  {
+    "_id": "68ce72f9d04b5fba974251da",
+    "productName": "Buko Pie",
+    "price": 350,
+    "description": "Delicious coconut pie with flaky crust and creamy buko filling",
+    "availability": true,
+    "visible": true,
+    "stocks": 0,
+    "picture": "buko-pie.jpg",
+    "hashtags": [
+      "#bukopie",
+      "#filipino",
+      "#dessert",
+      "#coconut"
+    ],
+    "msmeId": "68ce72a031487e2adcd217c0",
+    "category": "Desserts",
+    "feedback": [],
+    "rating": null,
+    "createdAt": "2025-09-20T09:25:13.889Z",
+    "updatedAt": "2025-10-14T09:45:41.609Z",
+    "__v": 2,
+    "pictures": [],
+    "sizeOptions": [],
+    "variants": []
+  },
+  {
+    "_id": "68ce72f9d04b5fba974251dd",
+    "productName": "Leche Flan",
+    "price": 280,
+    "description": "Silky smooth caramel custard dessert, perfect for special occasions",
+    "availability": true,
+    "visible": true,
+    "stocks": 0,
+    "picture": "leche-flan.jpg",
+    "hashtags": [
+      "#lecheflan",
+      "#dessert",
+      "#caramel",
+      "#custard"
+    ],
+    "msmeId": "68ce72a031487e2adcd217c0",
+    "category": "Desserts",
+    "feedback": [],
+    "rating": null,
+    "createdAt": "2025-09-20T09:25:13.899Z",
+    "updatedAt": "2025-10-14T09:45:41.612Z",
+    "__v": 2,
+    "pictures": [],
+    "sizeOptions": [],
+    "variants": []
+  },
+  {
+    "_id": "68ce72f9d04b5fba974251e0",
+    "productName": "Ube Cheesecake",
+    "price": 450,
+    "description": "Purple yam cheesecake with graham crust, a modern Filipino twist",
+    "availability": true,
+    "visible": true,
+    "stocks": 0,
+    "picture": "ube-cheesecake.jpg",
+    "hashtags": [
+      "#ube",
+      "#cheesecake",
+      "#filipino",
+      "#modern"
+    ],
+    "msmeId": "68ce72a031487e2adcd217c0",
+    "category": "Cakes",
+    "feedback": [],
+    "rating": null,
+    "createdAt": "2025-09-20T09:25:13.903Z",
+    "updatedAt": "2025-10-14T09:45:41.615Z",
+    "__v": 2,
+    "pictures": [],
+    "sizeOptions": [],
+    "variants": []
+  },
+  {
+    "_id": "68dfd768d9edbc5f8dcb7ed2",
+    "productName": "MRCNCBRT © HOODIE BLACK",
+    "price": 2800,
+    "description": "Soft, warm, and timeless — this hoodie blends comfort and style for any day, anywhere.",
+    "availability": true,
+    "visible": true,
+    "stocks": 23,
+    "picture": "1759777570566-950429943.png",
+    "hashtags": [
+      "hoodie"
+    ],
+    "msmeId": "68ded9143255b574542dacdd",
+    "category": "handmade-accessories",
+    "rating": 4.8,
+    "feedback": [
+      {
+        "user": "Nicolai Dela Pena",
+        "userId": "68bddb09925ffeb350700783",
+        "comment": "Excellent product!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba4a",
+        "createdAt": "2025-11-29T09:02:40.260Z"
+      },
+      {
+        "user": "Ferylene Valentin",
+        "userId": "68ce67ff178e4d2540df5e4e",
+        "comment": "Amazing quality!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba4b",
+        "createdAt": "2025-11-29T09:02:40.261Z"
+      },
+      {
+        "user": "Zeth Layno",
+        "userId": "68d43c1d960d44ca8b8fd4cc",
+        "comment": "Perfect!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba4c",
+        "createdAt": "2025-11-29T09:02:40.261Z"
+      },
+      {
+        "user": "John Doe",
+        "userId": "68d4b16ac4ebfaeb3fa781f6",
+        "comment": "Great product",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba4d",
+        "createdAt": "2025-11-29T09:02:40.261Z"
+      },
+      {
+        "user": "Jane Smith",
+        "userId": "68d4b26fc4ebfaeb3fa78383",
+        "comment": "Love it!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba4e",
+        "createdAt": "2025-11-29T09:02:40.261Z"
+      },
+      {
+        "user": "Mike Johnson",
+        "userId": "68deb24e716ed01a446e800a",
+        "comment": "Highly recommend!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba4f",
+        "createdAt": "2025-11-29T09:02:40.261Z"
+      },
+      {
+        "user": "Sarah Brown",
+        "userId": "68e93649ab9caf944bb19388",
+        "comment": "Very good",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba50",
+        "createdAt": "2025-11-29T09:02:40.261Z"
+      },
+      {
+        "user": "Tom Wilson",
+        "userId": "68ecba887a0e55e09e3ee66b",
+        "comment": "Outstanding!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba51",
+        "createdAt": "2025-11-29T09:02:40.261Z"
+      }
+    ],
+    "createdAt": "2025-10-03T14:02:16.483Z",
+    "updatedAt": "2025-11-29T09:02:40.256Z",
+    "__v": 8,
+    "pictures": [],
+    "sizeOptions": [],
+    "variants": []
+  },
+  {
+    "_id": "68dfd776d9edbc5f8dcb7ede",
+    "productName": "MRCNCBRT © POLO BLACK",
+    "price": 999,
+    "description": "Clean, comfy, and made to last — a classic shirt designed for everyday wear with effortless style.",
+    "availability": true,
+    "visible": true,
+    "stocks": 23,
+    "picture": "1759777555874-122216418.png",
+    "hashtags": [
+      "shirt"
+    ],
+    "msmeId": "68ded9143255b574542dacdd",
+    "category": "handmade-accessories",
+    "rating": 4.8,
+    "feedback": [
+      {
+        "user": "Nicolai Dela Pena",
+        "userId": "68bddb09925ffeb350700783",
+        "comment": "Excellent product!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba5c",
+        "createdAt": "2025-11-29T09:02:40.266Z"
+      },
+      {
+        "user": "Ferylene Valentin",
+        "userId": "68ce67ff178e4d2540df5e4e",
+        "comment": "Amazing quality!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba5d",
+        "createdAt": "2025-11-29T09:02:40.266Z"
+      },
+      {
+        "user": "Zeth Layno",
+        "userId": "68d43c1d960d44ca8b8fd4cc",
+        "comment": "Perfect!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba5e",
+        "createdAt": "2025-11-29T09:02:40.266Z"
+      },
+      {
+        "user": "John Doe",
+        "userId": "68d4b16ac4ebfaeb3fa781f6",
+        "comment": "Great product",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba5f",
+        "createdAt": "2025-11-29T09:02:40.266Z"
+      },
+      {
+        "user": "Jane Smith",
+        "userId": "68d4b26fc4ebfaeb3fa78383",
+        "comment": "Love it!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba60",
+        "createdAt": "2025-11-29T09:02:40.266Z"
+      },
+      {
+        "user": "Mike Johnson",
+        "userId": "68deb24e716ed01a446e800a",
+        "comment": "Highly recommend!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba61",
+        "createdAt": "2025-11-29T09:02:40.266Z"
+      },
+      {
+        "user": "Sarah Brown",
+        "userId": "68e93649ab9caf944bb19388",
+        "comment": "Very good",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba62",
+        "createdAt": "2025-11-29T09:02:40.266Z"
+      },
+      {
+        "user": "Tom Wilson",
+        "userId": "68ecba887a0e55e09e3ee66b",
+        "comment": "Outstanding!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba63",
+        "createdAt": "2025-11-29T09:02:40.266Z"
+      }
+    ],
+    "createdAt": "2025-10-03T14:02:30.209Z",
+    "updatedAt": "2025-11-29T09:02:40.265Z",
+    "__v": 15,
+    "pictures": [],
+    "sizeOptions": [],
+    "variants": []
+  },
+  {
+    "_id": "68e290d3536694da7c8d62de",
+    "productName": "BLKTPS © HOODIE AGED BLACK",
+    "price": 1999,
+    "description": "HOODIE",
+    "availability": true,
+    "visible": true,
+    "stocks": 20,
+    "picture": "1759678675307-32925219.png",
+    "hashtags": [
+      "hoodie"
+    ],
+    "msmeId": "68ced76b18ad6af637734e4a",
+    "category": "handmade-accessories",
+    "rating": 3.7,
+    "feedback": [
+      {
+        "user": "Customer A",
+        "userId": "68bddb09925ffeb350700783",
+        "comment": "Good product",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb2d",
+        "createdAt": "2025-11-29T09:02:40.299Z"
+      },
+      {
+        "user": "Customer B",
+        "userId": "68ce67ff178e4d2540df5e4e",
+        "comment": "Okay quality",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb2e",
+        "createdAt": "2025-11-29T09:02:40.299Z"
+      },
+      {
+        "user": "Customer C",
+        "userId": "68d43c1d960d44ca8b8fd4cc",
+        "comment": "Nice",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb2f",
+        "createdAt": "2025-11-29T09:02:40.299Z"
+      },
+      {
+        "user": "Customer D",
+        "userId": "68d4b16ac4ebfaeb3fa781f6",
+        "comment": "Average",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb30",
+        "createdAt": "2025-11-29T09:02:40.299Z"
+      }
+    ],
+    "createdAt": "2025-10-05T15:37:55.315Z",
+    "updatedAt": "2025-11-29T09:02:40.298Z",
+    "__v": 3,
+    "pictures": [],
+    "sizeOptions": [],
+    "variants": []
+  },
+  {
+    "_id": "68e290ec536694da7c8d62ee",
+    "productName": "BLKTPS © HOODIE AGED BLACK",
+    "price": 1999,
+    "description": "HOODIE",
+    "availability": true,
+    "visible": true,
+    "stocks": 10,
+    "picture": "1759678700252-526987554.avif",
+    "hashtags": [
+      "hoodie"
+    ],
+    "msmeId": "68ced76b18ad6af637734e4a",
+    "category": "handmade-accessories",
+    "rating": 3.7,
+    "feedback": [
+      {
+        "user": "Customer A",
+        "userId": "68bddb09925ffeb350700783",
+        "comment": "Good product",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb37",
+        "createdAt": "2025-11-29T09:02:40.301Z"
+      },
+      {
+        "user": "Customer B",
+        "userId": "68ce67ff178e4d2540df5e4e",
+        "comment": "Okay quality",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb38",
+        "createdAt": "2025-11-29T09:02:40.301Z"
+      },
+      {
+        "user": "Customer C",
+        "userId": "68d43c1d960d44ca8b8fd4cc",
+        "comment": "Nice",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb39",
+        "createdAt": "2025-11-29T09:02:40.301Z"
+      },
+      {
+        "user": "Customer D",
+        "userId": "68d4b16ac4ebfaeb3fa781f6",
+        "comment": "Average",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb3a",
+        "createdAt": "2025-11-29T09:02:40.301Z"
+      }
+    ],
+    "createdAt": "2025-10-05T15:38:20.253Z",
+    "updatedAt": "2025-11-29T09:02:40.301Z",
+    "__v": 3,
+    "pictures": [],
+    "sizeOptions": [],
+    "variants": []
+  },
+  {
+    "_id": "68e50bdca70cf378198ac8e7",
+    "productName": "Kani Salad",
+    "price": 70,
+    "description": "Very delicious vegan salad",
+    "availability": true,
+    "visible": true,
+    "picture": "1759844085463-433094247.jpg",
+    "pictures": [
+      "1759844085463-433094247.jpg",
+      "1759844085507-573527512.jpg",
+      "1759844085540-678867974.jpg",
+      "1759844085584-273224888.jpg",
+      "1759845832039-786243931.jpg"
+    ],
+    "variants": [
+      {
+        "id": "1759844069289",
+        "name": "Spicy",
+        "price": 120,
+        "imageIndex": 0,
+        "_id": "68e516f52989111eaf866f1c"
+      },
+      {
+        "id": "1759844075346",
+        "name": "Sweet",
+        "price": 150,
+        "imageIndex": 0,
+        "_id": "68e516f52989111eaf866f1d"
+      },
+      {
+        "id": "1759844082481",
+        "name": "Cheesy",
+        "price": 200,
+        "imageIndex": 0,
+        "_id": "68e516f52989111eaf866f1e"
+      }
+    ],
+    "sizeOptions": [],
+    "hashtags": [
+      "ube",
+      "salad"
+    ],
+    "msmeId": "68bdd2b9f6471b6d7433e524",
+    "category": "baked-goods",
+    "rating": 3.7,
+    "feedback": [
+      {
+        "user": "Customer A",
+        "userId": "68bddb09925ffeb350700783",
+        "comment": "Good product",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbae4",
+        "createdAt": "2025-11-29T09:02:40.286Z"
+      },
+      {
+        "user": "Customer B",
+        "userId": "68ce67ff178e4d2540df5e4e",
+        "comment": "Okay quality",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbae5",
+        "createdAt": "2025-11-29T09:02:40.286Z"
+      },
+      {
+        "user": "Customer C",
+        "userId": "68d43c1d960d44ca8b8fd4cc",
+        "comment": "Nice",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbae6",
+        "createdAt": "2025-11-29T09:02:40.286Z"
+      },
+      {
+        "user": "Customer D",
+        "userId": "68d4b16ac4ebfaeb3fa781f6",
+        "comment": "Average",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbae7",
+        "createdAt": "2025-11-29T09:02:40.286Z"
+      }
+    ],
+    "createdAt": "2025-10-07T12:47:24.710Z",
+    "updatedAt": "2025-11-30T09:17:35.243Z",
+    "__v": 17
+  },
+  {
+    "_id": "68ff5b72205b3193bfb7f7ef",
+    "productName": "Painteristism",
+    "price": 20000,
+    "description": "Clean, comfy, and made to last — a classic shirt designed for everyday wear with effortless style.",
+    "availability": true,
+    "visible": true,
+    "picture": "1761565554068-629877913.png",
+    "pictures": [
+      "1761565554068-629877913.png"
+    ],
+    "variants": [],
+    "sizeOptions": [],
+    "hashtags": [],
+    "msmeId": "68ded9143255b574542dacdd",
+    "category": "paintings-visual-arts",
+    "rating": 4.8,
+    "feedback": [
+      {
+        "user": "Nicolai Dela Pena",
+        "userId": "68bddb09925ffeb350700783",
+        "comment": "Excellent product!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba6e",
+        "createdAt": "2025-11-29T09:02:40.270Z"
+      },
+      {
+        "user": "Ferylene Valentin",
+        "userId": "68ce67ff178e4d2540df5e4e",
+        "comment": "Amazing quality!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba6f",
+        "createdAt": "2025-11-29T09:02:40.270Z"
+      },
+      {
+        "user": "Zeth Layno",
+        "userId": "68d43c1d960d44ca8b8fd4cc",
+        "comment": "Perfect!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba70",
+        "createdAt": "2025-11-29T09:02:40.270Z"
+      },
+      {
+        "user": "John Doe",
+        "userId": "68d4b16ac4ebfaeb3fa781f6",
+        "comment": "Great product",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba71",
+        "createdAt": "2025-11-29T09:02:40.270Z"
+      },
+      {
+        "user": "Jane Smith",
+        "userId": "68d4b26fc4ebfaeb3fa78383",
+        "comment": "Love it!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba72",
+        "createdAt": "2025-11-29T09:02:40.270Z"
+      },
+      {
+        "user": "Mike Johnson",
+        "userId": "68deb24e716ed01a446e800a",
+        "comment": "Highly recommend!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba73",
+        "createdAt": "2025-11-29T09:02:40.270Z"
+      },
+      {
+        "user": "Sarah Brown",
+        "userId": "68e93649ab9caf944bb19388",
+        "comment": "Very good",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba74",
+        "createdAt": "2025-11-29T09:02:40.271Z"
+      },
+      {
+        "user": "Tom Wilson",
+        "userId": "68ecba887a0e55e09e3ee66b",
+        "comment": "Outstanding!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba75",
+        "createdAt": "2025-11-29T09:02:40.271Z"
+      }
+    ],
+    "createdAt": "2025-10-27T11:45:54.106Z",
+    "updatedAt": "2025-11-29T09:02:40.269Z",
+    "__v": 0,
+    "artistName": "Jenzon Maragondon"
+  },
+  {
+    "_id": "68ff635ddce5fad5b0169e24",
+    "productName": "Painteristism",
+    "price": 20000,
+    "description": "Clean, comfy, and made to last — a classic shirt designed for everyday wear with effortless style.",
+    "availability": true,
+    "visible": true,
+    "picture": "1761570031830-597175256.png",
+    "pictures": [
+      "1761570031830-597175256.png"
+    ],
+    "variants": [],
+    "sizeOptions": [],
+    "hashtags": [],
+    "msmeId": "68ded9143255b574542dacdd",
+    "category": "paintings-visual-arts",
+    "artistName": "Jenzon Maragondon",
+    "rating": 4.8,
+    "feedback": [
+      {
+        "user": "Nicolai Dela Pena",
+        "userId": "68bddb09925ffeb350700783",
+        "comment": "Excellent product!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba7f",
+        "createdAt": "2025-11-29T09:02:40.273Z"
+      },
+      {
+        "user": "Ferylene Valentin",
+        "userId": "68ce67ff178e4d2540df5e4e",
+        "comment": "Amazing quality!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba80",
+        "createdAt": "2025-11-29T09:02:40.273Z"
+      },
+      {
+        "user": "Zeth Layno",
+        "userId": "68d43c1d960d44ca8b8fd4cc",
+        "comment": "Perfect!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba81",
+        "createdAt": "2025-11-29T09:02:40.273Z"
+      },
+      {
+        "user": "John Doe",
+        "userId": "68d4b16ac4ebfaeb3fa781f6",
+        "comment": "Great product",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba82",
+        "createdAt": "2025-11-29T09:02:40.273Z"
+      },
+      {
+        "user": "Jane Smith",
+        "userId": "68d4b26fc4ebfaeb3fa78383",
+        "comment": "Love it!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba83",
+        "createdAt": "2025-11-29T09:02:40.273Z"
+      },
+      {
+        "user": "Mike Johnson",
+        "userId": "68deb24e716ed01a446e800a",
+        "comment": "Highly recommend!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba84",
+        "createdAt": "2025-11-29T09:02:40.273Z"
+      },
+      {
+        "user": "Sarah Brown",
+        "userId": "68e93649ab9caf944bb19388",
+        "comment": "Very good",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba85",
+        "createdAt": "2025-11-29T09:02:40.273Z"
+      },
+      {
+        "user": "Tom Wilson",
+        "userId": "68ecba887a0e55e09e3ee66b",
+        "comment": "Outstanding!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba86",
+        "createdAt": "2025-11-29T09:02:40.273Z"
+      }
+    ],
+    "createdAt": "2025-10-27T12:19:41.704Z",
+    "updatedAt": "2025-11-29T09:02:40.273Z",
+    "__v": 2
+  },
+  {
+    "_id": "690071580b148a9313234ae9",
+    "productName": "pouch",
+    "price": 100,
+    "description": "coin purse",
+    "availability": true,
+    "visible": true,
+    "picture": "1761636696422-410910620.png",
+    "pictures": [
+      "1761636696422-410910620.png",
+      "1761636696427-226734333.png"
+    ],
+    "variants": [],
+    "sizeOptions": [],
+    "hashtags": [
+      "pouch"
+    ],
+    "msmeId": "68ded9143255b574542dacdd",
+    "category": "handmade-accessories",
+    "artistName": "",
+    "rating": 4.8,
+    "feedback": [
+      {
+        "user": "Nicolai Dela Pena",
+        "userId": "68bddb09925ffeb350700783",
+        "comment": "Excellent product!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba90",
+        "createdAt": "2025-11-29T09:02:40.276Z"
+      },
+      {
+        "user": "Ferylene Valentin",
+        "userId": "68ce67ff178e4d2540df5e4e",
+        "comment": "Amazing quality!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba91",
+        "createdAt": "2025-11-29T09:02:40.276Z"
+      },
+      {
+        "user": "Zeth Layno",
+        "userId": "68d43c1d960d44ca8b8fd4cc",
+        "comment": "Perfect!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba92",
+        "createdAt": "2025-11-29T09:02:40.276Z"
+      },
+      {
+        "user": "John Doe",
+        "userId": "68d4b16ac4ebfaeb3fa781f6",
+        "comment": "Great product",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba93",
+        "createdAt": "2025-11-29T09:02:40.276Z"
+      },
+      {
+        "user": "Jane Smith",
+        "userId": "68d4b26fc4ebfaeb3fa78383",
+        "comment": "Love it!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba94",
+        "createdAt": "2025-11-29T09:02:40.276Z"
+      },
+      {
+        "user": "Mike Johnson",
+        "userId": "68deb24e716ed01a446e800a",
+        "comment": "Highly recommend!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba95",
+        "createdAt": "2025-11-29T09:02:40.277Z"
+      },
+      {
+        "user": "Sarah Brown",
+        "userId": "68e93649ab9caf944bb19388",
+        "comment": "Very good",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba96",
+        "createdAt": "2025-11-29T09:02:40.277Z"
+      },
+      {
+        "user": "Tom Wilson",
+        "userId": "68ecba887a0e55e09e3ee66b",
+        "comment": "Outstanding!",
+        "rating": 5,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fba97",
+        "createdAt": "2025-11-29T09:02:40.277Z"
+      }
+    ],
+    "createdAt": "2025-10-28T07:31:36.498Z",
+    "updatedAt": "2025-11-29T09:02:40.276Z",
+    "__v": 1
+  },
+  {
+    "_id": "690190551462c10e33231160",
+    "productName": "Ambaguio Coffee",
+    "price": 50,
+    "description": "wewcds",
+    "availability": true,
+    "visible": true,
+    "picture": "1761710165376-197154382.jpg",
+    "pictures": [
+      "1761710165376-197154382.jpg"
+    ],
+    "variants": [],
+    "sizeOptions": [
+      {
+        "id": "1761710146349",
+        "size": 50,
+        "unit": "g",
+        "_id": "690190551462c10e33231161"
+      }
+    ],
+    "hashtags": [],
+    "msmeId": "68bdd2b9f6471b6d7433e524",
+    "category": "beverages",
+    "artistName": "",
+    "rating": 3.7,
+    "feedback": [
+      {
+        "user": "Customer A",
+        "userId": "68bddb09925ffeb350700783",
+        "comment": "Good product",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbaf6",
+        "createdAt": "2025-11-29T09:02:40.288Z"
+      },
+      {
+        "user": "Customer B",
+        "userId": "68ce67ff178e4d2540df5e4e",
+        "comment": "Okay quality",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbaf7",
+        "createdAt": "2025-11-29T09:02:40.288Z"
+      },
+      {
+        "user": "Customer C",
+        "userId": "68d43c1d960d44ca8b8fd4cc",
+        "comment": "Nice",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbaf8",
+        "createdAt": "2025-11-29T09:02:40.288Z"
+      },
+      {
+        "user": "Customer D",
+        "userId": "68d4b16ac4ebfaeb3fa781f6",
+        "comment": "Average",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbaf9",
+        "createdAt": "2025-11-29T09:02:40.288Z"
+      }
+    ],
+    "createdAt": "2025-10-29T03:56:05.543Z",
+    "updatedAt": "2025-11-29T09:02:40.288Z",
+    "__v": 3
+  },
+  {
+    "_id": "6901c735491df1e9420c78b7",
+    "productName": "Mushroom Crisps",
+    "price": 100,
+    "description": "Crispy Mushroom with different flavor",
+    "availability": true,
+    "visible": true,
+    "picture": "1761724212937-333250405.jpg",
+    "pictures": [
+      "1761724212937-333250405.jpg"
+    ],
+    "variants": [
+      {
+        "id": "1761724165885",
+        "name": "CHEESE",
+        "price": 90,
+        "imageIndex": 0,
+        "_id": "6901c735491df1e9420c78b8"
+      }
+    ],
+    "sizeOptions": [],
+    "hashtags": [],
+    "msmeId": "68bdd2b9f6471b6d7433e524",
+    "category": "processed-foods",
+    "artistName": "",
+    "rating": 3.7,
+    "feedback": [
+      {
+        "user": "Customer A",
+        "userId": "68bddb09925ffeb350700783",
+        "comment": "Good product",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb06",
+        "createdAt": "2025-11-29T09:02:40.291Z"
+      },
+      {
+        "user": "Customer B",
+        "userId": "68ce67ff178e4d2540df5e4e",
+        "comment": "Okay quality",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb07",
+        "createdAt": "2025-11-29T09:02:40.291Z"
+      },
+      {
+        "user": "Customer C",
+        "userId": "68d43c1d960d44ca8b8fd4cc",
+        "comment": "Nice",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb08",
+        "createdAt": "2025-11-29T09:02:40.291Z"
+      },
+      {
+        "user": "Customer D",
+        "userId": "68d4b16ac4ebfaeb3fa781f6",
+        "comment": "Average",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb09",
+        "createdAt": "2025-11-29T09:02:40.291Z"
+      }
+    ],
+    "createdAt": "2025-10-29T07:50:13.050Z",
+    "updatedAt": "2025-11-29T09:02:40.291Z",
+    "__v": 6
+  },
+  {
+    "_id": "691ec846255cbfe4b9016d0c",
+    "productName": "UNGLD HOODIE",
+    "price": 1000,
+    "description": "clothing",
+    "availability": true,
+    "visible": true,
+    "picture": "1763625030911-827939522.png",
+    "pictures": [
+      "1763625030911-827939522.png",
+      "1763625127634-269515601.png",
+      "1763625127683-614887719.png",
+      "1763625151686-845170380.png"
+    ],
+    "variants": [],
+    "sizeOptions": [],
+    "hashtags": [
+      "zekko"
+    ],
+    "msmeId": "68ced76b18ad6af637734e4a",
+    "category": "handmade-accessories",
+    "artistName": "",
+    "rating": 3.8,
+    "feedback": [
+      {
+        "user": "Customer A",
+        "userId": "68bddb09925ffeb350700783",
+        "comment": "Good product",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb41",
+        "createdAt": "2025-11-29T09:02:40.303Z"
+      },
+      {
+        "user": "Customer B",
+        "userId": "68ce67ff178e4d2540df5e4e",
+        "comment": "Okay quality",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb42",
+        "createdAt": "2025-11-29T09:02:40.303Z"
+      },
+      {
+        "user": "Customer C",
+        "userId": "68d43c1d960d44ca8b8fd4cc",
+        "comment": "Nice",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb43",
+        "createdAt": "2025-11-29T09:02:40.303Z"
+      },
+      {
+        "user": "Customer D",
+        "userId": "68d4b16ac4ebfaeb3fa781f6",
+        "comment": "Average",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb44",
+        "createdAt": "2025-11-29T09:02:40.303Z"
+      },
+      {
+        "user": "Esmeralda Baquiran",
+        "userId": "CUST_1764385230961_nvidy2z2d",
+        "comment": "\"Average\"",
+        "rating": 5,
+        "selectedVariant": null,
+        "selectedSize": null,
+        "hidden": false,
+        "createdAt": "2025-11-29T09:15:53.422Z",
+        "_id": "692ab9c9a59f746772a72a25"
+      }
+    ],
+    "createdAt": "2025-11-20T07:50:30.960Z",
+    "updatedAt": "2025-11-29T09:15:53.425Z",
+    "__v": 3
+  },
+  {
+    "_id": "69272ddee0664bd91cb4f881",
+    "productName": "French Fries",
+    "price": 200,
+    "description": "French fries are thin, crispy strips of fried potatoes that are golden on the outside and soft on the inside.",
+    "availability": true,
+    "visible": true,
+    "picture": "1764175326229-315312458.jpg",
+    "pictures": [
+      "1764175326229-315312458.jpg",
+      "1764175326282-654110614.jpg",
+      "1764175326331-256913747.jpg",
+      "1764175326364-767751710.jpg"
+    ],
+    "variants": [
+      {
+        "id": "1764175319625",
+        "name": "CHEESE",
+        "price": 2323,
+        "imageIndex": 0,
+        "_id": "69272ddee0664bd91cb4f883"
+      },
+      {
+        "id": "1764406850786",
+        "name": "BBQ",
+        "price": 90,
+        "imageIndex": -1,
+        "_id": "692ab647a59f746772a709cb"
+      }
+    ],
+    "sizeOptions": [],
+    "hashtags": [],
+    "msmeId": "68bdd2b9f6471b6d7433e524",
+    "category": "processed-foods",
+    "artistName": "",
+    "rating": 3.7,
+    "feedback": [
+      {
+        "user": "Customer A",
+        "userId": "68bddb09925ffeb350700783",
+        "comment": "Good product",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb17",
+        "createdAt": "2025-11-29T09:02:40.294Z"
+      },
+      {
+        "user": "Customer B",
+        "userId": "68ce67ff178e4d2540df5e4e",
+        "comment": "Okay quality",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb18",
+        "createdAt": "2025-11-29T09:02:40.294Z"
+      },
+      {
+        "user": "Customer C",
+        "userId": "68d43c1d960d44ca8b8fd4cc",
+        "comment": "Nice",
+        "rating": 4,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb19",
+        "createdAt": "2025-11-29T09:02:40.294Z"
+      },
+      {
+        "user": "Customer D",
+        "userId": "68d4b16ac4ebfaeb3fa781f6",
+        "comment": "Average",
+        "rating": 3,
+        "hidden": false,
+        "_id": "692ab6b02fa92912aa2fbb1a",
+        "createdAt": "2025-11-29T09:02:40.294Z"
+      }
+    ],
+    "createdAt": "2025-11-26T16:42:06.417Z",
+    "updatedAt": "2025-11-29T09:02:40.294Z",
+    "__v": 2
+  }
+]

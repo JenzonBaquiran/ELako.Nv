@@ -1,0 +1,144 @@
+[
+  {
+    "_id": "68bddb09925ffeb350700783",
+    "id": "CUST_1757272841693_112jvgajg",
+    "firstname": "Nicolai",
+    "lastname": "Dela Pena",
+    "middlename": "Dela Cruz",
+    "username": "nicolai",
+    "email": "baquiranjenzon@gmail.com",
+    "contactNumber": "09994490652",
+    "address": "Bagabag nueva vizcaya",
+    "password": "Jenzon_0108",
+    "userType": "customer",
+    "createdAt": "2025-09-07T19:20:41.696Z",
+    "updatedAt": "2025-11-28T16:18:59.895Z",
+    "__v": 144,
+    "favoriteProducts": [
+      "68c1da088da414a721b35195",
+      "68c1d975b3ac925945d7e0c6",
+      "68c4125a2d50a14bdb6ddbb2"
+    ],
+    "followedStores": [
+      "68bdd2b9f6471b6d7433e524"
+    ],
+    "reviews": [],
+    "favorites": [
+      "68dfd768d9edbc5f8dcb7ed2",
+      "68dfd776d9edbc5f8dcb7ede",
+      "68e290d3536694da7c8d62de",
+      "68c4125a2d50a14bdb6ddbb2",
+      "68fba6c449bdfdb2b6bb00fa",
+      "68e290ec536694da7c8d62ee",
+      "68ff635ddce5fad5b0169e24",
+      "68e50bdca70cf378198ac8e7",
+      "690071580b148a9313234ae9"
+    ],
+    "following": [
+      "68ded9143255b574542dacdd",
+      "68ced76b18ad6af637734e4a",
+      "68bdd2b9f6471b6d7433e524",
+      "6929d61006f6fb9208a7843b"
+    ],
+    "bio": "Love discovering unique products from local MSMEs!",
+    "termsAcceptedAt": "2025-09-07T19:20:41.696Z"
+  },
+  {
+    "_id": "68ce67ff178e4d2540df5e4e",
+    "id": "CUST_1758357503366_tvhtsx2ao",
+    "firstname": "Ferylene",
+    "lastname": "Valentin",
+    "middlename": "Castriciones",
+    "username": "fery",
+    "email": "ferylenevalentin@gmail.com",
+    "contactNumber": "09994490652",
+    "address": "Solano,Nueva Vizcaya",
+    "password": "ferylene",
+    "userType": "customer",
+    "favoriteProducts": [],
+    "followedStores": [
+      "68bdd2b9f6471b6d7433e524"
+    ],
+    "createdAt": "2025-09-20T08:38:23.368Z",
+    "updatedAt": "2025-09-20T08:38:23.368Z",
+    "__v": 9,
+    "favorites": [
+      "68c4125a2d50a14bdb6ddbb2"
+    ],
+    "following": [
+      "68bdd2b9f6471b6d7433e524"
+    ],
+    "bio": "",
+    "termsAcceptedAt": "2025-09-20T08:38:23.368Z"
+  },
+  {
+    "_id": "68d43c1d960d44ca8b8fd4cc",
+    "id": "CUST_1758739485490_6thpf1is9",
+    "firstname": "Zeth",
+    "lastname": "Layno",
+    "middlename": "Ranche",
+    "username": "Zeth",
+    "email": "zeth@gmail.com",
+    "contactNumber": "09994490652",
+    "address": "Bambang Nueva Vizcaya",
+    "password": "Jenzon0108",
+    "userType": "customer",
+    "favorites": [],
+    "following": [
+      "68ced76b18ad6af637734e4a",
+      "68bdd2b9f6471b6d7433e524"
+    ],
+    "createdAt": "2025-09-24T18:44:45.490Z",
+    "updatedAt": "2025-09-24T18:44:45.490Z",
+    "__v": 5,
+    "bio": "",
+    "termsAcceptedAt": "2025-09-24T18:44:45.490Z"
+  },
+  {
+    "_id": "692a61ced9b4902ae703c38e",
+    "id": "CUST_1764385230961_nvidy2z2d",
+    "firstname": "Esmeralda",
+    "lastname": "Baquiran",
+    "middlename": "",
+    "username": "esmiebaquiran",
+    "email": "esmeraldabaquiran1234@gmail.com",
+    "contactNumber": "0980232394",
+    "address": "Lactawan Solano Nueva Vizcaya",
+    "bio": "",
+    "password": "Jenzon0108",
+    "userType": "customer",
+    "favorites": [
+      "69272ddee0664bd91cb4f881"
+    ],
+    "following": [
+      "68bdd2b9f6471b6d7433e524",
+      "68ced76b18ad6af637734e4a"
+    ],
+    "termsAcceptedAt": "2025-11-29T03:00:30.962Z",
+    "createdAt": "2025-11-29T03:00:30.962Z",
+    "updatedAt": "2025-11-30T09:18:58.865Z",
+    "__v": 3
+  },
+  {
+    "_id": "692a6274d9b4902ae703caa4",
+    "id": "CUST_1764385396454_gzpo0rbl2",
+    "firstname": "Pedro",
+    "lastname": "Baquiran",
+    "middlename": "",
+    "username": "baquiranpedro",
+    "email": "pedrobaquiran@gmail.com",
+    "contactNumber": "0992239911",
+    "address": "Lactawan Solano Nueva Vizcaya",
+    "bio": "",
+    "password": "peter@1324!",
+    "userType": "customer",
+    "favorites": [],
+    "following": [
+      "68bdd2b9f6471b6d7433e524"
+    ],
+    "termsAcceptedAt": "2025-11-29T03:03:16.454Z",
+    "createdAt": "2025-11-29T03:03:16.454Z",
+    "updatedAt": "2025-11-29T03:03:16.454Z",
+    "__v": 1
+  }
+]

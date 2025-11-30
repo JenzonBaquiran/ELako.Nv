@@ -1,0 +1,53 @@
+[
+  {
+    "_id": "68dfbde3ddb347ca406abbb8",
+    "category": "FEATURED STORES",
+    "title": "Empowering Local Businesses: Introducing Nueva Brew Coffee",
+    "subtitle": "A Taste of Nueva Vizcaya, Crafted by Local Hands",
+    "description": "Nueva Brew Coffee is proudly made by local MSMEs in Nueva Vizcaya. Each cup tells the story of hardworking entrepreneurs who turn passion into progress. From sustainable farming to handcrafted blends, Nueva Brew celebrates community and growth — one brew at a time.",
+    "author": "Ferylene Valentin",
+    "readTime": "5 MIN READ",
+    "mediaType": "image",
+    "mediaUrl": "1760041611123-424428588.png",
+    "featured": false,
+    "status": "published",
+    "createdAt": "2025-10-03T12:13:23.088Z",
+    "updatedAt": "2025-11-26T16:08:31.060Z",
+    "__v": 0,
+    "views": 28
+  },
+  {
+    "_id": "68e7650c2cb7dc5766a2d090",
+    "category": "SUCCESS STORIES",
+    "title": "The Sweet Craft of Nueva Vizcaya: Local Chocolatiers Making Waves",
+    "subtitle": "Handcrafted treats that bring the rich flavors of Nueva Vizcaya to every bite.",
+    "description": "In every weave lies a story — of culture, craftsmanship, and community. Local artisans in Nueva Vizcaya continue to keep the art of weaving alive, blending traditional techniques with modern design. Their work not only supports local livelihoods but also preserves a cultural identity passed down through generations. These woven pieces go beyond fabric — they are living testaments to the artistry and resilience of the Vizcayan spirit.",
+    "author": "Ferylene Valentin",
+    "readTime": "5 MIN READ",
+    "mediaType": "youtube",
+    "mediaUrl": "https://www.youtube.com/watch?v=aImR-Zwvyag",
+    "featured": false,
+    "status": "published",
+    "createdAt": "2025-10-09T07:32:28.592Z",
+    "updatedAt": "2025-11-27T17:16:11.205Z",
+    "__v": 0,
+    "views": 49
+  },
+  {
+    "_id": "68e7654b2cb7dc5766a2d110",
+    "category": "SUCCESS STORIES",
+    "title": "Threads of Tradition: Weaving Stories Through Local Artisanship",
+    "subtitle": "Discover how Nueva Vizcaya’s artisans preserve heritage through every woven masterpiece.",
+    "description": "In every weave lies a story — of culture, craftsmanship, and community. Local artisans in Nueva Vizcaya continue to keep the art of weaving alive, blending traditional techniques with modern design. Their work not only supports local livelihoods but also preserves a cultural identity passed down through generations. These woven pieces go beyond fabric — they are living testaments to the artistry and resilience of the Vizcayan spirit.",
+    "author": "Ferylene Valentin",
+    "readTime": "5 MIN READ",
+    "mediaType": "video",
+    "mediaUrl": "1760007937881-11625382.mp4",
+    "featured": false,
+    "status": "published",
+    "createdAt": "2025-10-09T07:33:31.481Z",
+    "updatedAt": "2025-11-30T04:55:59.936Z",
+    "__v": 0,
+    "views": 35
+  }
+]

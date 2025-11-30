@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "6928899bf4ec0c1c09010510",
+    "username": "DTIBagabag@admin",
+    "password": "$2b$10$Z9uIhxxm3AVLB46ii3cWtOAZ9MjfT1uqENVGJaHO88syUkswRsDUq",
+    "firstname": "Bagabag",
+    "lastname": "Dtis",
+    "email": "Dtibbagabag@gmail.com",
+    "role": "admin",
+    "status": "active",
+    "createdBy": "admin",
+    "createdAt": "2025-11-27T17:25:47.723Z",
+    "updatedAt": "2025-11-28T17:28:29.672Z",
+    "__v": 0
+  }
+]

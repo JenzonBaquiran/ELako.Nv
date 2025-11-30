@@ -1,0 +1,246 @@
+[
+  {
+    "_id": "68c1e69fb8f16e727cfe5ea2",
+    "msmeId": "68bdd2b9f6471b6d7433e524",
+    "businessName": "Florevo",
+    "description": "Rebel with purposes, who will change the gamess",
+    "coverPhoto": "1761335561520-123263237.png",
+    "storeLogo": "1761584475162-658859549.png",
+    "contactNumber": "09994490652",
+    "location": "",
+    "socialLinks": {
+      "facebook": "https://www.facebook.com/lsbbukohan",
+      "instagram": "https://www.instagram.com/florevoph",
+      "twitter": "",
+      "website": "https://updatedwebsite.com"
+    },
+    "rating": 4,
+    "isPublic": true,
+    "createdAt": "2025-09-10T20:59:11.137Z",
+    "updatedAt": "2025-11-30T09:18:18.202Z",
+    "__v": 2,
+    "ecommercePlatforms": {
+      "shopee": {
+        "enabled": true,
+        "url": "https://shopee.ph/florevo-buko-specialties"
+      },
+      "lazada": {
+        "enabled": true,
+        "url": "https://lazada.com.ph/florevo-store"
+      },
+      "tiktok": {
+        "enabled": true,
+        "url": "https://tiktok.com/@florevo_ph"
+      }
+    },
+    "googleMapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6544.678474866778!2d121.18350367694542!3d16.515981684230084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3390410016806523%3A0x1c67e4e9a12cd9a2!2sRost%20Coffee%20Shop!5e1!3m2!1sen!2sph!4v1764385118354!5m2!1sen!2sph",
+    "governmentApprovals": {
+      "dole": false,
+      "dost": false,
+      "dti": false,
+      "others": false
+    },
+    "totalRatings": 0
+  },
+  {
+    "_id": "68c1fd7b347dbefbce8e052c",
+    "msmeId": "68c1fd69347dbefbce8e051b",
+    "businessName": "Creativedot",
+    "description": "Welcome to Creativedot!",
+    "coverPhoto": "1757544141647-44070329.png",
+    "storeLogo": "1757544141657-409449899.jpg",
+    "contactNumber": "09994490652",
+    "location": "",
+    "socialLinks": {
+      "facebook": "https://www.facebook.com/lsbbukohan",
+      "instagram": "",
+      "twitter": "",
+      "website": ""
+    },
+    "rating": 4,
+    "isPublic": true,
+    "createdAt": "2025-09-10T22:36:43.206Z",
+    "updatedAt": "2025-09-10T22:42:21.660Z",
+    "__v": 0
+  },
+  {
+    "_id": "68ced77918ad6af637734e60",
+    "msmeId": "68ced76b18ad6af637734e4a",
+    "businessName": "Gotzest",
+    "description": "When life gives you lemons, squeeze out some creative juice and make a masterpiece.",
+    "coverPhoto": "1758386121893-443697331.png",
+    "storeLogo": "1758386121895-798638376.png",
+    "contactNumber": "09994490652",
+    "location": "",
+    "socialLinks": {
+      "facebook": "https://www.facebook.com/lsbbukohan",
+      "instagram": "https://www.instagram.com/florevoph",
+      "twitter": "https://www.facebook.com/lsbbukohan",
+      "website": "https://www.facebook.com/lsbbukohan"
+    },
+    "rating": 4,
+    "isPublic": true,
+    "createdAt": "2025-09-20T16:34:01.018Z",
+    "updatedAt": "2025-11-29T09:31:34.576Z",
+    "__v": 0,
+    "ecommercePlatforms": {
+      "shopee": {
+        "enabled": false,
+        "url": "https://www.instagram.com/florevoph"
+      },
+      "lazada": {
+        "enabled": false,
+        "url": "https://www.instagram.com/florevoph"
+      },
+      "tiktok": {
+        "enabled": false,
+        "url": "https://www.instagram.com/florevoph"
+      }
+    },
+    "googleMapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26174.875116154468!2d121.2053958!3d16.544298450000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339040dd0783c403%3A0xdab68a59f80e1e15!2sLactawan%2C%20Solano%2C%20Nueva%20Vizcaya!5e1!3m2!1sen!2sph!4v1764408685622!5m2!1sen!2sph",
+    "governmentApprovals": {
+      "dole": false,
+      "dost": false,
+      "dti": false,
+      "others": false
+    },
+    "totalRatings": 0
+  },
+  {
+    "_id": "68ded9343255b574542dad05",
+    "msmeId": "68ded9143255b574542dacdd",
+    "businessName": "Mercancia Barata 2.0",
+    "description": "Rebel with purposes, who will change the game",
+    "coverPhoto": "1759776984503-335511696.jpg",
+    "storeLogo": "1760465328023-737523406.jpg",
+    "contactNumber": "09994490652",
+    "location": "",
+    "socialLinks": {
+      "facebook": "https://www.facebook.com/mercanciabarataarsenals",
+      "instagram": "https://www.facebook.com/mercanciabarataarsenals",
+      "twitter": "https://www.facebook.com/mercanciabarataarsenals",
+      "website": "https://www.facebook.com/mercanciabarataarsenals"
+    },
+    "rating": 0,
+    "isPublic": true,
+    "createdAt": "2025-10-02T19:57:40.108Z",
+    "updatedAt": "2025-10-28T04:35:31.226Z",
+    "__v": 0,
+    "ecommercePlatforms": {
+      "shopee": {
+        "enabled": false,
+        "url": "https://www.facebook.com/mercanciabarataarsenals"
+      },
+      "lazada": {
+        "enabled": false,
+        "url": "https://www.facebook.com/mercanciabarataarsenals"
+      },
+      "tiktok": {
+        "enabled": false,
+        "url": "https://www.facebook.com/mercanciabarataarsenals"
+      }
+    },
+    "googleMapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6545.6975280713095!2d121.15579890000001!3d16.485867799999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339045197072be39%3A0x36c8bd2ce72fd0f9!2sMERCANCIA%20BARATA-%20Main%20(Bayombong%20branch)!5e1!3m2!1sfil!2sph!4v1761022128854!5m2!1sfil!2sph\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"",
+    "governmentApprovals": {
+      "dole": false,
+      "dost": false,
+      "fda": false,
+      "others": false
+    },
+    "totalRatings": 0
+  },
+  {
+    "_id": "691dc122ee83cdd387d42c11",
+    "msmeId": "691dc104ee83cdd387d42b88",
+    "businessName": "LSB Buko Pie",
+    "description": "",
+    "coverPhoto": null,
+    "storeLogo": null,
+    "contactNumber": "",
+    "location": "",
+    "googleMapsUrl": "",
+    "coordinates": {
+      "lat": null,
+      "lng": null
+    },
+    "socialLinks": {
+      "facebook": "",
+      "instagram": "",
+      "twitter": "",
+      "website": ""
+    },
+    "ecommercePlatforms": {
+      "shopee": {
+        "enabled": false,
+        "url": ""
+      },
+      "lazada": {
+        "enabled": false,
+        "url": ""
+      },
+      "tiktok": {
+        "enabled": false,
+        "url": ""
+      }
+    },
+    "governmentApprovals": {
+      "dole": false,
+      "dost": false,
+      "dti": false,
+      "others": false,
+      "otherAgencies": []
+    },
+    "rating": 0,
+    "totalRatings": 0,
+    "isPublic": true,
+    "createdAt": "2025-11-19T13:07:46.971Z",
+    "updatedAt": "2025-11-19T13:07:46.973Z",
+    "__v": 0
+  },
+  {
+    "_id": "6929d65206f6fb9208a786c4",
+    "msmeId": "6929d61006f6fb9208a7843b",
+    "businessName": "Loom Weavers",
+    "description": "",
+    "coverPhoto": "1764349560225-223717732.png",
+    "storeLogo": "1764351319109-535686074.png",
+    "contactNumber": "09994490652",
+    "location": "",
+    "googleMapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6545.7046590793825!2d121.15267847694489!3d16.485656884255846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33904413b308ed03%3A0xb1f79f3d64040ce8!2sZSHA-ZY%20APPAREL!5e1!3m2!1sen!2sph!4v1764349606924!5m2!1sen!2sph",
+    "coordinates": {
+      "lat": null,
+      "lng": null
+    },
+    "socialLinks": {
+      "facebook": "https://www.facebook.com/lsbbukohan",
+      "instagram": "https://www.instagram.com/florevoph"
+    },
+    "ecommercePlatforms": {
+      "shopee": {
+        "enabled": false,
+        "url": "https://shopee.ph/florevo-buko-specialties"
+      },
+      "lazada": {
+        "enabled": false,
+        "url": "https://lazada.com.ph/florevo-store"
+      },
+      "tiktok": {
+        "enabled": false,
+        "url": "https://tiktok.com/@florevo_ph"
+      }
+    },
+    "governmentApprovals": {
+      "dole": false,
+      "dost": false,
+      "dti": false,
+      "others": false,
+      "otherAgencies": []
+    },
+    "rating": 0,
+    "totalRatings": 0,
+    "isPublic": true,
+    "createdAt": "2025-11-28T17:05:22.248Z",
+    "updatedAt": "2025-11-28T17:36:57.017Z",
+    "__v": 1
+  }
+]

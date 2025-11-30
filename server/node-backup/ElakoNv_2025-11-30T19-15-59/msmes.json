@@ -1,0 +1,442 @@
+[
+  {
+    "_id": "68bdd2b9f6471b6d7433e524",
+    "id": "MSME_1757270713343_r6e7fh5zj",
+    "clientProfilingNumber": "123444",
+    "category": "food",
+    "businessName": "Florevo",
+    "username": "florevo",
+    "password": "$2b$10$WDBbyrvIKYR4yqx5OxYDz.tCDVJB/1v2uvgZffEpF0cYeMvGwPxhK",
+    "userType": "msme",
+    "status": "approved",
+    "createdAt": "2025-09-07T18:45:13.344Z",
+    "updatedAt": "2025-11-30T09:18:18.199Z",
+    "__v": 35,
+    "address": "",
+    "contactNumber": "09994490652",
+    "isVisible": true,
+    "followers": [
+      "68ce67ff178e4d2540df5e4e",
+      "68bddb09925ffeb350700783"
+    ],
+    "profileViews": [
+      {
+        "customerId": "68ce67ff178e4d2540df5e4e",
+        "viewDate": "2025-09-20T08:43:27.347Z",
+        "dateOnly": "2025-09-20",
+        "_id": "68ce692f9ffa3f7db01c6a97"
+      },
+      {
+        "customerId": "68bddb09925ffeb350700783",
+        "viewDate": "2025-09-20T08:47:40.523Z",
+        "dateOnly": "2025-09-20",
+        "_id": "68ce6a2c9ffa3f7db01c6af9"
+      }
+    ],
+    "notifications": [
+      {
+        "id": "1758360733839",
+        "type": "product_favorited",
+        "title": "Product Favorited",
+        "message": "Nicolai Dela Pena added \"Buko Roll\" to their favorites",
+        "customerId": "68bddb09925ffeb350700783",
+        "customerName": "Nicolai Dela Pena",
+        "productId": "68c1d975b3ac925945d7e0c6",
+        "productName": "Buko Roll",
+        "isRead": false,
+        "createdAt": "2025-09-20T09:32:13.839Z",
+        "_id": "68ce749db09515a23abac09b"
+      },
+      {
+        "id": "1758360638917",
+        "type": "new_follower",
+        "title": "New Follower",
+        "message": "Nicolai Dela Pena started following your store",
+        "customerId": "68bddb09925ffeb350700783",
+        "customerName": "Nicolai Dela Pena",
+        "isRead": true,
+        "createdAt": "2025-09-20T09:30:38.917Z",
+        "_id": "68ce743eb09515a23ababf6b"
+      },
+      {
+        "id": "1758360096805",
+        "type": "new_follower",
+        "title": "New Follower",
+        "message": "Nicolai Dela Pena started following your store",
+        "customerId": "68bddb09925ffeb350700783",
+        "customerName": "Nicolai Dela Pena",
+        "isRead": true,
+        "createdAt": "2025-09-20T09:21:36.805Z",
+        "_id": "68ce722097f8ed5e0b145cb0"
+      },
+      {
+        "id": "1758359921884",
+        "type": "product_favorited",
+        "title": "Product Favorited",
+        "message": "Nicolai Dela Pena added \"Buko Pie\" to their favorites",
+        "customerId": "68bddb09925ffeb350700783",
+        "customerName": "Nicolai Dela Pena",
+        "productId": "68c1da088da414a721b35195",
+        "productName": "Buko Pie",
+        "isRead": true,
+        "createdAt": "2025-09-20T09:18:41.884Z",
+        "_id": "68ce717162836e0bc44ea1cb"
+      },
+      {
+        "id": "1758359372912",
+        "type": "product_favorited",
+        "title": "Product Favorited",
+        "message": "Nicolai Dela Pena added \"Buko Pie\" to their favorites",
+        "customerId": "68bddb09925ffeb350700783",
+        "customerName": "Nicolai Dela Pena",
+        "productId": "68c1da088da414a721b35195",
+        "productName": "Buko Pie",
+        "isRead": true,
+        "createdAt": "2025-09-20T09:09:32.912Z",
+        "_id": "68ce6f4c1d6230c147644895"
+      },
+      {
+        "id": "1758359363922",
+        "type": "new_follower",
+        "title": "New Follower",
+        "message": "Nicolai Dela Pena started following your store",
+        "customerId": "68bddb09925ffeb350700783",
+        "customerName": "Nicolai Dela Pena",
+        "isRead": true,
+        "createdAt": "2025-09-20T09:09:23.923Z",
+        "_id": "68ce6f431d6230c147644864"
+      },
+      {
+        "id": "1758359142806",
+        "type": "new_follower",
+        "title": "New Follower",
+        "message": "Ferylene Valentin started following your store",
+        "customerId": "68ce67ff178e4d2540df5e4e",
+        "customerName": "Ferylene Valentin",
+        "isRead": true,
+        "createdAt": "2025-09-20T09:05:42.806Z",
+        "_id": "68ce6e66392da8935a343dd8"
+      },
+      {
+        "id": "1758358733678",
+        "type": "product_favorited",
+        "title": "Product Favorited",
+        "message": "Nicolai Dela Pena added \"Cassava Chips\" to their favorites",
+        "customerId": "68bddb09925ffeb350700783",
+        "customerName": "Nicolai Dela Pena",
+        "productId": "68c4125a2d50a14bdb6ddbb2",
+        "productName": "Cassava Chips",
+        "isRead": true,
+        "createdAt": "2025-09-20T08:58:53.678Z",
+        "_id": "68ce6ccd8ae103279188608f"
+      }
+    ],
+    "averageRating": 4.7,
+    "ratings": [
+      {
+        "userId": "customer1",
+        "userName": "John Doe",
+        "rating": 5,
+        "createdAt": "2025-10-09T14:38:18.472Z",
+        "_id": "68e7c8da36e74829e07a3045"
+      },
+      {
+        "userId": "customer2",
+        "userName": "Jane Smith",
+        "rating": 4,
+        "createdAt": "2025-10-09T14:38:18.472Z",
+        "_id": "68e7c8da36e74829e07a3046"
+      },
+      {
+        "userId": "CUST_1760344712416_qlxwr6206",
+        "userName": "rocel Valentin",
+        "rating": 5,
+        "createdAt": "2025-10-17T07:18:15.889Z",
+        "_id": "68f1edb70e27bba3c5c4faed"
+      },
+      {
+        "userId": "CUST_1757272841693_112jvgajg",
+        "userName": "Nicolai Dela Pena",
+        "rating": 5,
+        "createdAt": "2025-11-21T02:54:32.529Z",
+        "_id": "690047739c6d8993bae93883"
+      },
+      {
+        "userId": "CUST_1763294515383_xpz7hus77",
+        "userName": "Jesiah Peterson  Ramel",
+        "rating": 5,
+        "createdAt": "2025-11-16T12:02:11.402Z",
+        "_id": "6919bd430917ad2f39c20fbd"
+      },
+      {
+        "userId": "CUST_1763294653010_ugaxw1py4",
+        "userName": "Jaliyah Janielle Ramel",
+        "rating": 5,
+        "createdAt": "2025-11-16T12:04:31.926Z",
+        "_id": "6919bdcf0917ad2f39c217ae"
+      },
+      {
+        "userId": "CUST_1763630268013_rbsbhi4ol",
+        "userName": "Kim Salgado",
+        "rating": 3,
+        "createdAt": "2025-11-20T09:19:56.951Z",
+        "_id": "691edd34c7486f303dff0ce8"
+      },
+      {
+        "userId": "CUST_1763734633562_0pyr63oni",
+        "userName": "jekjek nastor",
+        "rating": 5,
+        "createdAt": "2025-11-21T14:19:32.917Z",
+        "_id": "692074f426e178d6aa9fe635"
+      },
+      {
+        "userId": "CUST_1764385230961_nvidy2z2d",
+        "userName": "Esmeralda Baquiran",
+        "rating": 5,
+        "createdAt": "2025-11-29T03:00:46.896Z",
+        "_id": "692a61ded9b4902ae703c622"
+      },
+      {
+        "userId": "CUST_1764385396454_gzpo0rbl2",
+        "userName": "Pedro Baquiran",
+        "rating": 5,
+        "createdAt": "2025-11-29T03:03:30.899Z",
+        "_id": "692a6282d9b4902ae703cd52"
+      }
+    ],
+    "totalRatings": 10,
+    "businessDescription": "",
+    "email": "hed-zllayno@smu.edu.ph",
+    "established": "",
+    "operatingHours": "",
+    "specialties": [],
+    "website": "https://updatedwebsite.com",
+    "certificates": {
+      "bir": "",
+      "fda": "",
+      "mayorsPermit": "",
+      "tinNumber": "",
+      "dti": ""
+    },
+    "termsAcceptedAt": "2025-09-07T18:45:13.344Z",
+    "municipality": ""
+  },
+  {
+    "_id": "68ced76b18ad6af637734e4a",
+    "id": "MSME_1758386027929_z2qcjuojw",
+    "clientProfilingNumber": "81230237844",
+    "category": "artisan",
+    "businessName": "Gotzest",
+    "username": "gotzest.io",
+    "password": "Jenzon0108",
+    "address": "",
+    "contactNumber": "",
+    "userType": "msme",
+    "status": "approved",
+    "isVisible": true,
+    "averageRating": 4.9,
+    "totalRatings": 7,
+    "ratings": [
+      {
+        "userId": "customer3",
+        "userName": "Mike Johnson",
+        "rating": 4,
+        "createdAt": "2025-10-09T14:38:18.491Z",
+        "_id": "68e7c8da36e74829e07a304f"
+      },
+      {
+        "userId": "customer4",
+        "userName": "Sarah Wilson",
+        "rating": 5,
+        "createdAt": "2025-10-09T14:38:18.491Z",
+        "_id": "68e7c8da36e74829e07a3050"
+      },
+      {
+        "userId": "CUST_1760344712416_qlxwr6206",
+        "userName": "rocel Valentin",
+        "rating": 5,
+        "createdAt": "2025-10-17T07:18:56.028Z",
+        "_id": "68f1ede00e27bba3c5c4fc6a"
+      },
+      {
+        "userId": "CUST_1763294653010_ugaxw1py4",
+        "userName": "Jaliyah Janielle Ramel",
+        "rating": 5,
+        "createdAt": "2025-11-16T12:05:32.235Z",
+        "_id": "6919be0c0917ad2f39c21bfd"
+      },
+      {
+        "userId": "CUST_1763294515383_xpz7hus77",
+        "userName": "Jesiah Peterson  Ramel",
+        "rating": 5,
+        "createdAt": "2025-11-17T15:08:14.040Z",
+        "_id": "691b3a5ea6da5976b9ff3be2"
+      },
+      {
+        "userId": "CUST_1763623009368_9kv88r7xf",
+        "userName": "Zyryll Perez",
+        "rating": 5,
+        "createdAt": "2025-11-20T07:19:59.045Z",
+        "_id": "691ec11f255cbfe4b9014cd9"
+      },
+      {
+        "userId": "CUST_1764385230961_nvidy2z2d",
+        "userName": "Esmeralda Baquiran",
+        "rating": 5,
+        "createdAt": "2025-11-29T09:14:43.767Z",
+        "_id": "692ab983a59f746772a72558"
+      }
+    ],
+    "createdAt": "2025-09-20T16:33:47.930Z",
+    "updatedAt": "2025-11-27T17:30:26.085Z",
+    "__v": 11,
+    "email": "gotzest.io@temp-email.com",
+    "businessDescription": "",
+    "certificates": {
+      "bir": "",
+      "fda": "",
+      "mayorsPermit": "",
+      "tinNumber": "",
+      "dti": ""
+    },
+    "established": "",
+    "operatingHours": "",
+    "specialties": [],
+    "website": "",
+    "termsAcceptedAt": "2025-09-20T16:33:47.930Z",
+    "municipality": ""
+  },
+  {
+    "_id": "68ded9143255b574542dacdd",
+    "id": "MSME_1759435028594_23z0x0pky",
+    "clientProfilingNumber": "8399484",
+    "category": "artisan",
+    "businessName": "Mercancia Barata",
+    "username": "mercanciabarata",
+    "password": "Jenzon0801",
+    "email": "hed-jebaquiran@smu.edu.ph",
+    "address": "",
+    "contactNumber": "",
+    "businessDescription": "",
+    "operatingHours": "",
+    "website": "",
+    "specialties": [],
+    "established": "",
+    "userType": "msme",
+    "status": "approved",
+    "isVisible": true,
+    "averageRating": 4.8,
+    "totalRatings": 8,
+    "ratings": [
+      {
+        "userId": "customer5",
+        "userName": "David Brown",
+        "rating": 4,
+        "createdAt": "2025-10-09T14:38:18.498Z",
+        "_id": "68e7c8da36e74829e07a3056"
+      },
+      {
+        "userId": "customer6",
+        "userName": "Lisa Davis",
+        "rating": 4,
+        "createdAt": "2025-10-09T14:38:18.498Z",
+        "_id": "68e7c8da36e74829e07a3057"
+      },
+      {
+        "userId": "CUST_1757272841693_112jvgajg",
+        "userName": "Nicolai Dela Pena",
+        "rating": 5,
+        "createdAt": "2025-10-09T15:10:20.274Z",
+        "_id": "68e7d05c2891b1ba36b526a4"
+      },
+      {
+        "userId": "CUST_1758769775621_i4h8fap8i",
+        "userName": "Arjanelle Agustin",
+        "rating": 5,
+        "createdAt": "2025-10-09T15:32:21.352Z",
+        "_id": "68e7d585821faea850c9b0a3"
+      },
+      {
+        "userId": "CUST_1758769514785_d3w2tv028",
+        "userName": "Syd Galindo",
+        "rating": 5,
+        "createdAt": "2025-10-09T15:32:34.685Z",
+        "_id": "68e7d592821faea850c9b0ef"
+      },
+      {
+        "userId": "MSME_1759435028594_23z0x0pky",
+        "userName": "undefined undefined",
+        "rating": 5,
+        "createdAt": "2025-10-27T14:26:08.047Z",
+        "_id": "68ff81002096fa74b39cd97d"
+      },
+      {
+        "userId": "CUST_1763294653010_ugaxw1py4",
+        "userName": "Jaliyah Janielle Ramel",
+        "rating": 5,
+        "createdAt": "2025-11-16T12:04:55.713Z",
+        "_id": "6919bde70917ad2f39c21a13"
+      },
+      {
+        "userId": "CUST_1763294515383_xpz7hus77",
+        "userName": "Jesiah Peterson  Ramel",
+        "rating": 5,
+        "createdAt": "2025-11-17T15:08:21.444Z",
+        "_id": "691b3a65a6da5976b9ff3db1"
+      }
+    ],
+    "createdAt": "2025-10-02T19:57:08.595Z",
+    "updatedAt": "2025-10-14T18:07:14.596Z",
+    "__v": 10,
+    "certificates": {
+      "bir": "",
+      "fda": "",
+      "mayorsPermit": "",
+      "tinNumber": ""
+    },
+    "termsAcceptedAt": "2025-10-02T19:57:08.595Z",
+    "municipality": ""
+  },
+  {
+    "_id": "6929d61006f6fb9208a7843b",
+    "id": "MSME_1764349456656_3321kf940",
+    "clientProfilingNumber": "123782130",
+    "category": "artisan",
+    "businessName": "Loom Weavers",
+    "username": "RunrunoWVZ",
+    "password": "$2b$10$osknBBsrM8qPfgsMrNOYSu.F1YZhizjWXqmo0NwPets6DRgdzMSj2",
+    "email": "",
+    "address": "",
+    "municipality": "",
+    "contactNumber": "09994490652",
+    "businessDescription": "",
+    "operatingHours": "",
+    "website": "",
+    "specialties": [],
+    "established": "",
+    "userType": "msme",
+    "status": "approved",
+    "isVisible": true,
+    "certificates": {
+      "mayorsPermit": "certificates/mayorsPermit-1764349456624-581248989.png",
+      "bir": "certificates/bir-1764349456637-295565009.png",
+      "tinNumber": "590378262",
+      "dti": "certificates/dti-1764349456646-468213160.png"
+    },
+    "averageRating": 1,
+    "totalRatings": 1,
+    "ratings": [
+      {
+        "userId": "CUST_1757272841693_112jvgajg",
+        "userName": "Nicolai Dela Pena",
+        "rating": 1,
+        "createdAt": "2025-11-28T17:30:27.864Z",
+        "_id": "6929dbfc06f6fb9208a7cab3"
+      }
+    ],
+    "termsAcceptedAt": "2025-11-28T17:04:16.742Z",
+    "createdAt": "2025-11-28T17:04:16.742Z",
+    "updatedAt": "2025-11-28T17:36:57.011Z",
+    "__v": 1
+  }
+]
