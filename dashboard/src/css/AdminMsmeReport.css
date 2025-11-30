@@ -586,7 +586,7 @@
 }
 
 .admin-msme-reports__award-btn {
-  background: #FF6B35;
+  background: #FF9500;
   border: none;
   border-radius: 4px;
   color: white;
@@ -608,7 +608,7 @@
 }
 
 .admin-msme-reports__award-btn:hover {
-  background: #FF8C42;
+  background: #FFB347;
   transform: translateY(-1px);
 }
 
@@ -617,7 +617,7 @@
 }
 
 .admin-msme-reports__award-btn:focus {
-  outline: 2px solid rgba(255, 107, 53, 0.5);
+  outline: 2px solid rgba(255, 149, 0, 0.5);
   outline-offset: 2px;
 }
 
