@@ -132,7 +132,10 @@ const certificateUpload = multer({
 });
 
 // MongoDB Connection
-mongoose.connect("mongodb://127.0.0.1:27017/ElakoNv", {});
+mongoose.connect(
+  "mongodb+srv://ElakoNvAdmin:%40Jenzon0108_@elakonv.q7jf9go.mongodb.net/ElakoNv",
+  {}
+);
 
 mongoose.connection.on("connected", () => {
   console.log("✅ Connected to MongoDB");
@@ -7228,7 +7231,7 @@ app.get("/api/top-stores", async (req, res) => {
       try {
         const customer = await Customer.findById(customerId);
         if (customer && customer.following) {
-          followedStoreIds = customer.following.map(id => id.toString());
+          followedStoreIds = customer.following.map((id) => id.toString());
         }
       } catch (error) {
         console.error("Error fetching customer follow status:", error);

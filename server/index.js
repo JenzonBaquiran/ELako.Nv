@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -52,7 +53,7 @@ const server = http.createServer(app);
 if (!fs.existsSync("uploads")) {
   fs.mkdirSync("uploads", { recursive: true });
 }
-const port = 1337;
+const port = process.env.PORT || 1337;
 
 // Socket.IO setup
 const io = socketIo(server, {
@@ -140,7 +141,11 @@ const certificateUpload = multer({
 });
 
 // MongoDB Connection
-mongoose.connect("mongodb://127.0.0.1:27017/ElakoNv", {});
+mongoose.connect(
+  process.env.MONGODB_URI ||
+    "mongodb+srv://ElakoNvAdmin:%40Jenzon0108_@elakonv.q7jf9go.mongodb.net/ElakoNv",
+  {}
+);
 
 mongoose.connection.on("connected", () => {
   console.log("✅ Connected to MongoDB");
