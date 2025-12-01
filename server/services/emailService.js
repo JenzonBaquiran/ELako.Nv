@@ -119,86 +119,6 @@ const sendOTPEmail = async (email, otp, username) => {
   }
 };
 
-// Helper function to generate image HTML for emails
-const generateImageHTML = (imageUrl, altText, maxWidth = 300) => {
-  if (!imageUrl) return "";
-
-  // Handle different image types and sources
-  let finalImageUrl = imageUrl;
-
-  // If it's a local upload, construct the full URL
-  if (
-    imageUrl &&
-    !imageUrl.startsWith("http") &&
-    !imageUrl.startsWith("data:")
-  ) {
-    finalImageUrl = `${
-      process.env.SERVER_URL || "http://localhost:1337"
-    }/uploads/${imageUrl}`;
-  }
-
-  return `
-    <div style="text-align: center; margin: 20px 0;">
-      <img src="${finalImageUrl}" 
-           alt="${altText}" 
-           style="max-width: ${maxWidth}px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);" 
-           onerror="this.style.display='none'">
-    </div>
-  `;
-};
-
-// Helper function to generate video/YouTube embed HTML
-const generateMediaHTML = (mediaUrl, mediaType, title) => {
-  if (!mediaUrl) return "";
-
-  switch (mediaType) {
-    case "youtube":
-      // Extract YouTube video ID from URL
-      const youtubeMatch = mediaUrl.match(
-        /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/
-      );
-      const videoId = youtubeMatch ? youtubeMatch[1] : null;
-
-      if (videoId) {
-        return `
-          <div style="text-align: center; margin: 20px 0;">
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
-              <iframe src="https://www.youtube.com/embed/${videoId}" 
-                      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-                      allowfullscreen 
-                      title="${title}">
-              </iframe>
-            </div>
-            <p style="color: #666; font-size: 12px; margin-top: 5px;">▶️ Click to watch on YouTube</p>
-          </div>
-        `;
-      }
-      break;
-
-    case "video":
-      const videoUrl = mediaUrl.startsWith("http")
-        ? mediaUrl
-        : `${
-            process.env.SERVER_URL || "http://localhost:1337"
-          }/uploads/${mediaUrl}`;
-      return `
-        <div style="text-align: center; margin: 20px 0;">
-          <video controls 
-                 style="max-width: 400px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
-            <source src="${videoUrl}" type="video/mp4">
-            <p style="color: #999;">Your email client doesn't support video playback.</p>
-          </video>
-        </div>
-      `;
-
-    case "image":
-      return generateImageHTML(mediaUrl, title, 400);
-
-    default:
-      return "";
-  }
-};
-
 // Send store activity notification email
 const sendStoreActivityEmail = async (
   customerEmail,
@@ -214,27 +134,19 @@ const sendStoreActivityEmail = async (
     switch (activityData.type) {
       case "NEW_PRODUCT":
         subject = `🆕 New Product from ${storeInfo.businessName}!`;
-        const productImageHTML = generateImageHTML(
-          activityData.productImage,
-          activityData.productName,
-          350
-        );
         activityMessage = `
           <h2 style="color: #4CAF50; margin-bottom: 20px;">New Product Alert!</h2>
           <p style="color: #666; line-height: 1.6;">
             Great news! <strong>${storeInfo.businessName}</strong> has added a new product that you might be interested in:
           </p>
           <div style="background-color: #f0f8f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            ${productImageHTML}
             <h3 style="color: #2E7D32; margin: 0 0 10px 0;">${activityData.productName}</h3>
             <p style="color: #666; margin: 5px 0;"><strong>Price:</strong> ₱${activityData.price}</p>
             <p style="color: #666; margin: 5px 0;">${activityData.description}</p>
           </div>
         `;
         actionButton = `
-          <a href="${
-            activityData.productUrl || "#"
-          }" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
+          <a href="http://localhost:5173/" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
             View Product
           </a>
         `;
@@ -242,18 +154,12 @@ const sendStoreActivityEmail = async (
 
       case "PRICE_INCREASE":
         subject = `📈 Price Update from ${storeInfo.businessName}`;
-        const priceIncreaseImageHTML = generateImageHTML(
-          activityData.productImage,
-          activityData.productName,
-          300
-        );
         activityMessage = `
           <h2 style="color: #FF9800; margin-bottom: 20px;">Price Update Notification</h2>
           <p style="color: #666; line-height: 1.6;">
             <strong>${storeInfo.businessName}</strong> has updated the price for one of their products:
           </p>
           <div style="background-color: #fff8e1; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            ${priceIncreaseImageHTML}
             <h3 style="color: #F57C00; margin: 0 0 10px 0;">${activityData.productName}</h3>
             <p style="color: #666; margin: 5px 0;">
               <strong>Previous Price:</strong> <span style="text-decoration: line-through;">₱${activityData.oldPrice}</span>
@@ -264,9 +170,7 @@ const sendStoreActivityEmail = async (
           </div>
         `;
         actionButton = `
-          <a href="${
-            activityData.productUrl || "#"
-          }" style="background-color: #FF9800; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
+          <a href="http://localhost:5173/" style="background-color: #FF9800; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
             View Product
           </a>
         `;
@@ -274,11 +178,6 @@ const sendStoreActivityEmail = async (
 
       case "PRICE_DECREASE":
         subject = `🎉 Great Deal from ${storeInfo.businessName}!`;
-        const priceDecreaseImageHTML = generateImageHTML(
-          activityData.productImage,
-          activityData.productName,
-          300
-        );
         activityMessage = `
           <h2 style="color: #4CAF50; margin-bottom: 20px;">Price Drop Alert!</h2>
           <p style="color: #666; line-height: 1.6;">
@@ -287,7 +186,6 @@ const sendStoreActivityEmail = async (
             }</strong> has reduced the price on one of their products:
           </p>
           <div style="background-color: #e8f5e8; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            ${priceDecreaseImageHTML}
             <h3 style="color: #2E7D32; margin: 0 0 10px 0;">${
               activityData.productName
             }</h3>
@@ -309,9 +207,7 @@ const sendStoreActivityEmail = async (
           </div>
         `;
         actionButton = `
-          <a href="${
-            activityData.productUrl || "#"
-          }" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
+          <a href="http://localhost:5173/" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
             Get This Deal
           </a>
         `;
@@ -319,18 +215,12 @@ const sendStoreActivityEmail = async (
 
       case "PRODUCT_AVAILABLE":
         subject = `✅ Product Back in Stock at ${storeInfo.businessName}!`;
-        const availableImageHTML = generateImageHTML(
-          activityData.productImage,
-          activityData.productName,
-          300
-        );
         activityMessage = `
           <h2 style="color: #4CAF50; margin-bottom: 20px;">Back in Stock!</h2>
           <p style="color: #666; line-height: 1.6;">
             Good news! The product you've been waiting for is now available again at <strong>${storeInfo.businessName}</strong>:
           </p>
           <div style="background-color: #e8f5e8; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            ${availableImageHTML}
             <h3 style="color: #2E7D32; margin: 0 0 10px 0;">${activityData.productName}</h3>
             <p style="color: #666; margin: 5px 0;"><strong>Price:</strong> ₱${activityData.price}</p>
             <p style="color: #4CAF50; font-weight: bold; margin: 10px 0;">
@@ -339,9 +229,7 @@ const sendStoreActivityEmail = async (
           </div>
         `;
         actionButton = `
-          <a href="${
-            activityData.productUrl || "#"
-          }" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
+          <a href="http://localhost:5173/" style="background-color: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
             Order Now
           </a>
         `;
@@ -349,11 +237,6 @@ const sendStoreActivityEmail = async (
 
       case "NEW_BLOG_POST":
         subject = `📝 New Update from ${storeInfo.businessName}!`;
-        const blogMediaHTML = generateMediaHTML(
-          activityData.mediaUrl,
-          activityData.mediaType,
-          activityData.title
-        );
         activityMessage = `
           <h2 style="color: #2196F3; margin-bottom: 20px;">New Blog Post!</h2>
           <p style="color: #666; line-height: 1.6;">
@@ -366,7 +249,6 @@ const sendStoreActivityEmail = async (
             <p style="color: #666; margin: 5px 0; font-style: italic;">${
               activityData.subtitle
             }</p>
-            ${blogMediaHTML}
             <p style="color: #666; margin: 10px 0;">${activityData.description.substring(
               0,
               200
@@ -377,9 +259,7 @@ const sendStoreActivityEmail = async (
           </div>
         `;
         actionButton = `
-          <a href="${
-            activityData.blogUrl || "#"
-          }" style="background-color: #2196F3; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
+          <a href="http://localhost:5173/" style="background-color: #2196F3; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
             Read Full Post
           </a>
         `;
@@ -506,7 +386,7 @@ const sendWelcomeEmail = async (email, userName, userType) => {
             </p>
             
             <div style="text-align: center; margin: 30px 0;">
-              <a href="${websiteURL}/login" style="background: linear-gradient(135deg, #7ed957 0%, #6bc544 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: 600; font-family: 'Poppins', sans-serif; box-shadow: 0 4px 12px rgba(126, 217, 87, 0.3); transition: all 0.3s ease;">
+              <a href="http://localhost:5173/" style="background: linear-gradient(135deg, #7ed957 0%, #6bc544 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: 600; font-family: 'Poppins', sans-serif; box-shadow: 0 4px 12px rgba(126, 217, 87, 0.3); transition: all 0.3s ease;">
                 Access Your Account
               </a>
             </div>

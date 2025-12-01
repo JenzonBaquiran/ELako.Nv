@@ -40,13 +40,7 @@ class StoreActivityNotificationService {
           productName: product.productName,
           price: product.price,
           description: product.description,
-          productImage:
-            product.pictures && product.pictures.length > 0
-              ? product.pictures[0]
-              : product.picture,
-          productUrl: `${
-            process.env.FRONTEND_URL || "http://localhost:5173"
-          }/product/${product._id}`,
+          productUrl: "http://localhost:5173/",
         };
 
         const storeInfo = {
@@ -121,13 +115,7 @@ class StoreActivityNotificationService {
           productName: product.productName,
           oldPrice: oldPrice,
           newPrice: newPrice,
-          productImage:
-            product.pictures && product.pictures.length > 0
-              ? product.pictures[0]
-              : product.picture,
-          productUrl: `${
-            process.env.FRONTEND_URL || "http://localhost:5173"
-          }/product/${product._id}`,
+          productUrl: "http://localhost:5173/",
         };
 
         const storeInfo = {
@@ -192,13 +180,7 @@ class StoreActivityNotificationService {
           type: "PRODUCT_AVAILABLE",
           productName: product.productName,
           price: product.price,
-          productImage:
-            product.pictures && product.pictures.length > 0
-              ? product.pictures[0]
-              : product.picture,
-          productUrl: `${
-            process.env.FRONTEND_URL || "http://localhost:5173"
-          }/product/${product._id}`,
+          productUrl: "http://localhost:5173/",
         };
 
         const storeInfo = {
@@ -258,11 +240,7 @@ class StoreActivityNotificationService {
           subtitle: blogPostData.subtitle,
           description: blogPostData.description,
           category: blogPostData.category,
-          mediaUrl: blogPostData.mediaUrl,
-          mediaType: blogPostData.mediaType,
-          blogUrl: `${
-            process.env.FRONTEND_URL || "http://localhost:5173"
-          }/blog/${blogPostId}`,
+          blogUrl: "http://localhost:5173/",
         };
 
         const storeInfo = {
