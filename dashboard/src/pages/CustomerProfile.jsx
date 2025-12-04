@@ -76,7 +76,6 @@ const CustomerProfile = () => {
   useEffect(() => {
     if (user && userType === 'customer') {
       fetchCustomerProfile();
-
     }
   }, [user, userType]);
 
@@ -487,23 +486,10 @@ const CustomerProfile = () => {
                 <div className="customer-profile__basic-info">
                   <h3 className="customer-profile__name">
                     {profileData.fullName}
-                    {topFanBadgeData?.isActive && (
-                      <span 
-                        className="customer-profile__badge-indicator"
-                        title={`${topFanBadgeData.badgeType === 'suki' ? 'SUKI' : 'TOP FAN'} Badge - Active until ${new Date(topFanBadgeData.expiresAt).toLocaleDateString()}`}
-                      >
-                        {topFanBadgeData.badgeType === 'suki' ? '💝' : '👑'}
-                      </span>
-                    )}
                   </h3>
                   <p className="customer-profile__email">{profileData.email}</p>
                   <span className="customer-profile__user-type">
                     Customer
-                    {topFanBadgeData?.isActive && (
-                      <span className="customer-profile__badge-text">
-                        • {topFanBadgeData.badgeType === 'suki' ? 'SUKI Member' : 'TOP FAN'}
-                      </span>
-                    )}
                   </span>
                 </div>
               </div>

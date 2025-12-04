@@ -2726,10 +2726,20 @@ app.put("/api/admin/msme/:id/visibility", async (req, res) => {
     const msmeId = req.params.id;
     const { isVisible } = req.body;
 
+    console.log(`Attempting to toggle visibility for MSME ID: ${msmeId}`);
+    console.log(`New visibility setting: ${isVisible}`);
+
     // Try to find by MongoDB _id first, then by custom id field
     let msme = await MSME.findById(msmeId);
     if (!msme) {
+      console.log(`MSME not found by _id, trying custom id field...`);
       msme = await MSME.findOne({ id: msmeId });
+    }
+
+    if (!msme) {
+      console.log(`MSME not found with either _id or id: ${msmeId}`);
+    } else {
+      console.log(`Found MSME: ${msme.businessName}, current visibility: ${msme.isVisible}`);
     }
 
     if (!msme) {
@@ -2739,25 +2749,34 @@ app.put("/api/admin/msme/:id/visibility", async (req, res) => {
       });
     }
 
-    // Update visibility
-    msme.isVisible = isVisible !== undefined ? isVisible : !msme.isVisible;
-    msme.updatedAt = new Date();
-    await msme.save();
+    // Update visibility using findByIdAndUpdate to avoid validation issues
+    const newVisibility = isVisible !== undefined ? isVisible : !msme.isVisible;
+    const updatedMsme = await MSME.findByIdAndUpdate(
+      msme._id,
+      { 
+        isVisible: newVisibility,
+        updatedAt: new Date()
+      },
+      { 
+        new: true,
+        runValidators: false // Skip validation to avoid required field errors
+      }
+    );
 
     res.json({
       success: true,
-      message: `MSME ${msme.isVisible ? "shown" : "hidden"} successfully. ${
-        msme.isVisible
+      message: `MSME ${updatedMsme.isVisible ? "shown" : "hidden"} successfully. ${
+        updatedMsme.isVisible
           ? "They can now log in and appear on homepage."
           : "They cannot log in or appear on homepage."
       }`,
       msme: {
-        id: msme.id,
-        _id: msme._id,
-        businessName: msme.businessName,
-        username: msme.username,
-        isVisible: msme.isVisible,
-        status: msme.status,
+        id: updatedMsme.id,
+        _id: updatedMsme._id,
+        businessName: updatedMsme.businessName,
+        username: updatedMsme.username,
+        isVisible: updatedMsme.isVisible,
+        status: updatedMsme.status,
       },
     });
   } catch (err) {
@@ -8997,6 +9016,53 @@ app.post("/api/badges/store/:storeId/calculate", async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to calculate store badge",
+    });
+  }
+});
+
+// Get active customer badge
+app.get("/api/badges/customer/:customerId", async (req, res) => {
+  try {
+    const { customerId } = req.params;
+    const badge = await BadgeService.getActiveCustomerBadge(customerId);
+
+    if (badge) {
+      res.json({
+        success: true,
+        badge: badge,
+      });
+    } else {
+      res.json({
+        success: true,
+        badge: null,
+        message: "No active badge found",
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching customer badge:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch customer badge",
+    });
+  }
+});
+
+// Calculate/update customer badge
+app.post("/api/badges/customer/:customerId/calculate", async (req, res) => {
+  try {
+    const { customerId } = req.params;
+    const badge = await BadgeService.calculateCustomerBadge(customerId);
+
+    res.json({
+      success: true,
+      badge: badge,
+      isNewBadge: badge.isActive && !badge.celebrationShown,
+    });
+  } catch (error) {
+    console.error("Error calculating customer badge:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to calculate customer badge",
     });
   }
 });
