@@ -129,7 +129,9 @@ const certificateUpload = multer({
       cb(null, true);
     } else {
       cb(
-        new Error("Only image and PDF files are allowed for certificates!"),
+        new Error(
+          `Invalid file type "${file.mimetype}". Only image files (JPG, PNG, GIF, etc.) and PDF files are allowed for certificates.`
+        ),
         false
       );
     }
@@ -729,11 +731,30 @@ app.get("/api/customers/:id/review-stats", async (req, res) => {
 // --- MSME Routes ---
 app.post(
   "/api/msme/register",
-  certificateUpload.fields([
-    { name: "mayorsPermit", maxCount: 1 },
-    { name: "bir", maxCount: 1 },
-    { name: "dti", maxCount: 1 },
-  ]),
+  (req, res, next) => {
+    certificateUpload.fields([
+      { name: "mayorsPermit", maxCount: 1 },
+      { name: "bir", maxCount: 1 },
+      { name: "dti", maxCount: 1 },
+    ])(req, res, (err) => {
+      if (err) {
+        if (err.message && err.message.includes("Invalid file type")) {
+          return res.status(400).json({
+            error: err.message,
+          });
+        }
+        if (err.code === "LIMIT_FILE_SIZE") {
+          return res.status(400).json({
+            error: "File size too large. Maximum file size allowed is 10MB.",
+          });
+        }
+        return res.status(400).json({
+          error: "File upload error: " + err.message,
+        });
+      }
+      next();
+    });
+  },
   async (req, res) => {
     const errors = validateMSMEInput(req.body);
     if (errors.length > 0) {
@@ -9659,6 +9680,33 @@ cron.schedule("0 0 * * *", async () => {
     console.error("❌ Error in initial badge cleanup:", error);
   }
 })();
+
+// Global error handling middleware for multer errors
+app.use((error, req, res, next) => {
+  if (error instanceof multer.MulterError) {
+    if (error.code === "LIMIT_FILE_SIZE") {
+      return res.status(400).json({
+        error: "File size too large. Maximum file size allowed is 10MB.",
+      });
+    }
+    return res.status(400).json({
+      error: "File upload error: " + error.message,
+    });
+  }
+
+  if (
+    error.message &&
+    (error.message.includes("Only image") ||
+      error.message.includes("Invalid file type"))
+  ) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+
+  // Pass other errors to default error handler
+  next(error);
+});
 
 // --- Start Server ---
 server.listen(port, () => {
