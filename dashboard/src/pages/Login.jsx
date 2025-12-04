@@ -90,6 +90,18 @@ function Login() {
     }
   }, [isAuthenticated, userType, navigate, location]);
 
+  // Display inactivity message if present
+  useEffect(() => {
+    if (location.state?.message) {
+      const messageType = location.state?.type || 'info';
+      if (messageType === 'info') {
+        showError(location.state.message, "Session Expired");
+      }
+      // Clear the message from location state
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location.state, navigate, location.pathname, showError]);
+
   const getDefaultRoute = (type) => {
     switch (type) {
       case 'admin':

@@ -10,6 +10,7 @@ import CustomerSidebar from "./pages/CustomerSidebar";
 import NotificationProvider from "./components/NotificationProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
+import InactivityWrapper from "./components/InactivityWrapper";
 import MsmeManageProduct from "./pages/MsmeManageProduct";
 import MsmeDashboard from "./pages/MsmeDashboard";
 import MsmeMessage from "./pages/MsmeMessage";
@@ -44,13 +45,14 @@ function App() {
     <AuthProvider>
       <NotificationProvider>
         <BrowserRouter>
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/terms" element={<TermsPage />} />
+          <InactivityWrapper>
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/terms" element={<TermsPage />} />
             
             {/* Admin Protected Routes */}
             <Route 
@@ -294,6 +296,7 @@ function App() {
             {/* Public product viewing route */}
             <Route path="/products/:productId" element={<ProductDetails />} />
           </Routes>
+          </InactivityWrapper>
         </BrowserRouter>
       </NotificationProvider>
     </AuthProvider>
