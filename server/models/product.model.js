@@ -127,6 +127,7 @@ const productSchema = new mongoose.Schema(
           size: { type: mongoose.Schema.Types.Mixed, required: false }, // Allow both String and Number
           unit: { type: String, required: false },
         }, // Store selected size for this review
+        photos: [{ type: String, required: false }], // Array of photo filenames (3-5 photos max)
         hidden: { type: Boolean, default: false }, // Allow MSME to hide specific reviews
         createdAt: { type: Date, default: Date.now },
       },

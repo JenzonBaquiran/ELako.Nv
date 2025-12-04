@@ -27,6 +27,10 @@ const ProductDetails = () => {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  
+  // Photo upload state
+  const [selectedPhotos, setSelectedPhotos] = useState([]);
+  const [photoPreviews, setPhotoPreviews] = useState([]);
 
   useEffect(() => {
     if (productId) {
@@ -120,6 +124,97 @@ const ProductDetails = () => {
 
     // Navigate to customer messages with store ID and product context
     navigate(`/customer-message/${product.msmeId._id}?productId=${product._id}&productName=${encodeURIComponent(product.productName)}&productDescription=${encodeURIComponent(product.description || '')}&productImage=${encodeURIComponent(mainImage)}&productPrice=${product.price}`);
+  };
+
+  // Handle photo selection for feedback
+  const handlePhotoSelection = (e) => {
+    const files = Array.from(e.target.files);
+    
+    // Reset input if no files selected
+    if (files.length === 0) {
+      return;
+    }
+    
+    // Limit to 5 photos max
+    if (files.length > 5) {
+      showError('You can upload a maximum of 5 photos', 'Upload Limit');
+      e.target.value = ''; // Reset file input
+      return;
+    }
+
+    // Define allowed image types
+    const allowedImageTypes = [
+      'image/jpeg',
+      'image/jpg', 
+      'image/png',
+      'image/gif',
+      'image/webp',
+      'image/bmp',
+      'image/svg+xml'
+    ];
+
+    // Validate file types and sizes
+    const validFiles = [];
+    const previews = [];
+    let hasInvalidFiles = false;
+    
+    for (let file of files) {
+      // Check if file type is an image
+      if (!file.type.startsWith('image/')) {
+        showError(`"${file.name}" is not an image file. Only image files are allowed.`, 'Invalid File Type');
+        hasInvalidFiles = true;
+        continue;
+      }
+      
+      // Check specific image type
+      if (!allowedImageTypes.includes(file.type.toLowerCase())) {
+        showError(`"${file.name}" has unsupported format. Supported formats: JPEG, PNG, GIF, WebP, BMP, SVG`, 'Unsupported Format');
+        hasInvalidFiles = true;
+        continue;
+      }
+      
+      // Check file size (5MB limit)
+      if (file.size > 5 * 1024 * 1024) {
+        showError(`"${file.name}" is too large. Each photo must be under 5MB`, 'File Too Large');
+        hasInvalidFiles = true;
+        continue;
+      }
+      
+      // Check for minimum file size (1KB to avoid empty files)
+      if (file.size < 1024) {
+        showError(`"${file.name}" is too small. Please select a valid image file`, 'File Too Small');
+        hasInvalidFiles = true;
+        continue;
+      }
+      
+      validFiles.push(file);
+      
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        previews.push(e.target.result);
+        if (previews.length === validFiles.length) {
+          setPhotoPreviews([...previews]);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+    
+    // If there were invalid files, reset the input
+    if (hasInvalidFiles && validFiles.length === 0) {
+      e.target.value = '';
+      return;
+    }
+    
+    setSelectedPhotos(validFiles);
+  };
+
+  // Remove a selected photo
+  const removePhoto = (index) => {
+    const newPhotos = selectedPhotos.filter((_, i) => i !== index);
+    const newPreviews = photoPreviews.filter((_, i) => i !== index);
+    setSelectedPhotos(newPhotos);
+    setPhotoPreviews(newPreviews);
   };
 
   if (loading) {
@@ -389,6 +484,27 @@ const ProductDetails = () => {
                   )}
                   
                   <p className="product-details-feedback-comment">"{fb.comment}"</p>
+                  
+                  {/* Display feedback photos */}
+                  {fb.photos && fb.photos.length > 0 && (
+                    <div className="product-details-feedback-photos">
+                      {fb.photos.map((photo, photoIdx) => (
+                        <img
+                          key={photoIdx}
+                          src={`http://localhost:1337/uploads/feedback-photos/${photo}`}
+                          alt={`Feedback photo ${photoIdx + 1}`}
+                          className="product-details-feedback-photo"
+                          onClick={(e) => {
+                            // Simple image preview on click
+                            const img = new Image();
+                            img.src = e.target.src;
+                            const newWindow = window.open();
+                            newWindow.document.write(`<img src="${img.src}" style="max-width: 100%; max-height: 100%; object-fit: contain;" />`);
+                          }}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -493,6 +609,44 @@ const ProductDetails = () => {
                 disabled={submitting}
               />
               
+              {/* Photo Upload Section */}
+              <div className="product-details-photo-upload">
+                <label className="product-details-photo-label">
+                  Add Photos (Optional - Up to 5 photos):
+                </label>
+                <div className="product-details-photo-help">
+                  Supported formats: JPEG, PNG, GIF, WebP, BMP, SVG • Max 5MB each • Up to 5 photos
+                </div>
+                <input
+                  type="file"
+                  multiple
+                  accept="image/jpeg,image/jpg,image/png,image/gif,image/webp,image/bmp,image/svg+xml"
+                  onChange={handlePhotoSelection}
+                  className="product-details-photo-input"
+                  disabled={submitting}
+                  title="Select up to 5 image files (JPEG, PNG, GIF, WebP, BMP, SVG) - Max 5MB each"
+                />
+                
+                {/* Photo Previews */}
+                {photoPreviews.length > 0 && (
+                  <div className="product-details-photo-previews">
+                    {photoPreviews.map((preview, index) => (
+                      <div key={index} className="product-details-photo-preview">
+                        <img src={preview} alt={`Preview ${index + 1}`} />
+                        <button
+                          type="button"
+                          onClick={() => removePhoto(index)}
+                          className="product-details-photo-remove"
+                          disabled={submitting}
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              
               <button
                 onClick={async () => {
                   // Validation: Check if variant is required but not selected
@@ -515,22 +669,31 @@ const ProductDetails = () => {
                     const userName = `${user.firstname} ${user.lastname}`.trim();
                     const userId = user.id || user._id;
                     
-                    const requestBody = { 
-                      rating, 
-                      comment, 
-                      user: userName,
-                      userId: userId,
-                      selectedVariant: selectedVariant || null,
-                      selectedSize: selectedSize || null
-                    };
+                    // Create FormData for file upload
+                    const formData = new FormData();
+                    formData.append('rating', rating);
+                    formData.append('comment', comment);
+                    formData.append('user', userName);
+                    formData.append('userId', userId);
                     
-                    console.log('Submitting feedback with data:', requestBody);
+                    if (selectedVariant) {
+                      formData.append('selectedVariant', JSON.stringify(selectedVariant));
+                    }
+                    if (selectedSize) {
+                      formData.append('selectedSize', JSON.stringify(selectedSize));
+                    }
+                    
+                    // Add photos to FormData
+                    selectedPhotos.forEach(photo => {
+                      formData.append('photos', photo);
+                    });
+                    
+                    console.log('Submitting feedback with photos:', selectedPhotos.length);
                     console.log('Product ID:', productId);
                     
                     const res = await fetch(`http://localhost:1337/api/products/${productId}/feedback`, {
                       method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify(requestBody)
+                      body: formData // No Content-Type header needed for FormData
                     });
                     
                     console.log('Response status:', res.status);
@@ -548,6 +711,8 @@ const ProductDetails = () => {
                       setComment("");
                       setSelectedVariant(null);
                       setSelectedSize(null);
+                      setSelectedPhotos([]);
+                      setPhotoPreviews([]);
                       setSubmitSuccess(true);
                       
                       // Hide success message after 3 seconds

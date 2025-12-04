@@ -1616,3 +1616,123 @@
     font-size: 16px;
   }
 }
+
+/* Photo Upload Styles */
+.product-details-photo-upload {
+  margin: 20px 0;
+}
+
+.product-details-photo-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.product-details-photo-help {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.product-details-photo-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.product-details-photo-input:hover {
+  border-color: #7ed957;
+  background: #f0f8f0;
+}
+
+.product-details-photo-input:focus {
+  outline: none;
+  border-color: #7ed957;
+  box-shadow: 0 0 0 3px rgba(126, 217, 87, 0.1);
+}
+
+/* Photo Previews */
+.product-details-photo-previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.product-details-photo-preview {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #e0e0e0;
+}
+
+.product-details-photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-details-photo-remove {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #ff0000;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 60%;
+  width: 15px;
+  height: 15px;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  z-index: 9999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+}
+
+.product-details-photo-remove:hover {
+  background: #cc0000;
+  border-color: #333333;
+  transform: scale(1.2);
+  box-shadow: 0 0 0 2px #ffffff, 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+.product-details-photo-remove:active {
+  transform: scale(0.95);
+}
+
+/* Feedback Photo Display */
+.product-details-feedback-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.product-details-feedback-photo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.product-details-feedback-photo:hover {
+  transform: scale(1.05);
+  border-color: #7ed957;
+}

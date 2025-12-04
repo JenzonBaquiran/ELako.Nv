@@ -141,6 +141,79 @@ const certificateUpload = multer({
   },
 });
 
+// Multer configuration for feedback photos
+const feedbackPhotosStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const feedbackPhotosDir = "uploads/feedback-photos/";
+    if (!fs.existsSync(feedbackPhotosDir)) {
+      fs.mkdirSync(feedbackPhotosDir, { recursive: true });
+    }
+    cb(null, feedbackPhotosDir);
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, "feedback-" + uniqueSuffix + path.extname(file.originalname));
+  },
+});
+
+const feedbackPhotosUpload = multer({
+  storage: feedbackPhotosStorage,
+  fileFilter: (req, file, cb) => {
+    // Define allowed image MIME types
+    const allowedImageTypes = [
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+      "image/gif",
+      "image/webp",
+      "image/bmp",
+      "image/svg+xml",
+    ];
+
+    // Check if file is an image and has allowed MIME type
+    if (
+      file.mimetype &&
+      allowedImageTypes.includes(file.mimetype.toLowerCase())
+    ) {
+      // Additional check for file extension
+      const allowedExtensions = [
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".gif",
+        ".webp",
+        ".bmp",
+        ".svg",
+      ];
+      const fileExtension = path.extname(file.originalname).toLowerCase();
+
+      if (allowedExtensions.includes(fileExtension)) {
+        cb(null, true);
+      } else {
+        cb(
+          new Error(
+            `Invalid file extension "${fileExtension}". Only image files with extensions: ${allowedExtensions.join(
+              ", "
+            )} are allowed.`
+          ),
+          false
+        );
+      }
+    } else {
+      cb(
+        new Error(
+          `Invalid file type "${file.mimetype}". Only image files (JPEG, PNG, GIF, WebP, BMP, SVG) are allowed for feedback photos.`
+        ),
+        false
+      );
+    }
+  },
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB limit per photo
+    files: 5, // Maximum 5 files
+  },
+});
+
 // MongoDB Connection
 mongoose.connect(
   process.env.MONGODB_URI ||
@@ -1679,89 +1752,169 @@ app.get("/api/products/:productId", async (req, res) => {
   }
 });
 
-// Add feedback and rating to product
-app.post("/api/products/:productId/feedback", async (req, res) => {
-  try {
-    const { rating, comment, user, userId } = req.body;
+// Add feedback and rating to product (with optional photo uploads)
+app.post(
+  "/api/products/:productId/feedback",
+  feedbackPhotosUpload.array("photos", 5),
+  async (req, res) => {
+    try {
+      const { rating, comment, user, userId } = req.body;
 
-    // Convert rating to number if it's a string
-    const numericRating =
-      typeof rating === "string" ? parseInt(rating) : rating;
+      // Convert rating to number if it's a string
+      const numericRating =
+        typeof rating === "string" ? parseInt(rating) : rating;
 
-    if (!numericRating || !comment || !user) {
-      return res.status(400).json({
-        success: false,
-        error: "Rating, comment, and user are required",
-      });
-    }
+      if (!numericRating || !comment || !user) {
+        return res.status(400).json({
+          success: false,
+          error: "Rating, comment, and user are required",
+        });
+      }
 
-    // Validate rating range
-    if (numericRating < 1 || numericRating > 5) {
-      return res
-        .status(400)
-        .json({ success: false, error: "Rating must be between 1 and 5" });
-    }
+      // Validate rating range
+      if (numericRating < 1 || numericRating > 5) {
+        return res
+          .status(400)
+          .json({ success: false, error: "Rating must be between 1 and 5" });
+      }
 
-    const product = await Product.findById(req.params.productId);
-    if (!product) {
-      return res
-        .status(404)
-        .json({ success: false, error: "Product not found" });
-    }
+      // Validate uploaded photos (additional server-side validation)
+      if (req.files && req.files.length > 0) {
+        const allowedImageTypes = [
+          "image/jpeg",
+          "image/jpg",
+          "image/png",
+          "image/gif",
+          "image/webp",
+          "image/bmp",
+          "image/svg+xml",
+        ];
 
-    // Extract variant and size information if provided
-    const { selectedVariant, selectedSize } = req.body;
+        for (let file of req.files) {
+          // Validate MIME type
+          if (!allowedImageTypes.includes(file.mimetype.toLowerCase())) {
+            return res.status(400).json({
+              success: false,
+              error: `Invalid file type "${file.mimetype}". Only image files are allowed.`,
+            });
+          }
 
-    // Add feedback to product
-    if (!Array.isArray(product.feedback)) product.feedback = [];
+          // Validate file size
+          if (file.size > 5 * 1024 * 1024) {
+            return res.status(400).json({
+              success: false,
+              error: `File "${file.originalname}" is too large. Maximum size is 5MB per photo.`,
+            });
+          }
 
-    // Process selectedVariant and selectedSize to match schema
-    let processedVariant = null;
-    let processedSize = null;
+          // Validate minimum file size
+          if (file.size < 1024) {
+            return res.status(400).json({
+              success: false,
+              error: `File "${file.originalname}" is too small. Please select a valid image file.`,
+            });
+          }
+        }
 
-    if (selectedVariant) {
-      processedVariant = {
-        id: selectedVariant.id || selectedVariant._id,
-        name: selectedVariant.name,
+        // Validate number of files
+        if (req.files.length > 5) {
+          return res.status(400).json({
+            success: false,
+            error: "Maximum 5 photos are allowed per review.",
+          });
+        }
+      }
+
+      const product = await Product.findById(req.params.productId);
+      if (!product) {
+        return res
+          .status(404)
+          .json({ success: false, error: "Product not found" });
+      }
+
+      // Extract variant and size information if provided (parse JSON strings from FormData)
+      let selectedVariant = req.body.selectedVariant;
+      let selectedSize = req.body.selectedSize;
+
+      // Parse JSON strings if they exist
+      if (selectedVariant && typeof selectedVariant === "string") {
+        try {
+          selectedVariant = JSON.parse(selectedVariant);
+        } catch (e) {
+          selectedVariant = null;
+        }
+      }
+
+      if (selectedSize && typeof selectedSize === "string") {
+        try {
+          selectedSize = JSON.parse(selectedSize);
+        } catch (e) {
+          selectedSize = null;
+        }
+      }
+
+      // Add feedback to product
+      if (!Array.isArray(product.feedback)) product.feedback = [];
+
+      // Process selectedVariant and selectedSize to match schema
+      let processedVariant = null;
+      let processedSize = null;
+
+      if (selectedVariant) {
+        processedVariant = {
+          id: selectedVariant.id || selectedVariant._id,
+          name: selectedVariant.name,
+        };
+      }
+
+      if (selectedSize) {
+        processedSize = {
+          id: selectedSize.id || selectedSize._id,
+          size: selectedSize.size,
+          unit: selectedSize.unit,
+        };
+      }
+
+      // Process uploaded photos (limit to 5)
+      const photoFilenames = [];
+      if (req.files && req.files.length > 0) {
+        // Limit to maximum 5 photos
+        const maxPhotos = Math.min(req.files.length, 5);
+        for (let i = 0; i < maxPhotos; i++) {
+          photoFilenames.push(req.files[i].filename);
+        }
+      }
+
+      const feedbackEntry = {
+        user,
+        userId: userId || null,
+        comment,
+        rating: numericRating,
+        selectedVariant: processedVariant,
+        selectedSize: processedSize,
+        photos: photoFilenames, // Add photos array
+        createdAt: new Date(),
       };
+
+      product.feedback.push(feedbackEntry);
+
+      // Update average rating
+      const ratings = product.feedback.map((fb) => fb.rating);
+      product.rating =
+        ratings.length > 0
+          ? ratings.reduce((a, b) => a + b, 0) / ratings.length
+          : null;
+
+      await product.save();
+      res.json({ success: true, message: "Feedback submitted successfully" });
+    } catch (err) {
+      console.error("Error submitting feedback:", err);
+      res
+        .status(500)
+        .json({ success: false, error: "Error submitting feedback" });
     }
-
-    if (selectedSize) {
-      processedSize = {
-        id: selectedSize.id || selectedSize._id,
-        size: selectedSize.size,
-        unit: selectedSize.unit,
-      };
-    }
-
-    const feedbackEntry = {
-      user,
-      userId: userId || null,
-      comment,
-      rating: numericRating,
-      selectedVariant: processedVariant,
-      selectedSize: processedSize,
-      createdAt: new Date(),
-    };
-
-    product.feedback.push(feedbackEntry);
-
-    // Update average rating
-    const ratings = product.feedback.map((fb) => fb.rating);
-    product.rating =
-      ratings.length > 0
-        ? ratings.reduce((a, b) => a + b, 0) / ratings.length
-        : null;
-
-    await product.save();
-    res.json({ success: true, message: "Feedback submitted successfully" });
-  } catch (err) {
-    console.error("Error submitting feedback:", err);
-    res
-      .status(500)
-      .json({ success: false, error: "Error submitting feedback" });
   }
-});
+);
 
 // Update customer (admin only)
 app.put("/api/admin/customers/:id/update", async (req, res) => {
@@ -9865,20 +10018,39 @@ app.use((error, req, res, next) => {
   if (error instanceof multer.MulterError) {
     if (error.code === "LIMIT_FILE_SIZE") {
       return res.status(400).json({
-        error: "File size too large. Maximum file size allowed is 10MB.",
+        success: false,
+        error:
+          "File size too large. Maximum file size allowed is 5MB per photo.",
+      });
+    }
+    if (error.code === "LIMIT_FILE_COUNT") {
+      return res.status(400).json({
+        success: false,
+        error: "Too many files. Maximum 5 photos are allowed per review.",
+      });
+    }
+    if (error.code === "LIMIT_UNEXPECTED_FILE") {
+      return res.status(400).json({
+        success: false,
+        error: "Unexpected file field. Only 'photos' field is allowed.",
       });
     }
     return res.status(400).json({
+      success: false,
       error: "File upload error: " + error.message,
     });
   }
 
+  // Handle custom validation errors for image files
   if (
     error.message &&
     (error.message.includes("Only image") ||
-      error.message.includes("Invalid file type"))
+      error.message.includes("Invalid file type") ||
+      error.message.includes("Invalid file extension") ||
+      error.message.includes("JPEG, PNG, GIF"))
   ) {
     return res.status(400).json({
+      success: false,
       error: error.message,
     });
   }
