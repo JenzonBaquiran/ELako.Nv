@@ -1662,12 +1662,14 @@ app.get("/api/products/:productId", async (req, res) => {
     // Create a copy of the product to modify feedback
     const productData = product.toObject();
 
-    // Mask customer names in feedback for privacy
+    // Mask customer names in feedback for privacy and filter out 1-star reviews for customer view
     if (productData.feedback && Array.isArray(productData.feedback)) {
-      productData.feedback = productData.feedback.map((fb) => ({
-        ...fb,
-        user: maskCustomerName(fb.user), // Mask the customer name
-      }));
+      productData.feedback = productData.feedback
+        .filter((fb) => fb.rating > 1) // Filter out 1-star reviews for customers
+        .map((fb) => ({
+          ...fb,
+          user: maskCustomerName(fb.user), // Mask the customer name
+        }));
     }
 
     res.json({ success: true, product: productData });
@@ -2342,14 +2344,16 @@ app.get("/api/products", async (req, res) => {
       customerId
     );
 
-    // Mask customer names in feedback for privacy
+    // Mask customer names in feedback for privacy and filter out 1-star reviews for customer view
     const maskedProducts = productsWithFavoriteStatus.map((product) => {
       const productData = product.toObject ? product.toObject() : product;
       if (productData.feedback && Array.isArray(productData.feedback)) {
-        productData.feedback = productData.feedback.map((fb) => ({
-          ...fb,
-          user: maskCustomerName(fb.user),
-        }));
+        productData.feedback = productData.feedback
+          .filter((fb) => fb.rating > 1) // Filter out 1-star reviews for customers
+          .map((fb) => ({
+            ...fb,
+            user: maskCustomerName(fb.user),
+          }));
       }
       return productData;
     });
@@ -2385,12 +2389,14 @@ app.get("/api/products/:id", async (req, res) => {
     // Create a copy of the product to modify feedback
     const productData = product.toObject();
 
-    // Mask customer names in feedback for privacy
+    // Mask customer names in feedback for privacy and filter out 1-star reviews for customer view
     if (productData.feedback && Array.isArray(productData.feedback)) {
-      productData.feedback = productData.feedback.map((fb) => ({
-        ...fb,
-        user: maskCustomerName(fb.user), // Mask the customer name
-      }));
+      productData.feedback = productData.feedback
+        .filter((fb) => fb.rating > 1) // Filter out 1-star reviews for customers
+        .map((fb) => ({
+          ...fb,
+          user: maskCustomerName(fb.user), // Mask the customer name
+        }));
     }
 
     res.json({
@@ -2744,7 +2750,48 @@ app.get("/api/msme/:msmeId/products", async (req, res) => {
 
     const products = await Product.find(filter).sort({ createdAt: -1 });
 
-    // Mask customer names in feedback for privacy
+    // Mask customer names in feedback for privacy and filter out 1-star reviews for customer view
+    const maskedProducts = products.map((product) => {
+      const productData = product.toObject();
+      if (productData.feedback && Array.isArray(productData.feedback)) {
+        productData.feedback = productData.feedback
+          .filter((fb) => fb.rating > 1) // Filter out 1-star reviews for customers
+          .map((fb) => ({
+            ...fb,
+            user: maskCustomerName(fb.user),
+          }));
+      }
+      return productData;
+    });
+
+    res.json({
+      success: true,
+      products: maskedProducts,
+    });
+  } catch (err) {
+    console.error("Error fetching MSME products:", err);
+    res.status(500).json({
+      success: false,
+      error: "Error fetching MSME products",
+    });
+  }
+});
+
+// Get products by MSME ID for store owner (shows ALL reviews including 1-star)
+app.get("/api/msme/:msmeId/products/owner", async (req, res) => {
+  try {
+    const { msmeId } = req.params;
+    const { category, availability, visible } = req.query;
+
+    let filter = { msmeId };
+    if (category && category !== "all") filter.category = category;
+    if (availability && availability !== "all")
+      filter.availability = availability === "true";
+    if (visible && visible !== "all") filter.isVisible = visible === "true";
+
+    const products = await Product.find(filter).sort({ createdAt: -1 });
+
+    // Mask customer names in feedback for privacy but show ALL reviews (including 1-star)
     const maskedProducts = products.map((product) => {
       const productData = product.toObject();
       if (productData.feedback && Array.isArray(productData.feedback)) {
@@ -2761,10 +2808,10 @@ app.get("/api/msme/:msmeId/products", async (req, res) => {
       products: maskedProducts,
     });
   } catch (err) {
-    console.error("Error fetching MSME products:", err);
+    console.error("Error fetching MSME products for owner:", err);
     res.status(500).json({
       success: false,
-      error: "Error fetching MSME products",
+      error: "Error fetching MSME products for owner",
     });
   }
 });
@@ -4403,10 +4450,16 @@ app.get("/api/msme/:storeId/products/top-rated", async (req, res) => {
         calculatedRating = sum / product.feedback.length;
       }
 
+      // Filter out 1-star reviews for customer view but keep rating calculation intact
+      const customerFeedback = product.feedback
+        ? product.feedback.filter((fb) => fb.rating > 1)
+        : [];
+
       return {
         ...product.toObject(),
-        rating: calculatedRating || 0,
-        feedbackCount: product.feedback ? product.feedback.length : 0,
+        feedback: customerFeedback, // Show only 2+ star reviews to customers
+        rating: calculatedRating || 0, // Keep original rating calculation
+        feedbackCount: product.feedback ? product.feedback.length : 0, // Original count for accuracy
       };
     });
 
@@ -4452,9 +4505,9 @@ app.get("/api/msme/:storeId/products/feedbacks", async (req, res) => {
 
     products.forEach((product) => {
       if (product.feedback && product.feedback.length > 0) {
-        // Filter out hidden reviews from customer view
+        // Filter out hidden reviews and 1-star reviews from customer view
         const visibleFeedbacks = product.feedback.filter(
-          (feedback) => !feedback.hidden
+          (feedback) => !feedback.hidden && feedback.rating > 1
         );
 
         visibleFeedbacks.forEach((feedback) => {
@@ -4497,6 +4550,132 @@ app.get("/api/msme/:storeId/products/feedbacks", async (req, res) => {
     res.status(500).json({
       success: false,
       error: "Error fetching product feedbacks",
+    });
+  }
+});
+
+// Get top rated products from a store (OWNER VERSION - includes all reviews for accurate ratings)
+app.get("/api/msme/:storeId/products/top-rated/owner", async (req, res) => {
+  try {
+    const { storeId } = req.params;
+
+    console.log("Fetching top-rated products for store owner:", storeId);
+
+    // Find all visible products from this store
+    const products = await Product.find({
+      msmeId: storeId,
+      visible: true,
+    });
+
+    console.log("Found products:", products.length);
+
+    // Calculate rating for products that have feedback but no rating field
+    const productsWithRatings = products.map((product) => {
+      let calculatedRating = product.rating;
+
+      // If no rating but has feedback, calculate from ALL feedback (including 1-star)
+      if (
+        !calculatedRating &&
+        product.feedback &&
+        product.feedback.length > 0
+      ) {
+        const sum = product.feedback.reduce((acc, fb) => acc + fb.rating, 0);
+        calculatedRating = sum / product.feedback.length;
+      }
+
+      return {
+        ...product.toObject(),
+        rating: calculatedRating || 0,
+        feedbackCount: product.feedback ? product.feedback.length : 0,
+      };
+    });
+
+    // Filter products with ratings > 0 and sort by rating
+    const topRatedProducts = productsWithRatings
+      .filter((product) => product.rating > 0)
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, 4); // Get top 4
+
+    console.log("Top rated products for owner:", topRatedProducts.length);
+
+    res.json({
+      success: true,
+      products: topRatedProducts,
+    });
+  } catch (error) {
+    console.error("Error fetching top rated products for owner:", error);
+    res.status(500).json({
+      success: false,
+      error: "Error fetching top rated products for owner",
+    });
+  }
+});
+
+// Get product feedbacks from a store (OWNER VERSION - includes all reviews)
+app.get("/api/msme/:storeId/products/feedbacks/owner", async (req, res) => {
+  try {
+    const { storeId } = req.params;
+
+    console.log("Fetching product feedbacks for store owner:", storeId);
+
+    // Find all visible products from this store that have feedback
+    const products = await Product.find({
+      msmeId: storeId,
+      visible: true,
+      feedback: { $exists: true, $not: { $size: 0 } },
+    });
+
+    console.log("Found products with feedback:", products.length);
+
+    // Extract all feedbacks with product information
+    const allFeedbacks = [];
+
+    products.forEach((product) => {
+      if (product.feedback && product.feedback.length > 0) {
+        // Show ALL reviews for store owner (only filter out truly hidden ones)
+        const visibleFeedbacks = product.feedback.filter(
+          (feedback) => !feedback.hidden
+        );
+
+        visibleFeedbacks.forEach((feedback) => {
+          // Mask the customer name for privacy
+          const maskedUserName = maskCustomerName(feedback.user);
+
+          console.log("Processing feedback for owner:", {
+            userName: maskedUserName,
+            feedback: feedback.comment,
+            rating: feedback.rating,
+            productName: product.productName,
+          });
+          allFeedbacks.push({
+            ...feedback.toObject(),
+            userName: maskedUserName,
+            feedback: feedback.comment,
+            productId: product._id,
+            productName: product.productName,
+            productImage: product.picture,
+            productPrice: product.price,
+          });
+        });
+      }
+    });
+
+    // Sort feedbacks by date (newest first) and limit to recent ones
+    const sortedFeedbacks = allFeedbacks
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      .slice(0, 10); // Get latest 10 feedbacks
+
+    console.log("Total feedbacks found for owner:", sortedFeedbacks.length);
+
+    res.json({
+      success: true,
+      feedbacks: sortedFeedbacks,
+    });
+  } catch (error) {
+    console.error("Error fetching product feedbacks for owner:", error);
+    res.status(500).json({
+      success: false,
+      error: "Error fetching product feedbacks for owner",
     });
   }
 });

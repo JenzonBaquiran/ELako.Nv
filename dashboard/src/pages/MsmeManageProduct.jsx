@@ -108,7 +108,7 @@ const MsmeManageProduct = () => {
     setLoading(true);
     try {
       // Fetch all products without filters - let frontend handle filtering
-      const response = await fetch(`http://localhost:1337/api/msme/${user._id}/products`);
+      const response = await fetch(`http://localhost:1337/api/msme/${user._id}/products/owner`);
       const data = await response.json();
       
       if (data.success) {

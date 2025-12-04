@@ -161,7 +161,7 @@ const MsmeDashboard = () => {
     if (!user || !user._id) return;
     
     try {
-      const response = await fetch(`http://localhost:1337/api/msme/${user._id}/products/top-rated`, {
+      const response = await fetch(`http://localhost:1337/api/msme/${user._id}/products/top-rated/owner`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

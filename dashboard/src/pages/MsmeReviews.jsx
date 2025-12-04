@@ -93,7 +93,7 @@ const MsmeReviews = () => {
       // Try MongoDB _id first
       let userIdToUse = user._id || user.id;
       
-      let response = await fetch(`http://localhost:1337/api/products?msmeId=${userIdToUse}`);
+      let response = await fetch(`http://localhost:1337/api/msme/${userIdToUse}/products/owner`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -104,7 +104,7 @@ const MsmeReviews = () => {
       // If no products found and we have a different ID to try
       if (data.success && (!data.products || data.products.length === 0) && user._id !== user.id) {
         userIdToUse = user.id;
-        const altResponse = await fetch(`http://localhost:1337/api/products?msmeId=${userIdToUse}`);
+        const altResponse = await fetch(`http://localhost:1337/api/msme/${userIdToUse}/products/owner`);
         if (altResponse.ok) {
           data = await altResponse.json();
         }

@@ -146,7 +146,7 @@ const MsmeCustomizeDashboard = () => {
     if (!user?._id) return;
     
     try {
-      const response = await fetch(`http://localhost:1337/api/msme/${user._id}/products?visible=true`);
+      const response = await fetch(`http://localhost:1337/api/msme/${user._id}/products/owner?visible=true`);
       const data = await response.json();
       
       if (data.success) {
