@@ -29,31 +29,22 @@ const BadgeCelebration = ({
   const getTitle = () => {
     if (badgeType === 'store') {
       return 'Congratulations! 🎉';
-    } else if (badge.badgeType === 'suki') {
-      return 'You\'re a Suki! 💖';
-    } else {
-      return 'Top Fan Achievement! 👑';
     }
+    return 'Congratulations! 🎉';
   };
 
   const getSubtitle = () => {
     if (badgeType === 'store') {
       return 'You are one of the Top Stores!';
-    } else if (badge.badgeType === 'suki') {
-      return `You're a loyal customer of ${badge.loyaltyStore?.storeName || 'this store'}!`;
-    } else {
-      return 'You\'re one of our Top Fans this week!';
     }
+    return 'Badge achievement!';
   };
 
   const getBadgeIcon = () => {
     if (badgeType === 'store') {
       return <FaTrophy className="celebration-badge-icon store-icon" />;
-    } else if (badge.badgeType === 'suki') {
-      return <FaHeart className="celebration-badge-icon suki-icon" />;
-    } else {
-      return <FaCrown className="celebration-badge-icon fan-icon" />;
     }
+    return <FaTrophy className="celebration-badge-icon" />;
   };
 
   const getCriteriaText = () => {
@@ -64,12 +55,8 @@ const BadgeCelebration = ({
         'Store Profile Views: Reach at least 200 profile views during the week',
         'Blog Views (Store-authored): Achieve a minimum of 100 total views across the store\'s blog posts within the week'
       ];
-    } else {
-      return [
-        'Feedback & Ratings Given: Submit at least 5 product ratings',
-        'MSME Blog Engagement: View at least 5 MSME blog posts during the week'
-      ];
     }
+    return ['Badge criteria met!'];
   };
 
   return (
@@ -128,8 +115,7 @@ const BadgeCelebration = ({
           {/* Badge Type */}
           <div className="badge-type-display">
             <span className="badge-name">
-              {badgeType === 'store' ? 'Weekly Top Store Badge' : 
-               badge.badgeType === 'suki' ? 'Suki Badge' : 'Weekly Top Fan Badge'}
+              {badgeType === 'store' ? 'Weekly Top Store Badge' : 'Badge Achievement'}
             </span>
           </div>
 

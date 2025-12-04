@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const BadgeService = require("../services/badgeService");
 const StoreBadge = require("../models/storeBadge.model");
-const CustomerBadge = require("../models/customerBadge.model");
 
 // Get active store badge
 router.get("/store/:storeId", async (req, res) => {
@@ -30,31 +29,7 @@ router.get("/store/:storeId", async (req, res) => {
   }
 });
 
-// Get active customer badge
-router.get("/customer/:customerId", async (req, res) => {
-  try {
-    const { customerId } = req.params;
-    const badge = await BadgeService.getActiveCustomerBadge(customerId);
 
-    if (badge) {
-      res.json({
-        success: true,
-        badge: badge,
-      });
-    } else {
-      res.json({
-        success: false,
-        message: "No active badge found",
-      });
-    }
-  } catch (error) {
-    console.error("Error fetching customer badge:", error);
-    res.status(500).json({
-      success: false,
-      message: "Failed to fetch customer badge",
-    });
-  }
-});
 
 // Calculate/update store badge
 router.post("/store/:storeId/calculate", async (req, res) => {
@@ -76,25 +51,7 @@ router.post("/store/:storeId/calculate", async (req, res) => {
   }
 });
 
-// Calculate/update customer badge
-router.post("/customer/:customerId/calculate", async (req, res) => {
-  try {
-    const { customerId } = req.params;
-    const badge = await BadgeService.calculateCustomerBadge(customerId);
 
-    res.json({
-      success: true,
-      badge: badge,
-      isNewBadge: badge.isActive && !badge.celebrationShown,
-    });
-  } catch (error) {
-    console.error("Error calculating customer badge:", error);
-    res.status(500).json({
-      success: false,
-      message: "Failed to calculate customer badge",
-    });
-  }
-});
 
 // Mark celebration as shown
 router.post("/celebration-shown", async (req, res) => {
@@ -157,39 +114,7 @@ router.get("/admin/stores", async (req, res) => {
   }
 });
 
-// Get all customer badges (for admin)
-router.get("/admin/customers", async (req, res) => {
-  try {
-    const { page = 1, limit = 20, isActive } = req.query;
 
-    const query = {};
-    if (isActive !== undefined) {
-      query.isActive = isActive === "true";
-    }
-
-    const badges = await CustomerBadge.find(query)
-      .populate("customerId", "firstName lastName email")
-      .sort({ createdAt: -1 })
-      .limit(limit * 1)
-      .skip((page - 1) * limit);
-
-    const total = await CustomerBadge.countDocuments(query);
-
-    res.json({
-      success: true,
-      badges: badges,
-      totalPages: Math.ceil(total / limit),
-      currentPage: parseInt(page),
-      total: total,
-    });
-  } catch (error) {
-    console.error("Error fetching customer badges:", error);
-    res.status(500).json({
-      success: false,
-      message: "Failed to fetch customer badges",
-    });
-  }
-});
 
 // Manual badge processing (for admin)
 router.post("/admin/process-all", async (req, res) => {
@@ -233,12 +158,8 @@ router.get("/stats", async (req, res) => {
     const activeStoreBadges = await StoreBadge.countDocuments({
       isActive: true,
     });
-    const activeCustomerBadges = await CustomerBadge.countDocuments({
-      isActive: true,
-    });
 
     const totalStoreBadges = await StoreBadge.countDocuments();
-    const totalCustomerBadges = await CustomerBadge.countDocuments();
 
     // Get this week's new badges
     const weekStart = new Date();
@@ -249,24 +170,17 @@ router.get("/stats", async (req, res) => {
       awardedAt: { $gte: weekStart },
     });
 
-    const thisWeekCustomerBadges = await CustomerBadge.countDocuments({
-      awardedAt: { $gte: weekStart },
-    });
-
     res.json({
       success: true,
       stats: {
         active: {
           stores: activeStoreBadges,
-          customers: activeCustomerBadges,
         },
         total: {
           stores: totalStoreBadges,
-          customers: totalCustomerBadges,
         },
         thisWeek: {
           stores: thisWeekStoreBadges,
-          customers: thisWeekCustomerBadges,
         },
       },
     });

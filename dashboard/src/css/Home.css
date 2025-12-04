@@ -2228,32 +2228,7 @@ body {
   cursor: pointer;
 }
 
-/* Top Fan/Suki Badge on Cards */
-.card-top-fan-badge {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 15px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  animation: badge-shimmer 2s infinite;
-  pointer-events: auto;
-  cursor: pointer;
-}
 
-.card-top-fan-badge.suki {
-  background: linear-gradient(135deg, #e91e63, #f06292);
-  color: #fff;
-  box-shadow: 0 3px 10px rgba(233, 30, 99, 0.5);
-}
-
-.card-top-fan-badge.top_fan {
-  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-  color: #fff;
-  box-shadow: 0 3px 10px rgba(108, 92, 231, 0.5);
-}
 
 /* Badge Shimmer Animation */
 @keyframes badge-shimmer {
@@ -2288,8 +2263,7 @@ body {
 }
 
 /* Badge hover effects */
-.card-top-store-badge:hover,
-.card-top-fan-badge:hover {
+.card-top-store-badge:hover {
   transform: scale(1.05);
   animation-duration: 1s;
 }
@@ -2317,8 +2291,7 @@ body {
   z-index: 100;
 }
 
-.card-top-store-badge:hover .badge-tooltip,
-.card-top-fan-badge:hover .badge-tooltip {
+.card-top-store-badge:hover .badge-tooltip {
   opacity: 1;
   visibility: visible;
 }
@@ -2334,8 +2307,7 @@ body {
 
 /* Mobile badge adjustments */
 @media (max-width: 768px) {
-  .card-top-store-badge,
-  .card-top-fan-badge {
+  .card-top-store-badge {
     font-size: 0.6rem;
     padding: 3px 8px;
   }
@@ -2372,8 +2344,7 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-.profile-badge-container .top-store-badge,
-.profile-badge-container .top-fan-badge {
+.profile-badge-container .top-store-badge {
   transform: scale(1.2);
 }
 
@@ -2558,8 +2529,7 @@ body {
   transform: scale(1.05);
 }
 
-.card-with-badge:hover .card-top-store-badge,
-.card-with-badge:hover .card-top-fan-badge {
+.card-with-badge:hover .card-top-store-badge {
   animation-duration: 1s;
   box-shadow: 0 4px 20px rgba(255, 179, 0, 0.7);
 }

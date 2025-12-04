@@ -31,7 +31,7 @@ const MsmeBlogPost = require("./models/msmeBlogPost.model");
 const Message = require("./models/message.model");
 const Conversation = require("./models/conversation.model");
 const StoreBadge = require("./models/storeBadge.model");
-const CustomerBadge = require("./models/customerBadge.model");
+
 
 // Import Services
 const CustomerNotificationService = require("./services/customerNotificationService");
@@ -1585,8 +1585,7 @@ app.delete("/api/customers/:id/delete-account", async (req, res) => {
       // Delete customer notifications
       CustomerNotification.deleteMany({ customerId: customerObjectId }),
 
-      // Delete customer badges
-      CustomerBadge.deleteMany({ customerId: customerObjectId }),
+
 
       // Remove customer from MSME followers lists
       MSME.updateMany(
@@ -8702,31 +8701,7 @@ app.get("/api/badges/store/:storeId", async (req, res) => {
   }
 });
 
-// Get active customer badge
-app.get("/api/badges/customer/:customerId", async (req, res) => {
-  try {
-    const { customerId } = req.params;
-    const badge = await BadgeService.getActiveCustomerBadge(customerId);
 
-    if (badge) {
-      res.json({
-        success: true,
-        badge: badge,
-      });
-    } else {
-      res.json({
-        success: false,
-        message: "No active badge found",
-      });
-    }
-  } catch (error) {
-    console.error("Error fetching customer badge:", error);
-    res.status(500).json({
-      success: false,
-      message: "Failed to fetch customer badge",
-    });
-  }
-});
 
 // Calculate/update store badge
 app.post("/api/badges/store/:storeId/calculate", async (req, res) => {
@@ -8748,25 +8723,7 @@ app.post("/api/badges/store/:storeId/calculate", async (req, res) => {
   }
 });
 
-// Calculate/update customer badge
-app.post("/api/badges/customer/:customerId/calculate", async (req, res) => {
-  try {
-    const { customerId } = req.params;
-    const badge = await BadgeService.calculateCustomerBadge(customerId);
 
-    res.json({
-      success: true,
-      badge: badge,
-      isNewBadge: badge.isActive && !badge.celebrationShown,
-    });
-  } catch (error) {
-    console.error("Error calculating customer badge:", error);
-    res.status(500).json({
-      success: false,
-      message: "Failed to calculate customer badge",
-    });
-  }
-});
 
 // Mark celebration as shown
 app.post("/api/badges/celebration-shown", async (req, res) => {
@@ -8801,12 +8758,7 @@ app.get("/api/badges/stats", async (req, res) => {
     const activeStoreBadges = await StoreBadge.countDocuments({
       isActive: true,
     });
-    const activeCustomerBadges = await CustomerBadge.countDocuments({
-      isActive: true,
-    });
-
     const totalStoreBadges = await StoreBadge.countDocuments();
-    const totalCustomerBadges = await CustomerBadge.countDocuments();
 
     // Get this week's new badges
     const weekStart = new Date();
@@ -8817,24 +8769,17 @@ app.get("/api/badges/stats", async (req, res) => {
       awardedAt: { $gte: weekStart },
     });
 
-    const thisWeekCustomerBadges = await CustomerBadge.countDocuments({
-      awardedAt: { $gte: weekStart },
-    });
-
     res.json({
       success: true,
       stats: {
         active: {
           stores: activeStoreBadges,
-          customers: activeCustomerBadges,
         },
         total: {
           stores: totalStoreBadges,
-          customers: totalCustomerBadges,
         },
         thisWeek: {
           stores: thisWeekStoreBadges,
-          customers: thisWeekCustomerBadges,
         },
       },
     });
@@ -8900,72 +8845,6 @@ app.post("/api/badges/debug/calculate/:userId", async (req, res) => {
       success: false,
       message: "Failed to calculate badge",
       error: error.message,
-    });
-  }
-});
-
-// Test endpoint: Create a customer badge with met criteria for testing
-app.post("/api/badges/test/create-top-fan/:customerId", async (req, res) => {
-  try {
-    const { customerId } = req.params;
-
-    // Create a badge with all criteria met for testing
-    const badge = await CustomerBadge.create({
-      customerId: customerId,
-      badgeType: "top_fan",
-      weekStart: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // 1 week ago
-      weekEnd: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 1 week from now
-      isActive: true,
-      awardedAt: new Date(),
-      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 1 week from now
-      celebrationShown: false,
-      criteria: {
-        ratingsGiven: {
-          current: 10, // Exceeds requirement
-          required: 5,
-          met: true,
-        },
-        blogEngagement: {
-          current: 15, // Exceeds requirement
-          required: 5,
-          met: true,
-        },
-      },
-      loyaltyStore: {
-        storeId: "msme001",
-        storeName: "Lola's Kakanin",
-        interactionCount: 8,
-      },
-    });
-
-    // Create notification for the new badge
-    try {
-      await CustomerNotification.createTopFanBadgeNotification(
-        customerId,
-        badge.badgeType,
-        badge.expiresAt
-      );
-      console.log(
-        `Test TOP FAN badge notification created for customer: ${customerId}`
-      );
-    } catch (notificationError) {
-      console.error(
-        "Error creating test TOP FAN badge notification:",
-        notificationError
-      );
-    }
-
-    res.json({
-      success: true,
-      badge: badge,
-      isNewBadge: true,
-      message: "Test TOP FAN badge created successfully with notification",
-    });
-  } catch (error) {
-    console.error("Error creating test TOP FAN badge:", error);
-    res.status(500).json({
-      success: false,
-      message: "Failed to create test badge",
     });
   }
 });

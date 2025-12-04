@@ -50,22 +50,10 @@ export const CardBadge = ({
         </div>
       </div>
     );
-  } else {
-    return (
-      <div 
-        className={`card-top-fan-badge ${badge.badgeType}`} 
-        onClick={handleClick}
-      >
-        {badge.badgeType === 'suki' ? 'SUKI' : 'TOP FAN'}
-        <div className="badge-tooltip">
-          {badge.badgeType === 'suki' 
-            ? `Loyal customer of ${badge.loyaltyStore?.storeName || 'this store'}`
-            : 'Weekly Top Fan Badge - Great engagement!'
-          }
-        </div>
-      </div>
-    );
   }
+  
+  // Customer badges are no longer supported
+  return null;
 };
 
 // Enhanced card wrapper with integrated badges

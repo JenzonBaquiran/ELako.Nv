@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNotification } from '../components/NotificationProvider';
 import FavoriteButton from '../components/FavoriteButton';
 import FollowButton from '../components/FollowButton';
-import TopFanCongratulations from '../components/TopFanCongratulations';
+
 import { recordStoreView } from '../utils/storeViewTracker';
 import '../css/CustomerFavorites.css';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -30,20 +30,14 @@ const CustomerFavorites = () => {
   const [followedStores, setFollowedStores] = useState([]);
   const [loading, setLoading] = useState(false);
   
-  // TOP FAN Badge System State
-  const [showTopFanCongratulations, setShowTopFanCongratulations] = useState(false);
-  const [topFanBadgeData, setTopFanBadgeData] = useState(null);
-  const [badgeLoading, setBadgeLoading] = useState(false);
+
 
   // Fetch user's favorite products on component mount
   useEffect(() => {
     if (isAuthenticated && userType === 'customer' && user?._id) {
       fetchFavoriteProducts();
       fetchFollowedStores();
-      // Check for TOP FAN badge after a short delay
-      setTimeout(() => {
-        checkTopFanStatus();
-      }, 2000);
+
     }
   }, [isAuthenticated, userType, user]);
 
@@ -117,160 +111,7 @@ const CustomerFavorites = () => {
     handleFavoriteRemoved(productId);
   };
 
-  // TOP FAN Badge System Functions
-  const checkTopFanStatus = async () => {
-    if (!user?._id) return;
 
-    try {
-      setBadgeLoading(true);
-      
-      // First get existing badge
-      const getResponse = await fetch(`http://localhost:1337/api/badges/customer/${user._id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      const getData = await getResponse.json();
-      console.log('Existing Customer Badge:', getData);
-
-      // Always set badge data if it exists
-      if (getData.success && getData.badge) {
-        setTopFanBadgeData(getData.badge);
-        
-        // Show popup if badge is active and celebration not shown
-        if (getData.badge.isActive && !getData.badge.celebrationShown) {
-          // Check localStorage to prevent showing multiple times per day
-          const lastShown = localStorage.getItem(`topfan-congratulations-${user._id}`);
-          const today = new Date().toDateString();
-          
-          if (lastShown !== today) {
-            console.log('Showing TOP FAN congratulations popup from Favorites page');
-            setShowTopFanCongratulations(true);
-            localStorage.setItem(`topfan-congratulations-${user._id}`, today);
-          } else {
-            console.log('TOP FAN congratulations already shown today');
-          }
-        }
-      } else {
-        // Try to calculate badge if none exists
-        const calculateResponse = await fetch(`http://localhost:1337/api/badges/customer/${user._id}/calculate`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        const calculateData = await calculateResponse.json();
-        console.log('Customer Badge Calculation Result:', calculateData);
-
-        if (calculateData.success && calculateData.badge) {
-          setTopFanBadgeData(calculateData.badge);
-
-          // Check if we should show congratulations (new badge and not shown before)
-          if (calculateData.isNewBadge && calculateData.badge.isActive) {
-            // Check localStorage to prevent showing multiple times per day
-            const lastShown = localStorage.getItem(`topfan-congratulations-${user._id}`);
-            const today = new Date().toDateString();
-            
-            if (lastShown !== today) {
-              console.log('Showing TOP FAN congratulations popup from Favorites page');
-              setShowTopFanCongratulations(true);
-              localStorage.setItem(`topfan-congratulations-${user._id}`, today);
-            } else {
-              console.log('TOP FAN congratulations already shown today');
-            }
-          }
-        }
-      }
-    } catch (error) {
-      console.error('Error checking TOP FAN status:', error);
-    } finally {
-      setBadgeLoading(false);
-    }
-  };
-
-  const handleTopFanCongratulationsClose = () => {
-    setShowTopFanCongratulations(false);
-    if (topFanBadgeData?._id) {
-      markCelebrationShown();
-    }
-  };
-
-  const markCelebrationShown = async () => {
-    try {
-      const response = await fetch('http://localhost:1337/api/badges/celebration-shown', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          badgeType: 'customer',
-          badgeId: topFanBadgeData._id,
-        }),
-      });
-
-      if (response.ok) {
-        console.log('TOP FAN celebration marked as shown');
-      }
-    } catch (error) {
-      console.error('Error marking TOP FAN celebration as shown:', error);
-    }
-  };
-
-  const handleTestTopFanPopup = async () => {
-    console.log('🏆 Testing TOP FAN popup from Favorites page...');
-    console.log('👤 Current user ID:', user._id);
-    console.log('📝 Full user object:', user);
-    setBadgeLoading(true);
-    
-    try {
-      // Force fetch the latest badge data
-      const response = await fetch(`http://localhost:1337/api/badges/customer/${user._id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      const data = await response.json();
-      console.log('🎖️ Badge data fetched for test:', data);
-
-      if (data.success && data.badge) {
-        setTopFanBadgeData(data.badge);
-        
-        // Force show popup for testing regardless of celebration shown status
-        console.log('Forcing TOP FAN congratulations popup for testing');
-        setShowTopFanCongratulations(true);
-      } else {
-        // Create a test badge if none exists
-        console.log('🆕 Creating test badge for user ID:', user._id);
-        const createResponse = await fetch(`http://localhost:1337/api/badges/test/create-top-fan/${user._id}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        const createData = await createResponse.json();
-        console.log('✨ Test badge created:', createData);
-
-        if (createData.success) {
-          setTopFanBadgeData(createData.badge);
-          setShowTopFanCongratulations(true);
-          showSuccess('Test TOP FAN badge created and popup shown!', 'Badge Test');
-        } else {
-          showError('Failed to create test badge', 'Badge Test');
-        }
-      }
-    } catch (error) {
-      console.error('Error testing TOP FAN popup:', error);
-      showError('Error testing TOP FAN popup. Check console for details.', 'Badge Test');
-    } finally {
-      setBadgeLoading(false);
-    }
-  };
 
   const handleViewProduct = (productId) => {
     navigate(`/product/${productId}`);
@@ -343,51 +184,7 @@ const CustomerFavorites = () => {
             <StoreIcon className="customer-favorites__tab-icon" />
             Followed Stores ({followedStores.length})
           </button>
-          
-          {/* TOP FAN Badge Test Button - Only show when badge is active */}
-          {topFanBadgeData?.isActive && (
-            <button 
-              onClick={handleTestTopFanPopup}
-              disabled={badgeLoading}
-              className="customer-favorites__top-fan-test-btn"
-              style={{
-                background: badgeLoading 
-                  ? 'linear-gradient(135deg, #ccc 0%, #999 50%, #ccc 100%)'
-                  : 'linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%)',
-                color: '#333',
-                border: 'none',
-                padding: '10px 20px',
-                borderRadius: '8px',
-                cursor: badgeLoading ? 'not-allowed' : 'pointer',
-                fontWeight: 'bold',
-                fontSize: '13px',
-                boxShadow: badgeLoading 
-                  ? '0 2px 8px rgba(0, 0, 0, 0.2)'
-                  : '0 2px 8px rgba(255, 215, 0, 0.4)',
-                transition: 'all 0.3s ease',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                opacity: badgeLoading ? 0.7 : 1,
-                transform: badgeLoading ? 'scale(0.95)' : 'scale(1)',
-                marginLeft: 'auto'
-              }}
-              onMouseOver={(e) => {
-                if (!badgeLoading) {
-                  e.target.style.transform = 'scale(1.05)';
-                  e.target.style.boxShadow = '0 4px 12px rgba(255, 215, 0, 0.6)';
-                }
-              }}
-              onMouseOut={(e) => {
-                if (!badgeLoading) {
-                  e.target.style.transform = 'scale(1)';
-                  e.target.style.boxShadow = '0 2px 8px rgba(255, 215, 0, 0.4)';
-                }
-              }}
-            >
-              {badgeLoading ? '⏳ Testing...' : '👑 TOP FAN BADGE'}
-            </button>
-          )}
+
         </div>
 
         <div className="customer-favorites__content-section">
@@ -512,13 +309,7 @@ const CustomerFavorites = () => {
 
       </div>
 
-      {/* TOP FAN Congratulations Modal */}
-      <TopFanCongratulations
-        isVisible={showTopFanCongratulations}
-        onClose={handleTopFanCongratulationsClose}
-        badgeData={topFanBadgeData}
-        onMarkCelebrationShown={markCelebrationShown}
-      />
+
     </div>
   );
 };

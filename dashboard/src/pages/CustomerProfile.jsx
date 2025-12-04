@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import CustomerSidebar from './CustomerSidebar';
-import TopFanCongratulations from '../components/TopFanCongratulations';
+
 import Notification from '../components/Notification';
 import PasswordStrengthIndicator from '../components/PasswordStrengthIndicator';
 import { validation } from '../utils/validation';
@@ -50,10 +50,7 @@ const CustomerProfile = () => {
     onCancel: () => {}
   });
   
-  // TOP FAN Badge System State
-  const [showTopFanCongratulations, setShowTopFanCongratulations] = useState(false);
-  const [topFanBadgeData, setTopFanBadgeData] = useState(null);
-  const [badgeLoading, setBadgeLoading] = useState(false);
+
   const [profileData, setProfileData] = useState({
     id: '',
     fullName: '',
@@ -79,10 +76,7 @@ const CustomerProfile = () => {
   useEffect(() => {
     if (user && userType === 'customer') {
       fetchCustomerProfile();
-      // Check for TOP FAN badge after a short delay (simulating login flow)
-      setTimeout(() => {
-        checkTopFanStatus();
-      }, 2000);
+
     }
   }, [user, userType]);
 
@@ -407,76 +401,7 @@ const CustomerProfile = () => {
     }
   };
 
-  // TOP FAN Badge System Functions
-  const checkTopFanStatus = async () => {
-    if (!user?.id) return;
 
-    try {
-      setBadgeLoading(true);
-      
-      // First calculate/update the badge
-      const calculateResponse = await fetch(`http://localhost:1337/api/badges/customer/${user.id}/calculate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      const calculateData = await calculateResponse.json();
-      console.log('Customer Badge Calculation Result:', calculateData);
-
-      if (calculateData.success && calculateData.badge) {
-        setTopFanBadgeData(calculateData.badge);
-
-        // Check if we should show congratulations (new badge and not shown before)
-        if (calculateData.isNewBadge && calculateData.badge.isActive) {
-          // Check localStorage to prevent showing multiple times per day
-          const lastShown = localStorage.getItem(`topfan-congratulations-${user.id}`);
-          const today = new Date().toDateString();
-          
-          if (lastShown !== today) {
-            console.log('Showing TOP FAN congratulations popup');
-            setShowTopFanCongratulations(true);
-            localStorage.setItem(`topfan-congratulations-${user.id}`, today);
-          } else {
-            console.log('TOP FAN congratulations already shown today');
-          }
-        }
-      }
-    } catch (error) {
-      console.error('Error checking TOP FAN status:', error);
-    } finally {
-      setBadgeLoading(false);
-    }
-  };
-
-  const handleTopFanCongratulationsClose = () => {
-    setShowTopFanCongratulations(false);
-    if (topFanBadgeData?._id) {
-      markCelebrationShown();
-    }
-  };
-
-  const markCelebrationShown = async () => {
-    try {
-      const response = await fetch('http://localhost:1337/api/badges/celebration-shown', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          badgeType: 'customer',
-          badgeId: topFanBadgeData._id,
-        }),
-      });
-
-      if (response.ok) {
-        console.log('TOP FAN celebration marked as shown');
-      }
-    } catch (error) {
-      console.error('Error marking TOP FAN celebration as shown:', error);
-    }
-  };
 
   const accountSettings = [
     { 
@@ -841,13 +766,7 @@ const CustomerProfile = () => {
           </div>
         )}
 
-        {/* TOP FAN Congratulations Modal */}
-        <TopFanCongratulations
-          isVisible={showTopFanCongratulations}
-          onClose={handleTopFanCongratulationsClose}
-          badgeData={topFanBadgeData}
-          onMarkCelebrationShown={markCelebrationShown}
-        />
+
 
         {/* Notification Component */}
         <Notification

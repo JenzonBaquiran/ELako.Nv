@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { CardWithBadge } from './BadgeWrapper';
 import BadgeCelebration from './BadgeCelebration';
 import TopStoreBadge from './TopStoreBadge';
-import TopFanBadge from './TopFanBadge';
 import useBadges from '../hooks/useBadges';
 
 // Enhanced Hot Pick Card with Badge Integration
@@ -149,35 +148,7 @@ const RecentlyJoinedCardWithBadge = ({ store }) => {
   );
 };
 
-// Customer Profile Badge Display
-const CustomerProfileBadge = ({ customerId }) => {
-  const { badge, hasBadge, loading } = useBadges(customerId, 'customer');
 
-  if (loading) {
-    return <div className="badge-loading">Loading badge...</div>;
-  }
-
-  if (!hasBadge) {
-    return null;
-  }
-
-  return (
-    <div className="profile-badge-container">
-      <TopFanBadge badge={badge} size="medium" />
-      <div className="profile-badge-info">
-        <h4>
-          {badge.badgeType === 'suki' ? 'Suki Customer Badge' : 'Top Fan Badge'}
-        </h4>
-        <p>
-          {badge.badgeType === 'suki' 
-            ? `You're a loyal customer of ${badge.loyaltyStore?.storeName}!`
-            : 'You\'re one of our most engaged customers this week!'
-          }
-        </p>
-      </div>
-    </div>
-  );
-};
 
 // Store Profile Badge Display
 const StoreProfileBadge = ({ storeId }) => {
@@ -227,13 +198,9 @@ const BadgeManagement = ({ userId, userType }) => {
         </button>
       </div>
 
-      {badge && (
+      {badge && userType === 'store' && (
         <div className="current-badge-status">
-          {userType === 'store' ? (
-            <TopStoreBadge badge={badge} showDetails={true} />
-          ) : (
-            <TopFanBadge badge={badge} showDetails={true} />
-          )}
+          <TopStoreBadge badge={badge} showDetails={true} />
         </div>
       )}
     </div>
@@ -244,7 +211,6 @@ export {
   HotPickCardWithBadge,
   TopStoreCardWithBadge,
   RecentlyJoinedCardWithBadge,
-  CustomerProfileBadge,
   StoreProfileBadge,
   BadgeManagement
 };
