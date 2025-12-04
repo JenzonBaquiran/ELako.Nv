@@ -2760,7 +2760,7 @@ app.put("/api/admin/msme/:id/visibility", async (req, res) => {
 
     // Update visibility using findByIdAndUpdate to avoid validation issues
     const newVisibility = isVisible !== undefined ? isVisible : !msme.isVisible;
-    
+
     const updateFields = {
       isVisible: newVisibility,
       updatedAt: new Date(),
@@ -2770,7 +2770,7 @@ app.put("/api/admin/msme/:id/visibility", async (req, res) => {
     if (!newVisibility && reason) {
       updateFields.visibilityReason = reason;
       updateFields.hiddenAt = new Date();
-      updateFields.hiddenBy = adminName || 'Admin';
+      updateFields.hiddenBy = adminName || "Admin";
     } else if (newVisibility) {
       // If showing the MSME, clear the reason
       updateFields.visibilityReason = "";
@@ -2778,14 +2778,10 @@ app.put("/api/admin/msme/:id/visibility", async (req, res) => {
       updateFields.hiddenBy = "";
     }
 
-    const updatedMsme = await MSME.findByIdAndUpdate(
-      msme._id,
-      updateFields,
-      {
-        new: true,
-        runValidators: false, // Skip validation to avoid required field errors
-      }
-    );
+    const updatedMsme = await MSME.findByIdAndUpdate(msme._id, updateFields, {
+      new: true,
+      runValidators: false, // Skip validation to avoid required field errors
+    });
 
     res.json({
       success: true,
