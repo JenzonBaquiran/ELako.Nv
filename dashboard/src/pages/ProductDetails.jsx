@@ -4,6 +4,8 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNotification } from '../components/NotificationProvider';
 import Header from './Navbar';
 import FavoriteButton from '../components/FavoriteButton';
+import CloudinaryImage from '../components/CloudinaryImage';
+import { isCloudinaryUrl } from '../utils/cloudinary';
 import '../css/ProductDetails.css';
 
 const ProductDetails = () => {
@@ -51,13 +53,28 @@ const ProductDetails = () => {
     
     // Add images from pictures array (new multiple image system)
     if (product.pictures && product.pictures.length > 0) {
-      images = product.pictures.map(pic => `http://localhost:1337/uploads/${pic}`);
+      images = product.pictures.map(pic => {
+        // If it's already a Cloudinary URL, use it directly
+        if (isCloudinaryUrl(pic)) {
+          console.log('Using Cloudinary URL:', pic);
+          return pic;
+        }
+        // Otherwise, assume it's a local upload and prepend the server URL
+        const localUrl = `http://localhost:1337/uploads/${pic}`;
+        console.log('Using local URL:', localUrl);
+        return localUrl;
+      });
     } 
     // Fallback to single picture (backward compatibility)
     else if (product.picture) {
-      images = [`http://localhost:1337/uploads/${product.picture}`];
+      const picUrl = isCloudinaryUrl(product.picture) 
+        ? product.picture 
+        : `http://localhost:1337/uploads/${product.picture}`;
+      console.log('Using fallback picture URL:', picUrl);
+      images = [picUrl];
     }
     
+    console.log('Final images array:', images);
     return images;
   };
 
@@ -238,10 +255,17 @@ const ProductDetails = () => {
           <div className="product-details-image-section">
             {/* Main Image Display */}
             <div className="product-details-main-image-container">
-              <img 
-                src={getAllImages()[selectedImageIndex] || `http://localhost:1337/uploads/${product.picture}`} 
+              <img
+                src={getAllImages()[selectedImageIndex] || (product.picture ? (isCloudinaryUrl(product.picture) ? product.picture : `http://localhost:1337/uploads/${product.picture}`) : '')} 
                 alt={product.productName} 
-                className="product-details-image" 
+                className="product-details-image"
+                onError={(e) => {
+                  console.log('Image failed to load:', e.target.src);
+                  e.target.src = '/placeholder-image.jpg';
+                }}
+                onLoad={(e) => {
+                  console.log('Image loaded successfully:', e.target.src);
+                }}
               />
               
               {/* Image Counter */}
@@ -284,6 +308,9 @@ const ProductDetails = () => {
                     alt={`${product.productName} ${index + 1}`}
                     className={`product-details-thumbnail ${index === selectedImageIndex ? 'active' : ''}`}
                     onClick={() => setSelectedImageIndex(index)}
+                    onError={(e) => {
+                      console.log('Thumbnail failed to load:', e.target.src);
+                    }}
                   />
                 ))}
               </div>

@@ -9,6 +9,18 @@ const http = require("http");
 const socketIo = require("socket.io");
 const cron = require("node-cron");
 
+// Import Cloudinary configuration
+const {
+  cloudinary,
+  productUpload,
+  certificateUpload,
+  blogMediaUpload,
+  feedbackPhotosUpload,
+  deleteFromCloudinary,
+  getOptimizedUrl,
+  generateResponsiveImages,
+} = require("./config/cloudinary");
+
 // Import Utils
 const {
   maskCustomerName,
@@ -74,145 +86,12 @@ app.use(express.json());
 // Serve uploaded images statically
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// Multer setup for image uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  },
-});
-const upload = multer({
-  storage,
-  fileFilter: (req, file, cb) => {
-    // Allow images and videos
-    if (
-      file.mimetype.startsWith("image/") ||
-      file.mimetype.startsWith("video/")
-    ) {
-      cb(null, true);
-    } else {
-      cb(new Error("Only image and video files are allowed!"), false);
-    }
-  },
-  limits: {
-    fileSize: 50 * 1024 * 1024, // 50MB limit
-  },
-});
+// Legacy upload alias for backward compatibility - now uses Cloudinary
+const upload = blogMediaUpload;
 
-// Separate multer configuration for certificates
-const certificateStorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    const certificatesDir = "uploads/certificates/";
-    if (!fs.existsSync(certificatesDir)) {
-      fs.mkdirSync(certificatesDir, { recursive: true });
-    }
-    cb(null, certificatesDir);
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    const prefix = file.fieldname; // mayorsPermit, bir, or dti
-    cb(null, prefix + "-" + uniqueSuffix + path.extname(file.originalname));
-  },
-});
+// Certificate uploads now handled by Cloudinary (imported from config/cloudinary.js)
 
-const certificateUpload = multer({
-  storage: certificateStorage,
-  fileFilter: (req, file, cb) => {
-    // Allow images and PDFs for certificates
-    if (
-      file.mimetype.startsWith("image/") ||
-      file.mimetype === "application/pdf"
-    ) {
-      cb(null, true);
-    } else {
-      cb(
-        new Error(
-          `Invalid file type "${file.mimetype}". Only image files (JPG, PNG, GIF, etc.) and PDF files are allowed for certificates.`
-        ),
-        false
-      );
-    }
-  },
-  limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB limit for certificates
-  },
-});
-
-// Multer configuration for feedback photos
-const feedbackPhotosStorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    const feedbackPhotosDir = "uploads/feedback-photos/";
-    if (!fs.existsSync(feedbackPhotosDir)) {
-      fs.mkdirSync(feedbackPhotosDir, { recursive: true });
-    }
-    cb(null, feedbackPhotosDir);
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, "feedback-" + uniqueSuffix + path.extname(file.originalname));
-  },
-});
-
-const feedbackPhotosUpload = multer({
-  storage: feedbackPhotosStorage,
-  fileFilter: (req, file, cb) => {
-    // Define allowed image MIME types
-    const allowedImageTypes = [
-      "image/jpeg",
-      "image/jpg",
-      "image/png",
-      "image/gif",
-      "image/webp",
-      "image/bmp",
-      "image/svg+xml",
-    ];
-
-    // Check if file is an image and has allowed MIME type
-    if (
-      file.mimetype &&
-      allowedImageTypes.includes(file.mimetype.toLowerCase())
-    ) {
-      // Additional check for file extension
-      const allowedExtensions = [
-        ".jpg",
-        ".jpeg",
-        ".png",
-        ".gif",
-        ".webp",
-        ".bmp",
-        ".svg",
-      ];
-      const fileExtension = path.extname(file.originalname).toLowerCase();
-
-      if (allowedExtensions.includes(fileExtension)) {
-        cb(null, true);
-      } else {
-        cb(
-          new Error(
-            `Invalid file extension "${fileExtension}". Only image files with extensions: ${allowedExtensions.join(
-              ", "
-            )} are allowed.`
-          ),
-          false
-        );
-      }
-    } else {
-      cb(
-        new Error(
-          `Invalid file type "${file.mimetype}". Only image files (JPEG, PNG, GIF, WebP, BMP, SVG) are allowed for feedback photos.`
-        ),
-        false
-      );
-    }
-  },
-  limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB limit per photo
-    files: 5, // Maximum 5 files
-  },
-});
+// Feedback photos uploads now handled by Cloudinary (imported from config/cloudinary.js)
 
 // MongoDB Connection
 mongoose.connect(
@@ -863,13 +742,13 @@ app.post(
       // Hash password before storing
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-      // Process uploaded certificate files
+      // Process uploaded certificate files (now using Cloudinary URLs)
       const certificates = {
         mayorsPermit: req.files?.mayorsPermit
-          ? `certificates/${req.files.mayorsPermit[0].filename}`
+          ? req.files.mayorsPermit[0].path
           : "",
-        bir: req.files?.bir ? `certificates/${req.files.bir[0].filename}` : "",
-        dti: req.files?.dti ? `certificates/${req.files.dti[0].filename}` : "",
+        bir: req.files?.bir ? req.files.bir[0].path : "",
+        dti: req.files?.dti ? req.files.dti[0].path : "",
         tinNumber: req.body.tinNumber || "",
       };
 
@@ -1875,13 +1754,13 @@ app.post(
         };
       }
 
-      // Process uploaded photos (limit to 5)
+      // Process uploaded photos (limit to 5) - now using Cloudinary URLs
       const photoFilenames = [];
       if (req.files && req.files.length > 0) {
         // Limit to maximum 5 photos
         const maxPhotos = Math.min(req.files.length, 5);
         for (let i = 0; i < maxPhotos; i++) {
-          photoFilenames.push(req.files[i].filename);
+          photoFilenames.push(req.files[i].path); // Cloudinary URL
         }
       }
 
@@ -6871,7 +6750,7 @@ app.post("/api/customer-notifications/custom", async (req, res) => {
   }
 });
 
-// --- Upload Route ---
+// --- Upload Routes ---
 app.post("/api/upload", upload.single("media"), (req, res) => {
   try {
     if (!req.file) {
@@ -6883,16 +6762,67 @@ app.post("/api/upload", upload.single("media"), (req, res) => {
 
     res.json({
       success: true,
-      filename: req.file.filename,
+      filename: req.file.path, // Cloudinary URL
+      url: req.file.path, // Cloudinary URL
       originalName: req.file.originalname,
       size: req.file.size,
       mimetype: req.file.mimetype,
+      publicId: req.file.public_id, // Cloudinary public ID for future operations
     });
   } catch (error) {
     console.error("Error uploading file:", error);
     res.status(500).json({
       success: false,
       error: "Error uploading file",
+    });
+  }
+});
+
+// Cloudinary image operations endpoints
+app.post("/api/cloudinary/optimize-image", (req, res) => {
+  try {
+    const { publicId, transformations = [] } = req.body;
+
+    if (!publicId) {
+      return res.status(400).json({
+        success: false,
+        error: "Public ID is required",
+      });
+    }
+
+    const optimizedUrl = getOptimizedUrl(publicId, transformations);
+    const responsiveImages = generateResponsiveImages(publicId);
+
+    res.json({
+      success: true,
+      optimizedUrl,
+      responsiveImages,
+    });
+  } catch (error) {
+    console.error("Error optimizing image:", error);
+    res.status(500).json({
+      success: false,
+      error: "Error optimizing image",
+    });
+  }
+});
+
+app.delete("/api/cloudinary/delete/:publicId", async (req, res) => {
+  try {
+    const { publicId } = req.params;
+    const { resourceType = "image" } = req.query;
+
+    const result = await deleteFromCloudinary(publicId, resourceType);
+
+    res.json({
+      success: true,
+      result,
+    });
+  } catch (error) {
+    console.error("Error deleting from Cloudinary:", error);
+    res.status(500).json({
+      success: false,
+      error: "Error deleting from Cloudinary",
     });
   }
 });
@@ -7114,9 +7044,9 @@ app.post("/api/msme/blog-posts", upload.single("media"), async (req, res) => {
 
     let finalMediaUrl = mediaUrl;
 
-    // Handle file upload
+    // Handle file upload with Cloudinary
     if (req.file && (mediaType === "image" || mediaType === "video")) {
-      finalMediaUrl = req.file.filename;
+      finalMediaUrl = req.file.path; // Cloudinary URL
     }
 
     const newPost = new MsmeBlogPost({
@@ -7209,9 +7139,9 @@ app.put(
         updatedAt: Date.now(),
       };
 
-      // Handle media update
+      // Handle media update with Cloudinary
       if (req.file && (mediaType === "image" || mediaType === "video")) {
-        updateData.mediaUrl = req.file.filename;
+        updateData.mediaUrl = req.file.path; // Cloudinary URL
       } else if (mediaUrl) {
         updateData.mediaUrl = mediaUrl;
       }
@@ -9507,155 +9437,162 @@ app.delete("/api/msme/:id/delete-account", async (req, res) => {
 
 // --- Product Routes ---
 // Create new product
-app.post("/api/products", upload.array("pictures", 10), async (req, res) => {
-  try {
-    const {
-      productName,
-      price,
-      description,
-      availability,
-      category,
-      hashtags,
-      msmeId,
-      variants,
-      sizeOptions,
-      artistName, // Add artistName field
-    } = req.body;
+app.post(
+  "/api/products",
+  productUpload.array("pictures", 10),
+  async (req, res) => {
+    try {
+      const {
+        productName,
+        price,
+        description,
+        availability,
+        category,
+        hashtags,
+        msmeId,
+        variants,
+        sizeOptions,
+        artistName, // Add artistName field
+      } = req.body;
 
-    // Debug logging
-    console.log("POST /api/products - Product creation request received");
-    console.log("Request body keys:", Object.keys(req.body));
-    console.log("Artist name received:", artistName);
-    console.log("Category received:", category);
+      // Debug logging
+      console.log("POST /api/products - Product creation request received");
+      console.log("Request body keys:", Object.keys(req.body));
+      console.log("Artist name received:", artistName);
+      console.log("Category received:", category);
 
-    // Validate required fields
-    if (!productName || !price || !description || !msmeId) {
-      return res.status(400).json({
+      // Validate required fields
+      if (!productName || !price || !description || !msmeId) {
+        return res.status(400).json({
+          success: false,
+          error: "Product name, price, description, and MSME ID are required",
+        });
+      }
+
+      // Parse hashtags if it's a string
+      let parsedHashtags = [];
+      if (hashtags) {
+        try {
+          parsedHashtags =
+            typeof hashtags === "string" ? JSON.parse(hashtags) : hashtags;
+        } catch (e) {
+          parsedHashtags = [];
+        }
+      }
+
+      // Parse variants if it's a string
+      let parsedVariants = [];
+      if (variants) {
+        try {
+          parsedVariants =
+            typeof variants === "string" ? JSON.parse(variants) : variants;
+
+          // Validate variant prices
+          for (const variant of parsedVariants) {
+            if (variant.price !== undefined && variant.price !== null) {
+              const price = parseFloat(variant.price);
+              if (isNaN(price) || price <= 0) {
+                return res.status(400).json({
+                  success: false,
+                  error: `Variant "${variant.name}" price must be a positive number greater than 0`,
+                });
+              }
+              variant.price = price; // Ensure it's stored as a number
+            }
+          }
+        } catch (e) {
+          parsedVariants = [];
+        }
+      }
+
+      // Parse size options if it's a string
+      let parsedSizeOptions = [];
+      if (sizeOptions) {
+        try {
+          parsedSizeOptions =
+            typeof sizeOptions === "string"
+              ? JSON.parse(sizeOptions)
+              : sizeOptions;
+
+          // Validate size option prices
+          for (const sizeOption of parsedSizeOptions) {
+            if (sizeOption.price !== undefined && sizeOption.price !== null) {
+              const price = parseFloat(sizeOption.price);
+              if (isNaN(price) || price <= 0) {
+                return res.status(400).json({
+                  success: false,
+                  error: `Size option "${sizeOption.size} ${sizeOption.unit}" price must be a positive number greater than 0`,
+                });
+              }
+              sizeOption.price = price; // Ensure it's stored as a number
+            }
+          }
+        } catch (e) {
+          parsedSizeOptions = [];
+        }
+      }
+
+      // Handle multiple file uploads with Cloudinary
+      let pictures = [];
+      let singlePicture = null; // For backward compatibility
+
+      if (req.files && req.files.length > 0) {
+        pictures = req.files.map((file) => file.path); // Cloudinary URL
+        singlePicture = pictures[0]; // Use first image as main picture
+      }
+
+      // Create new product with artistName field
+      const newProduct = new Product({
+        productName,
+        price: parseFloat(price),
+        description,
+        availability: availability === "true" || availability === true,
+        visible: true, // New products are visible by default
+        picture: singlePicture, // Backward compatibility
+        pictures: pictures, // New multiple images support
+        variants: parsedVariants,
+        sizeOptions: parsedSizeOptions,
+        hashtags: parsedHashtags,
+        category: category || "",
+        artistName: artistName || "", // Add artistName field
+        msmeId,
+      });
+
+      await newProduct.save();
+
+      // Notify followers of the store about the new product
+      try {
+        await CustomerNotificationService.notifyFollowersOfNewProduct(
+          msmeId,
+          newProduct._id
+        );
+        // Also send email notifications
+        await StoreActivityNotificationService.notifyFollowersOfNewProduct(
+          msmeId,
+          newProduct._id
+        );
+      } catch (notificationError) {
+        console.error(
+          "Error sending customer notifications:",
+          notificationError
+        );
+        // Continue with product creation even if notifications fail
+      }
+
+      res.status(201).json({
+        success: true,
+        message: "Product created successfully",
+        product: newProduct,
+      });
+    } catch (err) {
+      console.error("Error creating product:", err);
+      res.status(500).json({
         success: false,
-        error: "Product name, price, description, and MSME ID are required",
+        error: "Error creating product",
       });
     }
-
-    // Parse hashtags if it's a string
-    let parsedHashtags = [];
-    if (hashtags) {
-      try {
-        parsedHashtags =
-          typeof hashtags === "string" ? JSON.parse(hashtags) : hashtags;
-      } catch (e) {
-        parsedHashtags = [];
-      }
-    }
-
-    // Parse variants if it's a string
-    let parsedVariants = [];
-    if (variants) {
-      try {
-        parsedVariants =
-          typeof variants === "string" ? JSON.parse(variants) : variants;
-
-        // Validate variant prices
-        for (const variant of parsedVariants) {
-          if (variant.price !== undefined && variant.price !== null) {
-            const price = parseFloat(variant.price);
-            if (isNaN(price) || price <= 0) {
-              return res.status(400).json({
-                success: false,
-                error: `Variant "${variant.name}" price must be a positive number greater than 0`,
-              });
-            }
-            variant.price = price; // Ensure it's stored as a number
-          }
-        }
-      } catch (e) {
-        parsedVariants = [];
-      }
-    }
-
-    // Parse size options if it's a string
-    let parsedSizeOptions = [];
-    if (sizeOptions) {
-      try {
-        parsedSizeOptions =
-          typeof sizeOptions === "string"
-            ? JSON.parse(sizeOptions)
-            : sizeOptions;
-
-        // Validate size option prices
-        for (const sizeOption of parsedSizeOptions) {
-          if (sizeOption.price !== undefined && sizeOption.price !== null) {
-            const price = parseFloat(sizeOption.price);
-            if (isNaN(price) || price <= 0) {
-              return res.status(400).json({
-                success: false,
-                error: `Size option "${sizeOption.size} ${sizeOption.unit}" price must be a positive number greater than 0`,
-              });
-            }
-            sizeOption.price = price; // Ensure it's stored as a number
-          }
-        }
-      } catch (e) {
-        parsedSizeOptions = [];
-      }
-    }
-
-    // Handle multiple file uploads
-    let pictures = [];
-    let singlePicture = null; // For backward compatibility
-
-    if (req.files && req.files.length > 0) {
-      pictures = req.files.map((file) => file.filename);
-      singlePicture = pictures[0]; // Use first image as main picture
-    }
-
-    // Create new product with artistName field
-    const newProduct = new Product({
-      productName,
-      price: parseFloat(price),
-      description,
-      availability: availability === "true" || availability === true,
-      visible: true, // New products are visible by default
-      picture: singlePicture, // Backward compatibility
-      pictures: pictures, // New multiple images support
-      variants: parsedVariants,
-      sizeOptions: parsedSizeOptions,
-      hashtags: parsedHashtags,
-      category: category || "",
-      artistName: artistName || "", // Add artistName field
-      msmeId,
-    });
-
-    await newProduct.save();
-
-    // Notify followers of the store about the new product
-    try {
-      await CustomerNotificationService.notifyFollowersOfNewProduct(
-        msmeId,
-        newProduct._id
-      );
-      // Also send email notifications
-      await StoreActivityNotificationService.notifyFollowersOfNewProduct(
-        msmeId,
-        newProduct._id
-      );
-    } catch (notificationError) {
-      console.error("Error sending customer notifications:", notificationError);
-      // Continue with product creation even if notifications fail
-    }
-
-    res.status(201).json({
-      success: true,
-      message: "Product created successfully",
-      product: newProduct,
-    });
-  } catch (err) {
-    console.error("Error creating product:", err);
-    res.status(500).json({
-      success: false,
-      error: "Error creating product",
-    });
   }
-});
+);
 
 // Update product
 app.put("/api/products/:id", upload.array("pictures", 10), async (req, res) => {
