@@ -18,6 +18,24 @@ const MsmeReviews = () => {
   const { user, userType, isAuthenticated } = useAuth();
   const { showError, showSuccess } = useNotification();
   const navigate = useNavigate();
+
+  // Helper function to generate proper URLs for images
+  const getImageUrl = (imageValue) => {
+    if (!imageValue) return null;
+    
+    // If it's already a full URL (Cloudinary or other), use it directly
+    if (imageValue.startsWith('http')) {
+      return imageValue;
+    }
+    
+    // If it contains folder structure like 'elako/products/...', it's a Cloudinary public ID
+    if (imageValue.includes('/') && !imageValue.startsWith('uploads/')) {
+      return `https://res.cloudinary.com/dk9umulxw/image/upload/${imageValue}`;
+    }
+    
+    // Otherwise, it's a legacy local file
+    return `http://localhost:1337/uploads/${imageValue}`;
+  };
   
   const [sidebarState, setSidebarState] = useState({
     isOpen: true,
@@ -175,11 +193,11 @@ const MsmeReviews = () => {
     
     // Handle new multiple images format (like ProductDetails)
     if (product.pictures && product.pictures.length > 0) {
-      return `http://localhost:1337/uploads/${product.pictures[0]}`;
+      return getImageUrl(product.pictures[0]);
     }
     // Fallback to single picture format
     else if (product.picture) {
-      return `http://localhost:1337/uploads/${product.picture}`;
+      return getImageUrl(product.picture);
     }
     return null;
   };

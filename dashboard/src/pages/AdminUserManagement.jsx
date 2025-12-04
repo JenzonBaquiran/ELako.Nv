@@ -429,7 +429,26 @@ const AdminUserManagement = () => {
     setCertificates(null);
   };
 
+  // Helper function to get the correct certificate URL
+  const getCertificateUrl = (certificatePath) => {
+    if (!certificatePath) return null;
+    
+    // If it's already a full URL (Cloudinary), use it as-is
+    if (certificatePath.startsWith('http://') || certificatePath.startsWith('https://')) {
+      return certificatePath;
+    }
+    
+    // If it's a legacy local path, construct the local URL
+    if (certificatePath.includes('certificates/')) {
+      return `http://localhost:1337/uploads/${certificatePath}`;
+    }
+    
+    // If it's just a filename, construct the local URL
+    return `http://localhost:1337/uploads/certificates/${certificatePath}`;
+  };
+
   const handleViewCertificate = (title, url) => {
+    console.log('Viewing certificate:', title, 'URL:', url);
     setCurrentCertificate({ title, url });
     setShowCertificateViewer(true);
   };
@@ -1593,7 +1612,7 @@ const AdminUserManagement = () => {
                         {certificates.mayorsPermit ? (
                           <button 
                             className="user-management__view-certificate-btn"
-                            onClick={() => handleViewCertificate('Mayor\'s Permit', `http://localhost:1337/uploads/${certificates.mayorsPermit}`)}
+                            onClick={() => handleViewCertificate('Mayor\'s Permit', getCertificateUrl(certificates.mayorsPermit))}
                           >
                             View Document
                           </button>
@@ -1607,7 +1626,7 @@ const AdminUserManagement = () => {
                         {certificates.bir ? (
                           <button 
                             className="user-management__view-certificate-btn"
-                            onClick={() => handleViewCertificate('BIR Certificate', `http://localhost:1337/uploads/${certificates.bir}`)}
+                            onClick={() => handleViewCertificate('BIR Certificate', getCertificateUrl(certificates.bir))}
                           >
                             View Document
                           </button>
@@ -1621,7 +1640,7 @@ const AdminUserManagement = () => {
                         {certificates.dti ? (
                           <button 
                             className="user-management__view-certificate-btn"
-                            onClick={() => handleViewCertificate('DTI Certificate', `http://localhost:1337/uploads/${certificates.dti}`)}
+                            onClick={() => handleViewCertificate('DTI Certificate', getCertificateUrl(certificates.dti))}
                           >
                             View Document
                           </button>

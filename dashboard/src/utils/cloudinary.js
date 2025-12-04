@@ -6,13 +6,13 @@ import { format, quality } from "@cloudinary/url-gen/actions/delivery";
 // Initialize Cloudinary with your cloud name
 const cld = new Cloudinary({
   cloud: {
-    cloudName: "dkdumulxw", // Your cloud name from the environment
+    cloudName: "dk9umulxw", // Your cloud name from the environment
   },
 });
 
 // Configuration
 export const CLOUDINARY_CONFIG = {
-  cloudName: "dkdumulxw",
+  cloudName: "dk9umulxw",
   uploadPreset: "elako_uploads", // You'll need to create this in Cloudinary dashboard
   maxFileSize: 10 * 1024 * 1024, // 10MB
   maxFiles: 10,

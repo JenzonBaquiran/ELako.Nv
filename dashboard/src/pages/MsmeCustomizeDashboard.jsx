@@ -8,6 +8,24 @@ import '../css/MsmeCustomizeDashboard.css';
 const MsmeCustomizeDashboard = () => {
   const { user, userType } = useAuth();
   const { showSuccess, showError, showConfirm } = useNotification();
+
+  // Helper function to generate proper URLs for images
+  const getImageUrl = (imageValue) => {
+    if (!imageValue) return null;
+    
+    // If it's already a full URL (Cloudinary or other), use it directly
+    if (imageValue.startsWith('http')) {
+      return imageValue;
+    }
+    
+    // If it contains folder structure like 'elako/blog/...', it's a Cloudinary public ID
+    if (imageValue.includes('/') && !imageValue.startsWith('uploads/')) {
+      return `https://res.cloudinary.com/dk9umulxw/image/upload/${imageValue}`;
+    }
+    
+    // Otherwise, it's a legacy local file
+    return `http://localhost:1337/uploads/${imageValue}`;
+  };
   const [sidebarState, setSidebarState] = useState({ isOpen: true, isMobile: false });
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
@@ -108,13 +126,14 @@ const MsmeCustomizeDashboard = () => {
         setDashboardData(dashboardWithDefaults);
         // Set preview URLs for existing images
         if (data.dashboard.coverPhoto) {
+          const coverPhotoUrl = getImageUrl(data.dashboard.coverPhoto);
           setPreviewUrls(prev => ({
             ...prev,
-            coverPhoto: `http://localhost:1337/uploads/${data.dashboard.coverPhoto}`
+            coverPhoto: coverPhotoUrl
           }));
         }
         if (data.dashboard.storeLogo) {
-          const logoUrl = `http://localhost:1337/uploads/${data.dashboard.storeLogo}`;
+          const logoUrl = getImageUrl(data.dashboard.storeLogo);
           console.log('✅ STORE LOGO DETECTED:');
           console.log('   - Setting store logo URL:', logoUrl);
           console.log('   - Store logo filename:', data.dashboard.storeLogo);
@@ -304,7 +323,7 @@ const MsmeCustomizeDashboard = () => {
     if (blog.mediaType === 'youtube') {
       return blog.mediaUrl;
     }
-    return `http://localhost:1337/uploads/${blog.mediaUrl}`;
+    return getImageUrl(blog.mediaUrl);
   };
 
   const getYouTubeThumbnail = (url) => {
@@ -351,7 +370,7 @@ const MsmeCustomizeDashboard = () => {
         return (
           <div className="blog-media-preview video">
             <video controls className="blog-thumbnail">
-              <source src={`http://localhost:1337/uploads/${blog.mediaUrl}`} type="video/mp4" />
+              <source src={getBlogMediaUrl(blog)} type="video/mp4" />
             </video>
           </div>
         );
@@ -359,7 +378,7 @@ const MsmeCustomizeDashboard = () => {
       default:
         return (
           <div className="blog-media-preview image">
-            <img src={`http://localhost:1337/uploads/${blog.mediaUrl}`} alt={blog.title} className="blog-thumbnail" />
+            <img src={getBlogMediaUrl(blog)} alt={blog.title} className="blog-thumbnail" />
           </div>
         );
     }
@@ -524,7 +543,7 @@ const MsmeCustomizeDashboard = () => {
 
   const getProductImageUrl = (product) => {
     if (product.picture) {
-      return `http://localhost:1337/uploads/${product.picture}`;
+      return getImageUrl(product.picture);
     }
     return '/default-product.jpg';
   };
@@ -1203,12 +1222,12 @@ const MsmeCustomizeDashboard = () => {
                       <div className="blog-form-preview">
                         {blogFormData.mediaType === 'video' ? (
                           <video controls width="200">
-                            <source src={`http://localhost:1337/uploads/${blogFormData.mediaUrl}`} type="video/mp4" />
+                            <source src={getImageUrl(blogFormData.mediaUrl)} type="video/mp4" />
                             Your browser does not support the video tag.
                           </video>
                         ) : (
                           <img 
-                            src={`http://localhost:1337/uploads/${blogFormData.mediaUrl}`} 
+                            src={getImageUrl(blogFormData.mediaUrl)} 
                             alt="Current media" 
                             width="200"
                             style={{maxHeight: '150px', objectFit: 'cover'}}

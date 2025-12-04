@@ -29,6 +29,24 @@ const CustomerNotifications = () => {
   const { user, userType, isAuthenticated } = useAuth();
   const { showSuccess, showError } = useNotification();
   const navigate = useNavigate();
+
+  // Helper function to generate proper URLs for images
+  const getImageUrl = (imageValue) => {
+    if (!imageValue) return null;
+    
+    // If it's already a full URL (Cloudinary or other), use it directly
+    if (imageValue.startsWith('http')) {
+      return imageValue;
+    }
+    
+    // If it contains folder structure like 'elako/products/...', it's a Cloudinary public ID
+    if (imageValue.includes('/') && !imageValue.startsWith('uploads/')) {
+      return `https://res.cloudinary.com/dk9umulxw/image/upload/${imageValue}`;
+    }
+    
+    // Otherwise, it's a legacy local file
+    return `http://localhost:1337/uploads/${imageValue}`;
+  };
   
   const [sidebarState, setSidebarState] = useState({
     isOpen: true,
@@ -398,7 +416,7 @@ const CustomerNotifications = () => {
                           <div className="customer-notifications__product-info">
                             {notification.productId.picture && (
                               <Avatar
-                                src={`http://localhost:1337/uploads/${notification.productId.picture}`}
+                                src={getImageUrl(notification.productId.picture)}
                                 alt={notification.productId.productName}
                                 className="customer-notifications__product-image"
                               />

@@ -690,6 +690,7 @@ app.post(
       { name: "dti", maxCount: 1 },
     ])(req, res, (err) => {
       if (err) {
+        console.log("Cloudinary upload error:", err);
         if (err.message && err.message.includes("Invalid file type")) {
           return res.status(400).json({
             error: err.message,
@@ -704,12 +705,17 @@ app.post(
           error: "File upload error: " + err.message,
         });
       }
+      console.log("Cloudinary upload successful, proceeding to validation");
       next();
     });
   },
   async (req, res) => {
+    console.log("MSME Registration Request Body:", req.body);
+    console.log("MSME Registration Files:", req.files);
+
     const errors = validateMSMEInput(req.body);
     if (errors.length > 0) {
+      console.log("MSME Validation Errors:", errors);
       return res.status(400).json({ errors });
     }
 
@@ -742,7 +748,7 @@ app.post(
       // Hash password before storing
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-      // Process uploaded certificate files (now using Cloudinary URLs)
+      // Process uploaded certificate files (Cloudinary)
       const certificates = {
         mayorsPermit: req.files?.mayorsPermit
           ? req.files.mayorsPermit[0].path
@@ -4805,7 +4811,7 @@ app.get("/api/msme/:msmeId/dashboard", async (req, res) => {
 // Create or update dashboard
 app.post(
   "/api/msme/dashboard",
-  upload.fields([
+  blogMediaUpload.fields([
     { name: "coverPhoto", maxCount: 1 },
     { name: "storeLogo", maxCount: 1 },
   ]),
@@ -4926,13 +4932,13 @@ app.post(
         isPublic: isPublic === "true" || isPublic === true,
       };
 
-      // Handle file uploads
+      // Handle file uploads (Cloudinary URLs)
       if (req.files) {
         if (req.files.coverPhoto) {
-          updateData.coverPhoto = req.files.coverPhoto[0].filename;
+          updateData.coverPhoto = req.files.coverPhoto[0].path; // Cloudinary URL
         }
         if (req.files.storeLogo) {
-          updateData.storeLogo = req.files.storeLogo[0].filename;
+          updateData.storeLogo = req.files.storeLogo[0].path; // Cloudinary URL
         }
       }
 
@@ -4976,7 +4982,7 @@ app.post(
 // Update store logo only
 app.put(
   "/api/msme/:id/profile/storeLogo",
-  upload.single("storeLogo"),
+  blogMediaUpload.single("storeLogo"),
   async (req, res) => {
     try {
       const msmeId = req.params.id;
@@ -5002,14 +5008,14 @@ app.put(
 
       if (dashboard) {
         // Update existing dashboard
-        dashboard.storeLogo = req.file.filename;
+        dashboard.storeLogo = req.file.path; // Cloudinary URL
         await dashboard.save();
       } else {
         // Create new dashboard with basic info
         dashboard = new Dashboard({
           msmeId: msme._id,
           businessName: msme.businessName,
-          storeLogo: req.file.filename,
+          storeLogo: req.file.path, // Cloudinary URL
           rating: 4.0,
         });
         await dashboard.save();
@@ -5018,7 +5024,7 @@ app.put(
       res.json({
         success: true,
         message: "Store logo updated successfully",
-        storeLogo: req.file.filename,
+        storeLogo: req.file.path, // Return Cloudinary URL
       });
     } catch (error) {
       console.error("Error updating store logo:", error);
@@ -6785,12 +6791,11 @@ app.post("/api/upload", upload.single("media"), (req, res) => {
 
     res.json({
       success: true,
-      filename: req.file.path, // Cloudinary URL
-      url: req.file.path, // Cloudinary URL
+      filename: req.file.filename, // Local filename
+      url: req.file.filename, // Local filename
       originalName: req.file.originalname,
       size: req.file.size,
       mimetype: req.file.mimetype,
-      publicId: req.file.public_id, // Cloudinary public ID for future operations
     });
   } catch (error) {
     console.error("Error uploading file:", error);
@@ -7051,83 +7056,87 @@ app.get("/api/msme/:msmeId/blog-posts/all", async (req, res) => {
 });
 
 // Create new MSME blog post
-app.post("/api/msme/blog-posts", upload.single("media"), async (req, res) => {
-  try {
-    const {
-      msmeId,
-      title,
-      subtitle,
-      description,
-      mediaType,
-      mediaUrl,
-      category,
-      featured,
-      status,
-    } = req.body;
+app.post(
+  "/api/msme/blog-posts",
+  blogMediaUpload.single("media"),
+  async (req, res) => {
+    try {
+      const {
+        msmeId,
+        title,
+        subtitle,
+        description,
+        mediaType,
+        mediaUrl,
+        category,
+        featured,
+        status,
+      } = req.body;
 
-    let finalMediaUrl = mediaUrl;
+      let finalMediaUrl = mediaUrl;
 
-    // Handle file upload with Cloudinary
-    if (req.file && (mediaType === "image" || mediaType === "video")) {
-      finalMediaUrl = req.file.path; // Cloudinary URL
-    }
-
-    const newPost = new MsmeBlogPost({
-      msmeId,
-      title,
-      subtitle,
-      description,
-      mediaType,
-      mediaUrl: finalMediaUrl,
-      category,
-      featured: featured === "true",
-      status: status || "published",
-    });
-
-    const savedPost = await newPost.save();
-
-    // Send email notifications to followers if the post is published
-    if (savedPost.status === "published") {
-      try {
-        await StoreActivityNotificationService.notifyFollowersOfNewBlogPost(
-          msmeId,
-          savedPost._id,
-          {
-            title: savedPost.title,
-            subtitle: savedPost.subtitle,
-            description: savedPost.description,
-            category: savedPost.category,
-            mediaUrl: savedPost.mediaUrl,
-            mediaType: savedPost.mediaType,
-          }
-        );
-      } catch (notificationError) {
-        console.error(
-          "Error sending blog post notifications:",
-          notificationError
-        );
-        // Continue with blog post creation response even if notifications fail
+      // Handle file upload with Cloudinary
+      if (req.file && (mediaType === "image" || mediaType === "video")) {
+        finalMediaUrl = req.file.path; // Cloudinary URL
       }
-    }
 
-    res.json({
-      success: true,
-      message: "Blog post created successfully",
-      post: savedPost,
-    });
-  } catch (error) {
-    console.error("Error creating MSME blog post:", error);
-    res.status(500).json({
-      success: false,
-      error: "Error creating blog post",
-    });
+      const newPost = new MsmeBlogPost({
+        msmeId,
+        title,
+        subtitle,
+        description,
+        mediaType,
+        mediaUrl: finalMediaUrl,
+        category,
+        featured: featured === "true",
+        status: status || "published",
+      });
+
+      const savedPost = await newPost.save();
+
+      // Send email notifications to followers if the post is published
+      if (savedPost.status === "published") {
+        try {
+          await StoreActivityNotificationService.notifyFollowersOfNewBlogPost(
+            msmeId,
+            savedPost._id,
+            {
+              title: savedPost.title,
+              subtitle: savedPost.subtitle,
+              description: savedPost.description,
+              category: savedPost.category,
+              mediaUrl: savedPost.mediaUrl,
+              mediaType: savedPost.mediaType,
+            }
+          );
+        } catch (notificationError) {
+          console.error(
+            "Error sending blog post notifications:",
+            notificationError
+          );
+          // Continue with blog post creation response even if notifications fail
+        }
+      }
+
+      res.json({
+        success: true,
+        message: "Blog post created successfully",
+        post: savedPost,
+      });
+    } catch (error) {
+      console.error("Error creating MSME blog post:", error);
+      res.status(500).json({
+        success: false,
+        error: "Error creating blog post",
+      });
+    }
   }
-});
+);
 
 // Update MSME blog post
 app.put(
   "/api/msme/blog-posts/:id",
-  upload.single("media"),
+  blogMediaUpload.single("media"),
   async (req, res) => {
     try {
       const { id } = req.params;
@@ -9602,16 +9611,14 @@ app.post(
         }
       }
 
-      // Handle multiple file uploads with Cloudinary
+      // Handle multiple file uploads (Cloudinary)
       let pictures = [];
       let singlePicture = null; // For backward compatibility
 
       if (req.files && req.files.length > 0) {
         pictures = req.files.map((file) => file.path); // Cloudinary URL
         singlePicture = pictures[0]; // Use first image as main picture
-      }
-
-      // Create new product with artistName field
+      } // Create new product with artistName field
       const newProduct = new Product({
         productName,
         price: parseFloat(price),
@@ -9775,7 +9782,7 @@ app.put("/api/products/:id", upload.array("pictures", 10), async (req, res) => {
 
     // Add new uploaded images
     if (req.files && req.files.length > 0) {
-      const newImages = req.files.map((file) => file.filename);
+      const newImages = req.files.map((file) => file.path); // Cloudinary URL
       pictures = [...pictures, ...newImages];
     }
 

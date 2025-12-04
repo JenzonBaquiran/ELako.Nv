@@ -2,12 +2,30 @@ const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
 
-// Configure Cloudinary with environment variables
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+// Check if Cloudinary is properly configured
+const isCloudinaryConfigured = () => {
+  return (
+    process.env.CLOUDINARY_CLOUD_NAME &&
+    process.env.CLOUDINARY_API_KEY &&
+    process.env.CLOUDINARY_API_SECRET &&
+    process.env.CLOUDINARY_API_SECRET !== "your-cloudinary-api-secret-here"
+  );
+};
+
+// Only configure Cloudinary if credentials are available
+if (isCloudinaryConfigured()) {
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  });
+  console.log("✅ Cloudinary configured successfully");
+} else {
+  console.warn(
+    "⚠️ Cloudinary credentials not found. Please set CLOUDINARY_API_SECRET in your .env file"
+  );
+  console.warn("📝 To get your API secret: https://cloudinary.com/console");
+}
 
 // Cloudinary storage for product images
 const productStorage = new CloudinaryStorage({

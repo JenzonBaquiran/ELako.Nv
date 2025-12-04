@@ -15,6 +15,24 @@ import '../css/Home.css';
 function Home() {
   const navigate = useNavigate();
   const { user } = useAuth();
+
+  // Helper function to generate proper URLs for images
+  const getImageUrl = (imageValue) => {
+    if (!imageValue) return null;
+    
+    // If it's already a full URL (Cloudinary or other), use it directly
+    if (imageValue.startsWith('http')) {
+      return imageValue;
+    }
+    
+    // If it contains folder structure like 'elako/blog/...', it's a Cloudinary public ID
+    if (imageValue.includes('/') && !imageValue.startsWith('uploads/')) {
+      return `https://res.cloudinary.com/dk9umulxw/image/upload/${imageValue}`;
+    }
+    
+    // Otherwise, it's a legacy local file
+    return `http://localhost:1337/uploads/${imageValue}`;
+  };
   const [newStores, setNewStores] = useState([]);
   const [topStores, setTopStores] = useState([]);
   const [hotPicks, setHotPicks] = useState([]);
@@ -238,7 +256,7 @@ function Home() {
           const storeImage = dashboard?.coverPhoto 
             ? `http://localhost:1337/uploads/${dashboard.coverPhoto}` 
             : (dashboard?.storeLogo 
-                ? `http://localhost:1337/uploads/${dashboard.storeLogo}` 
+                ? getImageUrl(dashboard.storeLogo) 
                 : heroPic);
           const businessName = dashboard?.businessName || store.businessName;
           const description = dashboard?.description || 'High-quality MSME products and services';
@@ -315,7 +333,7 @@ function Home() {
       newStores.map((store) => {
         const dashboard = store.dashboard;
         const storeLogo = dashboard?.storeLogo 
-          ? `http://localhost:1337/uploads/${dashboard.storeLogo}` 
+          ? getImageUrl(dashboard.storeLogo) 
           : heroPic;
         const businessName = dashboard?.businessName || store.businessName;
         const description = dashboard?.description || 'MSME business services';

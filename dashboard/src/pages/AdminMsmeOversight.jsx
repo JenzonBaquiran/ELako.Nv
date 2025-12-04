@@ -266,6 +266,7 @@ const AdminMsmeOversight = () => {
   };
 
   const handleViewCertificate = (title, url) => {
+    console.log('Viewing certificate:', title, 'URL:', url);
     setCurrentCertificate({ title, url });
     setShowCertificateViewer(true);
   };
@@ -273,6 +274,24 @@ const AdminMsmeOversight = () => {
   const handleCloseCertificateViewer = () => {
     setShowCertificateViewer(false);
     setCurrentCertificate({ title: '', url: '' });
+  };
+
+  // Helper function to get the correct certificate URL
+  const getCertificateUrl = (certificatePath) => {
+    if (!certificatePath) return null;
+    
+    // If it's already a full URL (Cloudinary), use it as-is
+    if (certificatePath.startsWith('http://') || certificatePath.startsWith('https://')) {
+      return certificatePath;
+    }
+    
+    // If it's a legacy local path, construct the local URL
+    if (certificatePath.includes('certificates/')) {
+      return `http://localhost:1337/uploads/${certificatePath}`;
+    }
+    
+    // If it's just a filename, construct the local URL
+    return `http://localhost:1337/uploads/certificates/${certificatePath}`;
   };
 
   const getStatusBadgeClass = (status) => {
@@ -539,7 +558,7 @@ const AdminMsmeOversight = () => {
                     {certificates.mayorsPermit ? (
                       <button 
                         className="admin-msme-oversight__view-certificate-btn"
-                        onClick={() => handleViewCertificate('Mayor\'s Permit', `http://localhost:1337/uploads/${certificates.mayorsPermit}`)}
+                        onClick={() => handleViewCertificate('Mayor\'s Permit', getCertificateUrl(certificates.mayorsPermit))}
                       >
                         View Document
                       </button>
@@ -553,7 +572,7 @@ const AdminMsmeOversight = () => {
                     {certificates.bir ? (
                       <button 
                         className="admin-msme-oversight__view-certificate-btn"
-                        onClick={() => handleViewCertificate('BIR Certificate', `http://localhost:1337/uploads/${certificates.bir}`)}
+                        onClick={() => handleViewCertificate('BIR Certificate', getCertificateUrl(certificates.bir))}
                       >
                         View Document
                       </button>
@@ -567,7 +586,7 @@ const AdminMsmeOversight = () => {
                     {certificates.dti ? (
                       <button 
                         className="admin-msme-oversight__view-certificate-btn"
-                        onClick={() => handleViewCertificate('DTI Certificate', `http://localhost:1337/uploads/${certificates.dti}`)}
+                        onClick={() => handleViewCertificate('DTI Certificate', getCertificateUrl(certificates.dti))}
                       >
                         View Document
                       </button>

@@ -12,6 +12,24 @@ function CustomerTopStores() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { showSuccess, showError } = useNotification();
+
+  // Helper function to generate proper URLs for images
+  const getImageUrl = (imageValue) => {
+    if (!imageValue) return null;
+    
+    // If it's already a full URL (Cloudinary or other), use it directly
+    if (imageValue.startsWith('http')) {
+      return imageValue;
+    }
+    
+    // If it contains folder structure like 'elako/blog/...', it's a Cloudinary public ID
+    if (imageValue.includes('/') && !imageValue.startsWith('uploads/')) {
+      return `https://res.cloudinary.com/dk9umulxw/image/upload/${imageValue}`;
+    }
+    
+    // Otherwise, it's a legacy local file
+    return `http://localhost:1337/uploads/${imageValue}`;
+  };
   const [topStores, setTopStores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -175,7 +193,7 @@ function CustomerTopStores() {
                 const storeImage = store.dashboard?.coverPhoto 
                   ? `http://localhost:1337/uploads/${store.dashboard.coverPhoto}` 
                   : store.dashboard?.storeLogo 
-                    ? `http://localhost:1337/uploads/${store.dashboard.storeLogo}` 
+                    ? getImageUrl(store.dashboard.storeLogo) 
                     : heroPic;
                 const isFollowed = store.isFollowing || false;
                 

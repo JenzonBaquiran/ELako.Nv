@@ -13,6 +13,24 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const { user, userType, isAuthenticated } = useAuth();
   const { showSuccess, showError } = useNotification();
+
+  // Helper function to generate proper URLs for images
+  const getImageUrl = (imageValue) => {
+    if (!imageValue) return null;
+    
+    // If it's already a full URL (Cloudinary or other), use it directly
+    if (imageValue.startsWith('http')) {
+      return imageValue;
+    }
+    
+    // If it contains folder structure like 'elako/products/...', it's a Cloudinary public ID
+    if (imageValue.includes('/') && !imageValue.startsWith('uploads/')) {
+      return `https://res.cloudinary.com/dk9umulxw/image/upload/${imageValue}`;
+    }
+    
+    // Otherwise, it's a legacy local file
+    return `http://localhost:1337/uploads/${imageValue}`;
+  };
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -54,22 +72,14 @@ const ProductDetails = () => {
     // Add images from pictures array (new multiple image system)
     if (product.pictures && product.pictures.length > 0) {
       images = product.pictures.map(pic => {
-        // If it's already a Cloudinary URL, use it directly
-        if (isCloudinaryUrl(pic)) {
-          console.log('Using Cloudinary URL:', pic);
-          return pic;
-        }
-        // Otherwise, assume it's a local upload and prepend the server URL
-        const localUrl = `http://localhost:1337/uploads/${pic}`;
-        console.log('Using local URL:', localUrl);
-        return localUrl;
+        const imageUrl = getImageUrl(pic);
+        console.log('Using image URL:', imageUrl);
+        return imageUrl;
       });
     } 
     // Fallback to single picture (backward compatibility)
     else if (product.picture) {
-      const picUrl = isCloudinaryUrl(product.picture) 
-        ? product.picture 
-        : `http://localhost:1337/uploads/${product.picture}`;
+      const picUrl = getImageUrl(product.picture);
       console.log('Using fallback picture URL:', picUrl);
       images = [picUrl];
     }
@@ -126,7 +136,7 @@ const ProductDetails = () => {
 
     // Get the main product image
     const productImages = getAllImages();
-    const mainImage = productImages.length > 0 ? productImages[0].replace('http://localhost:1337/uploads/', '') : (product.picture || '');
+    const mainImage = productImages.length > 0 ? productImages[0] : getImageUrl(product.picture);
 
     console.log('✅ Starting conversation with store from product page:', {
       storeId: product.msmeId._id,
@@ -256,12 +266,12 @@ const ProductDetails = () => {
             {/* Main Image Display */}
             <div className="product-details-main-image-container">
               <img
-                src={getAllImages()[selectedImageIndex] || (product.picture ? (isCloudinaryUrl(product.picture) ? product.picture : `http://localhost:1337/uploads/${product.picture}`) : '')} 
-                alt={product.productName} 
+                src={getAllImages()[selectedImageIndex] || getImageUrl(product?.picture) || 'https://via.placeholder.com/400x400?text=No+Image'} 
+                alt={product?.productName || 'Product'} 
                 className="product-details-image"
                 onError={(e) => {
                   console.log('Image failed to load:', e.target.src);
-                  e.target.src = '/placeholder-image.jpg';
+                  e.target.src = 'https://via.placeholder.com/400x400?text=No+Image';
                 }}
                 onLoad={(e) => {
                   console.log('Image loaded successfully:', e.target.src);
@@ -310,6 +320,7 @@ const ProductDetails = () => {
                     onClick={() => setSelectedImageIndex(index)}
                     onError={(e) => {
                       console.log('Thumbnail failed to load:', e.target.src);
+                      e.target.src = 'https://via.placeholder.com/80x80?text=No+Image';
                     }}
                   />
                 ))}
@@ -518,7 +529,7 @@ const ProductDetails = () => {
                       {fb.photos.map((photo, photoIdx) => (
                         <img
                           key={photoIdx}
-                          src={`http://localhost:1337/uploads/feedback-photos/${photo}`}
+                          src={getImageUrl(photo)}
                           alt={`Feedback photo ${photoIdx + 1}`}
                           className="product-details-feedback-photo"
                           onClick={(e) => {

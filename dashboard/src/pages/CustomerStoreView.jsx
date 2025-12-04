@@ -53,6 +53,24 @@ const CustomerStoreView = () => {
   const { user, userType } = useAuth();
   const { showSuccess, showError } = useNotification();
 
+  // Helper function to generate proper URLs for images
+  const getImageUrl = (imageValue) => {
+    if (!imageValue) return null;
+    
+    // If it's already a full URL (Cloudinary or other), use it directly
+    if (imageValue.startsWith('http')) {
+      return imageValue;
+    }
+    
+    // If it contains folder structure like 'elako/products/...', it's a Cloudinary public ID
+    if (imageValue.includes('/') && !imageValue.startsWith('uploads/')) {
+      return `https://res.cloudinary.com/dk9umulxw/image/upload/${imageValue}`;
+    }
+    
+    // Otherwise, it's a legacy local file
+    return `http://localhost:1337/uploads/${imageValue}`;
+  };
+
   const [store, setStore] = useState(null);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -611,11 +629,11 @@ const CustomerStoreView = () => {
 
   const getStoreImageUrl = (store) => {
     if (store?.dashboard?.storeLogo) {
-      return `http://localhost:1337/uploads/${store.dashboard.storeLogo}`;
+      return getImageUrl(store.dashboard.storeLogo);
     }
 
     if (store?.dashboard?.coverPhoto) {
-      return `http://localhost:1337/uploads/${store.dashboard.coverPhoto}`;
+      return getImageUrl(store.dashboard.coverPhoto);
     }
 
     if (store?.category === 'food') {
@@ -629,7 +647,7 @@ const CustomerStoreView = () => {
 
   const getProductImageUrl = (product) => {
     if (product.picture) {
-      return `http://localhost:1337/uploads/${product.picture}`;
+      return getImageUrl(product.picture);
     }
     return foodStoreImg; // Default product image
   };
@@ -696,7 +714,7 @@ const CustomerStoreView = () => {
       <section className="store-cover-hero">
         <div className="cover-hero-image">
           <img
-            src={dashboard.coverPhoto ? `http://localhost:1337/uploads/${dashboard.coverPhoto}` : getStoreImageUrl(store)}
+            src={dashboard.coverPhoto ? getImageUrl(dashboard.coverPhoto) : getStoreImageUrl(store)}
             alt={store.businessName}
             className="cover-hero-img"
             onError={(e) => {

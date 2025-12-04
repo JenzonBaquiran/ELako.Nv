@@ -387,6 +387,7 @@ function Signup() {
             {activeTab === "customer" && (
               <form className="signup-fields" onSubmit={handleCustomerSubmit}>
                 <TextField
+                  name="firstname"
                   variant="outlined"
                   placeholder="First Name"
                   value={customerData.firstname}
@@ -399,6 +400,7 @@ function Signup() {
                   helperText={customerValidation.firstname}
                 />
                 <TextField
+                  name="middlename"
                   variant="outlined"
                   placeholder="Middle Name (optional)"
                   value={customerData.middlename}
@@ -408,6 +410,7 @@ function Signup() {
                   disabled={loading}
                 />
                 <TextField
+                  name="lastname"
                   variant="outlined"
                   placeholder="Last Name"
                   value={customerData.lastname}
@@ -420,6 +423,7 @@ function Signup() {
                   helperText={customerValidation.lastname}
                 />
                 <TextField
+                  name="email"
                   variant="outlined"
                   placeholder="Email"
                   type="email"
@@ -433,6 +437,7 @@ function Signup() {
                   helperText={customerValidation.email}
                 />
                 <TextField
+                  name="contactNumber"
                   variant="outlined"
                   placeholder="Contact Number"
                   value={customerData.contactNumber}
@@ -445,6 +450,7 @@ function Signup() {
                   helperText={customerValidation.contactNumber}
                 />
                 <TextField
+                  name="address"
                   variant="outlined"
                   placeholder="Address"
                   value={customerData.address}
@@ -457,6 +463,7 @@ function Signup() {
                   helperText={customerValidation.address}
                 />
                 <TextField
+                  name="username"
                   variant="outlined"
                   placeholder="Username"
                   value={customerData.username}
@@ -469,6 +476,7 @@ function Signup() {
                   helperText={customerValidation.username}
                 />
                 <TextField
+                  name="password"
                   variant="outlined"
                   placeholder="Password"
                   type={showPassword ? "text" : "password"}
@@ -496,6 +504,7 @@ function Signup() {
                 />
                 <PasswordStrengthIndicator password={customerData.password} />
                 <TextField
+                  name="confirmPassword"
                   variant="outlined"
                   placeholder="Confirm Password"
                   type={showConfirm ? "text" : "password"}
@@ -554,6 +563,7 @@ function Signup() {
             {activeTab === "msme" && (
               <form className="signup-fields" onSubmit={handleMsmeSubmit}>
                 <TextField
+                  name="clientProfilingNumber"
                   variant="outlined"
                   placeholder="Client Profiling Number"
                   value={msmeData.clientProfilingNumber}
@@ -566,6 +576,7 @@ function Signup() {
                   helperText={msmeValidation.clientProfilingNumber}
                 />
                 <TextField
+                  name="category"
                   select
                   variant="outlined"
                   label="Category"
@@ -583,6 +594,7 @@ function Signup() {
                   <MenuItem value="artisan">Artisan</MenuItem>
                 </TextField>
                 <TextField
+                  name="businessName"
                   variant="outlined"
                   placeholder="Business Name"
                   value={msmeData.businessName}
@@ -595,6 +607,7 @@ function Signup() {
                   helperText={msmeValidation.businessName}
                 />
                 <TextField
+                  name="email"
                   variant="outlined"
                   placeholder="Email"
                   type="email"
@@ -608,6 +621,7 @@ function Signup() {
                   helperText={msmeValidation.email}
                 />
                 <TextField
+                  name="username"
                   variant="outlined"
                   placeholder="Username"
                   value={msmeData.username}
@@ -620,6 +634,7 @@ function Signup() {
                   helperText={msmeValidation.username}
                 />
                 <TextField
+                  name="tinNumber"
                   variant="outlined"
                   placeholder="TIN Number"
                   value={msmeData.tinNumber}
@@ -641,6 +656,7 @@ function Signup() {
                       Mayor's Permit *
                       <input
                         type="file"
+                        name="mayorsPermit"
                         accept=".pdf,.jpg,.jpeg,.png"
                         onChange={(e) => handleFileChange("mayorsPermit", e.target.files[0])}
                         className="file-upload-input"
@@ -661,6 +677,7 @@ function Signup() {
                       BIR Certificate *
                       <input
                         type="file"
+                        name="bir"
                         accept=".pdf,.jpg,.jpeg,.png"
                         onChange={(e) => handleFileChange("bir", e.target.files[0])}
                         className="file-upload-input"
@@ -681,6 +698,7 @@ function Signup() {
                       DTI Certificate *
                       <input
                         type="file"
+                        name="dti"
                         accept=".pdf,.jpg,.jpeg,.png"
                         onChange={(e) => handleFileChange("dti", e.target.files[0])}
                         className="file-upload-input"
@@ -697,6 +715,7 @@ function Signup() {
                   </div>
                 </div>
                 <TextField
+                  name="password"
                   variant="outlined"
                   placeholder="Password"
                   type={showPassword ? "text" : "password"}
@@ -724,6 +743,7 @@ function Signup() {
                 />
                 <PasswordStrengthIndicator password={msmeData.password} />
                 <TextField
+                  name="confirmPassword"
                   variant="outlined"
                   placeholder="Confirm Password"
                   type={showConfirm ? "text" : "password"}

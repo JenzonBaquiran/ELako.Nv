@@ -15,6 +15,24 @@ import messageService from '../utils/messageService';
 import '../css/CustomerMessage.css';
 
 const CustomerMessage = () => {
+  // Helper function to generate proper URLs for images
+  const getImageUrl = (imageValue) => {
+    if (!imageValue) return null;
+    
+    // If it's already a full URL (Cloudinary or other), use it directly
+    if (imageValue.startsWith('http')) {
+      return imageValue;
+    }
+    
+    // If it contains folder structure like 'elako/products/...', it's a Cloudinary public ID
+    if (imageValue.includes('/') && !imageValue.startsWith('uploads/')) {
+      return `https://res.cloudinary.com/dk9umulxw/image/upload/${imageValue}`;
+    }
+    
+    // Otherwise, it's a legacy local file
+    return `http://localhost:1337/uploads/${imageValue}`;
+  };
+
   const [sidebarState, setSidebarState] = useState({
     isOpen: true,
     isMobile: false,
@@ -78,7 +96,7 @@ const CustomerMessage = () => {
     hasProductName: !!productName,
     hasProductImage: !!productImage,
     productImageValue: productImage,
-    constructedImageUrl: productImage ? `http://localhost:1337/uploads/${productImage}` : 'No image'
+    constructedImageUrl: productImage ? getImageUrl(productImage) : 'No image'
   });
 
   // Set current user from AuthContext
@@ -254,7 +272,7 @@ const CustomerMessage = () => {
   const sendProductInquiry = async () => {
     if (!selectedChat || !currentUser) return;
 
-    const productImageUrl = productImage ? `http://localhost:1337/uploads/${productImage}` : '';
+    const productImageUrl = productImage ? getImageUrl(productImage) : '';
     
     // Create structured product inquiry object
     const productInquiryData = {
@@ -921,7 +939,7 @@ const CustomerMessage = () => {
                     {productImage && (
                       <div className="customer-messages__product-image">
                         <img 
-                          src={`http://localhost:1337/uploads/${productImage}`} 
+                          src={getImageUrl(productImage)} 
                           alt={productName}
                           onLoad={(e) => {
                             console.log('✅ Product image loaded successfully:', e.target.src);

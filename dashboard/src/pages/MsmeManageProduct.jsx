@@ -11,6 +11,24 @@ import logoImage from '../logos/Icon on bright.png';
 const MsmeManageProduct = () => {
   const { user } = useAuth();
   const { showSuccess, showError, showConfirm } = useNotification();
+
+  // Helper function to generate proper URLs for images
+  const getImageUrl = (imageValue) => {
+    if (!imageValue) return null;
+    
+    // If it's already a full URL (Cloudinary or other), use it directly
+    if (imageValue.startsWith('http')) {
+      return imageValue;
+    }
+    
+    // If it contains folder structure like 'elako/products/...', it's a Cloudinary public ID
+    if (imageValue.includes('/') && !imageValue.startsWith('uploads/')) {
+      return `https://res.cloudinary.com/dk9umulxw/image/upload/${imageValue}`;
+    }
+    
+    // Otherwise, it's a legacy local file
+    return `http://localhost:1337/uploads/${imageValue}`;
+  };
   
   // Debug log to check if showConfirm is available
   console.log('Notification functions available:', { showSuccess, showError, showConfirm });
@@ -675,17 +693,13 @@ const MsmeManageProduct = () => {
       setExistingImages([...product.pictures]);
       
       // Set image previews for existing images
-      const existingPreviews = product.pictures.map(pic => 
-        pic.startsWith('http') ? pic : `http://localhost:1337/uploads/${pic}`
-      );
+      const existingPreviews = product.pictures.map(pic => getImageUrl(pic));
       setImagePreview(existingPreviews);
       setSelectedImages([]); // No new images selected yet
     } else if (product.picture) {
       // Fallback to single picture
       setExistingImages([product.picture]);
-      const preview = product.picture.startsWith('http') 
-        ? product.picture 
-        : `http://localhost:1337/uploads/${product.picture}`;
+      const preview = getImageUrl(product.picture);
       setImagePreview([preview]);
       setSelectedImages([]);
     } else {
@@ -773,8 +787,10 @@ const MsmeManageProduct = () => {
   }, [openDropdown]);
 
   const getProductImageUrl = (product) => {
-    if (product.picture) {
-      return `http://localhost:1337/uploads/${product.picture}`;
+    if (product.pictures && product.pictures.length > 0) {
+      return getImageUrl(product.pictures[0]);
+    } else if (product.picture) {
+      return getImageUrl(product.picture);
     }
     return shakshoukaImg; // Default image
   };

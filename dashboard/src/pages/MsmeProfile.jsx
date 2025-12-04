@@ -9,6 +9,24 @@ import '../css/MsmeProfile.css';
 import profileImg from '../assets/pic.jpg';
 
 const MsmeProfile = () => {
+  // Helper function to generate proper URLs for images
+  const getImageUrl = (imageValue) => {
+    if (!imageValue) return null;
+    
+    // If it's already a full URL (Cloudinary or other), use it directly
+    if (imageValue.startsWith('http')) {
+      return imageValue;
+    }
+    
+    // If it contains folder structure like 'elako/blog/...', it's a Cloudinary public ID
+    if (imageValue.includes('/') && !imageValue.startsWith('uploads/')) {
+      return `https://res.cloudinary.com/dk9umulxw/image/upload/${imageValue}`;
+    }
+    
+    // Otherwise, it's a legacy local file
+    return `http://localhost:1337/uploads/${imageValue}`;
+  };
+
   const [sidebarState, setSidebarState] = useState({ isOpen: true, isMobile: false });
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -413,7 +431,9 @@ const MsmeProfile = () => {
               <div className="msme-profile__avatar-section">
                 <div className="msme-profile__avatar">
                   <img 
-                    src={profileData.storeLogo ? `http://localhost:1337/uploads/${profileData.storeLogo}` : profileImg} 
+                    src={profileData.storeLogo ? 
+                      getImageUrl(profileData.storeLogo) : profileImg
+                    } 
                     alt="Store Logo" 
                     onError={(e) => {
                       e.target.src = profileImg;
