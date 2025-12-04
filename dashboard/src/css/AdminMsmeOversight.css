@@ -1161,8 +1161,10 @@ input:checked + .admin-msme-oversight__toggle-slider:before {
   font-family: 'Poppins', sans-serif;
   color: #333;
   resize: vertical;
-  min-height: 120px;
+  min-height: 100px;
+  max-height: 200px;
   transition: border-color 0.2s ease;
+  box-sizing: border-box;
 }
 
 .admin-msme-oversight__reason-textarea:focus {
