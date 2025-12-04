@@ -29,8 +29,6 @@ router.get("/store/:storeId", async (req, res) => {
   }
 });
 
-
-
 // Calculate/update store badge
 router.post("/store/:storeId/calculate", async (req, res) => {
   try {
@@ -50,8 +48,6 @@ router.post("/store/:storeId/calculate", async (req, res) => {
     });
   }
 });
-
-
 
 // Mark celebration as shown
 router.post("/celebration-shown", async (req, res) => {
@@ -113,8 +109,6 @@ router.get("/admin/stores", async (req, res) => {
     });
   }
 });
-
-
 
 // Manual badge processing (for admin)
 router.post("/admin/process-all", async (req, res) => {

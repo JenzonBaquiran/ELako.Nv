@@ -32,7 +32,6 @@ const Message = require("./models/message.model");
 const Conversation = require("./models/conversation.model");
 const StoreBadge = require("./models/storeBadge.model");
 
-
 // Import Services
 const CustomerNotificationService = require("./services/customerNotificationService");
 const {
@@ -1584,8 +1583,6 @@ app.delete("/api/customers/:id/delete-account", async (req, res) => {
 
       // Delete customer notifications
       CustomerNotification.deleteMany({ customerId: customerObjectId }),
-
-
 
       // Remove customer from MSME followers lists
       MSME.updateMany(
@@ -8701,8 +8698,6 @@ app.get("/api/badges/store/:storeId", async (req, res) => {
   }
 });
 
-
-
 // Calculate/update store badge
 app.post("/api/badges/store/:storeId/calculate", async (req, res) => {
   try {
@@ -8722,8 +8717,6 @@ app.post("/api/badges/store/:storeId/calculate", async (req, res) => {
     });
   }
 });
-
-
 
 // Mark celebration as shown
 app.post("/api/badges/celebration-shown", async (req, res) => {

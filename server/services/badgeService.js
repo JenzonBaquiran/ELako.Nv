@@ -70,12 +70,6 @@ class BadgeService {
     }
   }
 
-
-
-
-
-
-
   // Get active badges
   async getActiveStoreBadge(storeId) {
     return await StoreBadge.getActiveBadge(storeId);
