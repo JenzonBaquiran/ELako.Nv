@@ -591,11 +591,13 @@
   flex: 1;
   padding: 10px 14px;
   border: 1px solid #d1d5db;
-  border-radius: 20px;
+  border-radius: 12px;
   font-size: 14px;
   font-family: 'Poppins', sans-serif;
   outline: none;
   transition: all 0.2s ease-in-out;
+  line-height: 1.4;
+  overflow-y: auto;
 }
 
 .customer-messages__input-field:focus {
@@ -798,6 +800,116 @@
   scroll-behavior: smooth;
 }
 
+/* Image message styles */
+.customer-messages__image-message {
+  max-width: 100%;
+}
+
+.customer-messages__shared-image {
+  max-width: 250px;
+  max-height: 250px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.customer-messages__shared-image:hover {
+  transform: scale(1.02);
+}
+
+.customer-messages__image-fallback {
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  color: #6c757d;
+  font-size: 14px;
+  word-break: break-all;
+}
+
+/* Enhanced text message formatting */
+.customer-messages__text-message {
+  line-height: 1.4;
+}
+
+.customer-messages__message-header {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  font-size: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 4px;
+}
+
+/* Product information display */
+.customer-messages__product-info {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  margin: 16px;
+  overflow: hidden;
+}
+
+.customer-messages__product-header {
+  background: #e9ecef;
+  padding: 12px 16px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.customer-messages__product-header h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #495057;
+  font-family: 'Poppins', sans-serif;
+}
+
+.customer-messages__product-details {
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.customer-messages__product-image {
+  flex-shrink: 0;
+}
+
+.customer-messages__product-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+}
+
+.customer-messages__product-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.customer-messages__product-name {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #212529;
+  font-family: 'Poppins', sans-serif;
+}
+
+.customer-messages__product-description {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.customer-messages__product-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #28a745;
+}
+
 /* Better mobile responsive */
 @media (max-width: 768px) {
   /* Mobile message container adjustments */
@@ -805,5 +917,138 @@
     max-height: 300px;
     min-height: 250px;
     padding: 16px;
+  }
+  
+  .customer-messages__shared-image {
+    max-width: 200px;
+    max-height: 200px;
+  }
+  
+  .customer-messages__product-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .customer-messages__product-image img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Product Inquiry Card Styles */
+.customer-messages__product-inquiry-card {
+  width: 100%;
+}
+
+.product-inquiry-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 400px;
+  margin: 4px 0;
+}
+
+.product-inquiry-header {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.product-inquiry-header h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.product-inquiry-content {
+  display: flex;
+  padding: 16px;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.product-inquiry-image {
+  flex-shrink: 0;
+}
+
+.product-inquiry-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.product-inquiry-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.product-inquiry-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.product-inquiry-description {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-inquiry-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4CAF50;
+  margin: 0;
+}
+
+.product-inquiry-message {
+  padding: 12px 16px;
+  border-top: 1px solid #f0f0f0;
+  background: #f9f9f9;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments for product inquiry cards */
+@media (max-width: 768px) {
+  .product-inquiry-card {
+    max-width: 100%;
+  }
+  
+  .product-inquiry-content {
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .product-inquiry-image img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .product-inquiry-name {
+    font-size: 14px;
+  }
+  
+  .product-inquiry-description {
+    font-size: 12px;
+  }
+  
+  .product-inquiry-price {
+    font-size: 14px;
   }
 }

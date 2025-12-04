@@ -54,6 +54,13 @@ const CustomerMessage = () => {
   const queryStoreId = queryParams.get('storeId');
   const queryStoreName = queryParams.get('storeName');
   
+  // Get product context parameters
+  const productId = queryParams.get('productId');
+  const productName = queryParams.get('productName');
+  const productDescription = queryParams.get('productDescription');
+  const productImage = queryParams.get('productImage');
+  const productPrice = queryParams.get('productPrice');
+  
   console.log('🔍 URL Debug - CustomerMessage:', { 
     pathname: location.pathname, 
     search: location.search, 
@@ -61,7 +68,17 @@ const CustomerMessage = () => {
     queryStoreId: queryStoreId,
     actualStoreId: storeId || queryStoreId,
     fullLocation: location,
-    routeMatches: location.pathname.includes('/customer-message/')
+    routeMatches: location.pathname.includes('/customer-message/'),
+    productContext: { productId, productName, productDescription, productImage, productPrice }
+  });
+
+  // Debug product context
+  console.log('🖼️ Product Context Debug:', {
+    hasProductId: !!productId,
+    hasProductName: !!productName,
+    hasProductImage: !!productImage,
+    productImageValue: productImage,
+    constructedImageUrl: productImage ? `http://localhost:1337/uploads/${productImage}` : 'No image'
   });
 
   // Set current user from AuthContext
@@ -225,6 +242,61 @@ const CustomerMessage = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showDropdown]);
 
+  // Send structured product inquiry when product context is available
+  useEffect(() => {
+    if (productId && productName && selectedChat && currentUser) {
+      // Send structured product inquiry message automatically
+      sendProductInquiry();
+    }
+  }, [productId, productName, productDescription, productPrice, productImage, selectedChat, currentUser]);
+
+  // Send structured product inquiry message
+  const sendProductInquiry = async () => {
+    if (!selectedChat || !currentUser) return;
+
+    const productImageUrl = productImage ? `http://localhost:1337/uploads/${productImage}` : '';
+    
+    // Create structured product inquiry object
+    const productInquiryData = {
+      type: 'product_inquiry',
+      product: {
+        id: productId,
+        name: productName,
+        description: productDescription || '',
+        price: productPrice,
+        image: productImageUrl
+      },
+      customerMessage: 'Hi! I\'m interested in this product. Could you please provide more information?'
+    };
+
+    const messageData = {
+      senderId: currentUser.id,
+      senderModel: 'Customer',
+      receiverId: selectedChat.otherParticipant.id,
+      receiverModel: 'MSME',
+      message: JSON.stringify(productInquiryData),
+      messageType: 'product_inquiry'
+    };
+
+    console.log('📤 Sending structured product inquiry:', messageData);
+
+    try {
+      // Send via socket for real-time delivery
+      socketService.sendMessage({
+        conversationId: selectedChat._id,
+        ...messageData,
+        tempId: Date.now().toString()
+      });
+
+      // Also send via HTTP as fallback
+      await messageService.sendMessage(selectedChat._id, messageData);
+      
+      console.log('✅ Structured product inquiry sent successfully');
+    } catch (error) {
+      console.error('❌ Error sending structured product inquiry:', error);
+    }
+  };
+
   // Handle store conversation creation when currentUser is available and storeId is provided
   useEffect(() => {
     console.log('StoreId useEffect triggered:', { 
@@ -285,6 +357,8 @@ const CustomerMessage = () => {
       setLoading(false);
     }
   };
+
+
 
   // Create conversation with a specific store
   const createConversationWithStore = async (storeId) => {
@@ -634,6 +708,27 @@ const CustomerMessage = () => {
     });
   };
 
+  const formatMessagePreview = (message) => {
+    if (!message) return 'No messages yet';
+    
+    // Check if it's a product inquiry message
+    try {
+      const parsedMessage = JSON.parse(message);
+      if (parsedMessage.type === 'product_inquiry' && parsedMessage.product) {
+        return `Product Inquiry: ${parsedMessage.product.name}`;
+      }
+    } catch (e) {
+      // Not a JSON message, return as is
+    }
+    
+    // Truncate long messages
+    if (message.length > 50) {
+      return message.substring(0, 50) + '...';
+    }
+    
+    return message;
+  };
+
   const getStoreName = (participant) => {
     if (!participant) return 'Unknown Store';
     return participant.businessName || participant.username || 'Unknown Store';
@@ -650,7 +745,7 @@ const CustomerMessage = () => {
     if (!conv.otherParticipant) return false;
     
     const storeName = getStoreName(conv.otherParticipant);
-    const lastMessage = conv.lastMessage?.message || '';
+    const lastMessage = formatMessagePreview(conv.lastMessage?.message);
     
     return storeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
            lastMessage.toLowerCase().includes(searchTerm.toLowerCase());
@@ -755,7 +850,7 @@ const CustomerMessage = () => {
                     </div>
                     <p className="customer-messages__conversation-type">Store</p>
                     <p className="customer-messages__last-message">
-                      {conversation.lastMessage?.message || 'No messages yet'}
+                      {formatMessagePreview(conversation.lastMessage?.message)}
                     </p>
                   </div>
                 </div>
@@ -814,6 +909,51 @@ const CustomerMessage = () => {
                   </div>
                 </div>
               </div>
+              
+              {/* Product Information Display */}
+              {productId && productName ? (
+                console.log('✅ Rendering product info card:', { productId, productName, productImage }) ||
+                <div className="customer-messages__product-info">
+                  <div className="customer-messages__product-header">
+                    <h4>Product Inquiry</h4>
+                  </div>
+                  <div className="customer-messages__product-details">
+                    {productImage && (
+                      <div className="customer-messages__product-image">
+                        <img 
+                          src={`http://localhost:1337/uploads/${productImage}`} 
+                          alt={productName}
+                          onLoad={(e) => {
+                            console.log('✅ Product image loaded successfully:', e.target.src);
+                          }}
+                          onError={(e) => {
+                            console.log('❌ Product image failed to load:', e.target.src);
+                            e.target.style.display = 'none';
+                            // Try alternative image paths
+                            const parentDiv = e.target.parentElement;
+                            if (parentDiv) {
+                              parentDiv.innerHTML = `<div style="width: 80px; height: 80px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #6c757d; font-size: 12px;">No Image</div>`;
+                            }
+                          }}
+                        />
+                      </div>
+                    )}
+                    <div className="customer-messages__product-text">
+                      <h5 className="customer-messages__product-name">{productName}</h5>
+                      {productDescription && (
+                        <p className="customer-messages__product-description">{productDescription}</p>
+                      )}
+                      <div className="customer-messages__product-price">₱{productPrice}</div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                console.log('❌ Product info card not rendered. Missing:', { 
+                  productId: !productId ? 'productId' : null,
+                  productName: !productName ? 'productName' : null 
+                }) || null
+              )}
+              
               <div className="customer-messages__chat-messages">
                 {loading && messages.length === 0 ? (
                   <div className="customer-messages__loading-messages">
@@ -828,7 +968,89 @@ const CustomerMessage = () => {
                         className={`customer-messages__message ${isOwn ? 'customer-messages__message--own' : 'customer-messages__message--other'}`}
                       >
                         <div className="customer-messages__message-content">
-                          {message.message}
+                          {(() => {
+                            // Check if it's a product inquiry message
+                            let isProductInquiry = message.messageType === 'product_inquiry';
+                            let inquiryData = null;
+                            
+                            // Also check if the message content is a product inquiry JSON
+                            if (!isProductInquiry) {
+                              try {
+                                const parsedMessage = JSON.parse(message.message);
+                                if (parsedMessage.type === 'product_inquiry' && parsedMessage.product) {
+                                  isProductInquiry = true;
+                                  inquiryData = parsedMessage;
+                                }
+                              } catch (e) {
+                                // Not a JSON message, continue with regular rendering
+                              }
+                            } else {
+                              try {
+                                inquiryData = JSON.parse(message.message);
+                              } catch (e) {
+                                // Fallback to regular message if JSON parsing fails
+                                isProductInquiry = false;
+                              }
+                            }
+                            
+                            if (isProductInquiry && inquiryData) {
+                              return (
+                                <div className="customer-messages__product-inquiry-card">
+                                  <div className="product-inquiry-card">
+                                    <div className="product-inquiry-header">
+                                      <h4>Product Inquiry</h4>
+                                    </div>
+                                    <div className="product-inquiry-content">
+                                      {inquiryData.product.image && (
+                                        <div className="product-inquiry-image">
+                                          <img 
+                                            src={inquiryData.product.image} 
+                                            alt={inquiryData.product.name}
+                                            onError={(e) => e.target.style.display = 'none'}
+                                          />
+                                        </div>
+                                      )}
+                                      <div className="product-inquiry-details">
+                                        <h5 className="product-inquiry-name">{inquiryData.product.name}</h5>
+                                        {inquiryData.product.description && (
+                                          <p className="product-inquiry-description">{inquiryData.product.description}</p>
+                                        )}
+                                        <div className="product-inquiry-price">₱{inquiryData.product.price}</div>
+                                      </div>
+                                    </div>
+                                    {inquiryData.customerMessage && (
+                                      <div className="product-inquiry-message">
+                                        {inquiryData.customerMessage}
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            } else if (message.messageType === 'image') {
+                              return (
+                                <div className="customer-messages__image-message">
+                                  <img 
+                                    src={message.message} 
+                                    alt="Shared image"
+                                    className="customer-messages__shared-image"
+                                    onError={(e) => {
+                                      e.target.style.display = 'none';
+                                      e.target.nextSibling.style.display = 'block';
+                                    }}
+                                  />
+                                  <div className="customer-messages__image-fallback" style={{display: 'none'}}>
+                                    🖼️ Image: {message.message}
+                                  </div>
+                                </div>
+                              );
+                            } else {
+                              return (
+                                <div className="customer-messages__text-message">
+                                  {message.message}
+                                </div>
+                              );
+                            }
+                          })()}
                           {message.sending && (
                             <span className="customer-messages__message-sending">Sending...</span>
                           )}
@@ -856,8 +1078,7 @@ const CustomerMessage = () => {
                 <div ref={messagesEndRef} />
               </div>
               <div className="customer-messages__chat-input">
-                <input
-                  type="text"
+                <textarea
                   className="customer-messages__input-field"
                   placeholder="Type your message..."
                   value={newMessage}
@@ -865,8 +1086,15 @@ const CustomerMessage = () => {
                     setNewMessage(e.target.value);
                     handleTyping();
                   }}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSendMessage();
+                    }
+                  }}
                   disabled={!isConnected}
+                  rows={newMessage.split('\n').length + 1}
+                  style={{ minHeight: '40px', maxHeight: '120px', resize: 'none' }}
                 />
                 <button 
                   onClick={handleSendMessage} 

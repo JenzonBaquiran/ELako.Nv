@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useNotification } from '../components/NotificationProvider';
 import Header from './Navbar';
 import FavoriteButton from '../components/FavoriteButton';
 import '../css/ProductDetails.css';
@@ -9,6 +10,7 @@ const ProductDetails = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const { user, userType, isAuthenticated } = useAuth();
+  const { showSuccess, showError } = useNotification();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -82,6 +84,42 @@ const ProductDetails = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Handle chat with store functionality
+  const handleChatWithStore = async () => {
+    if (!isAuthenticated || userType !== 'customer') {
+      showError('Please log in as a customer to chat with stores', 'Login Required');
+      return;
+    }
+
+    if (!user) {
+      showError('User information not available', 'Error');
+      return;
+    }
+
+    if (!product?.msmeId?._id) {
+      showError('Store information not available', 'Error');
+      return;
+    }
+
+    // Get the main product image
+    const productImages = getAllImages();
+    const mainImage = productImages.length > 0 ? productImages[0].replace('http://localhost:1337/uploads/', '') : (product.picture || '');
+
+    console.log('✅ Starting conversation with store from product page:', {
+      storeId: product.msmeId._id,
+      storeName: product.msmeId.businessName,
+      customerId: user._id || user.id,
+      productName: product.productName,
+      productImage: mainImage
+    });
+
+    // Show success message
+    showSuccess(`Starting conversation with ${product.msmeId.businessName || 'store'}...`, 'Chat');
+
+    // Navigate to customer messages with store ID and product context
+    navigate(`/customer-message/${product.msmeId._id}?productId=${product._id}&productName=${encodeURIComponent(product.productName)}&productDescription=${encodeURIComponent(product.description || '')}&productImage=${encodeURIComponent(mainImage)}&productPrice=${product.price}`);
   };
 
   if (loading) {
@@ -281,12 +319,22 @@ const ProductDetails = () => {
                       </div>
                     )}
                   </div>
-                  <button 
-                    className="product-details-view-store-btn"
-                    onClick={() => navigate(`/store/${product.msmeId._id}`)}
-                  >
-                    View Store
-                  </button>
+                  <div className="product-details-store-actions">
+                    <button 
+                      className="product-details-view-store-btn"
+                      onClick={() => navigate(`/store/${product.msmeId._id}`)}
+                    >
+                      View Store
+                    </button>
+                    {isAuthenticated && userType === 'customer' && (
+                      <button 
+                        className="product-details-chat-btn"
+                        onClick={handleChatWithStore}
+                      >
+                        Chat with Store
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             )}

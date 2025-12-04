@@ -47,6 +47,48 @@ const MsmeMessage = () => {
   const messagesEndRef = useRef(null);
   const typingTimeoutRef = useRef(null);
 
+  // Product inquiry state
+  const [productInquiry, setProductInquiry] = useState(null);
+
+  // Extract product information from messages
+  const extractProductInfo = (messages) => {
+    if (!messages || messages.length === 0) return null;
+    
+    // Look for product inquiry messages
+    const inquiryMessage = messages.find(msg => 
+      msg.message && 
+      msg.message.includes("Hi! I'm interested in this product:") &&
+      msg.message.includes("Product:") &&
+      msg.message.includes("Price:")
+    );
+    
+    if (inquiryMessage) {
+      const messageText = inquiryMessage.message;
+      
+      // Extract product details using regex
+      const productMatch = messageText.match(/Product:\s*(.+?)(?:\n|Description:|Price:|$)/);
+      const descriptionMatch = messageText.match(/Description:\s*(.+?)(?:\n|Price:|$)/);
+      const priceMatch = messageText.match(/Price:\s*₱(.+?)(?:\n|$)/);
+      
+      // Look for image messages around the same time as the inquiry
+      const inquiryTime = new Date(inquiryMessage.createdAt).getTime();
+      const imageMessage = messages.find(msg => 
+        msg.messageType === 'image' &&
+        Math.abs(new Date(msg.createdAt).getTime() - inquiryTime) < 60000 // Within 1 minute
+      );
+      
+      return {
+        name: productMatch ? productMatch[1].trim() : '',
+        description: descriptionMatch ? descriptionMatch[1].trim() : '',
+        price: priceMatch ? priceMatch[1].trim() : '',
+        image: imageMessage ? imageMessage.message : null,
+        timestamp: inquiryMessage.createdAt
+      };
+    }
+    
+    return null;
+  };
+
   // Set current user from AuthContext
   useEffect(() => {
     console.log('🔍 Setting up MSME user from AuthContext:', {
@@ -194,6 +236,34 @@ const MsmeMessage = () => {
       };
     }
   }, [currentUser]); // Removed selectedChat dependency to prevent reloading on chat selection
+
+  // Extract product inquiry information when messages change
+  useEffect(() => {
+    if (messages && messages.length > 0) {
+      console.log('🔍 MSME Messages for product detection:', messages.map(msg => ({
+        id: msg._id,
+        messageType: msg.messageType,
+        isImage: msg.messageType === 'image',
+        hasProductText: msg.message?.includes("Hi! I'm interested in this product:"),
+        createdAt: msg.createdAt,
+        message: msg.message?.substring(0, 50) + '...'
+      })));
+      
+      const inquiry = extractProductInfo(messages);
+      setProductInquiry(inquiry);
+      
+      if (inquiry) {
+        console.log('📦 Product inquiry detected:', inquiry);
+        if (inquiry.image) {
+          console.log('🖼️ Product image found:', inquiry.image);
+        } else {
+          console.log('❌ No product image found in messages');
+        }
+      }
+    } else {
+      setProductInquiry(null);
+    }
+  }, [messages]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -606,6 +676,27 @@ const MsmeMessage = () => {
     });
   };
 
+  const formatMessagePreview = (message) => {
+    if (!message) return 'No messages yet';
+    
+    // Check if it's a product inquiry message
+    try {
+      const parsedMessage = JSON.parse(message);
+      if (parsedMessage.type === 'product_inquiry' && parsedMessage.product) {
+        return `Product Inquiry: ${parsedMessage.product.name}`;
+      }
+    } catch (e) {
+      // Not a JSON message, return as is
+    }
+    
+    // Truncate long messages
+    if (message.length > 50) {
+      return message.substring(0, 50) + '...';
+    }
+    
+    return message;
+  };
+
   const getCustomerName = (participant) => {
     if (!participant) return 'Unknown Customer';
     if (participant.firstname && participant.lastname) {
@@ -625,7 +716,7 @@ const MsmeMessage = () => {
     if (!conv.otherParticipant) return false;
     
     const customerName = getCustomerName(conv.otherParticipant);
-    const lastMessage = conv.lastMessage?.message || '';
+    const lastMessage = formatMessagePreview(conv.lastMessage?.message);
     
     return customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
            lastMessage.toLowerCase().includes(searchTerm.toLowerCase());
@@ -707,7 +798,7 @@ const MsmeMessage = () => {
                       </div>
                       <p className="msme-messages__conversation-type">Customer</p>
                       <p className="msme-messages__last-message">
-                        {conversation.lastMessage?.message || 'No messages yet'}
+                        {formatMessagePreview(conversation.lastMessage?.message)}
                       </p>
                     </div>
                   </div>
@@ -767,6 +858,44 @@ const MsmeMessage = () => {
                     </div>
                   </div>
                 </div>
+                
+                {/* Product Information Display */}
+                {productInquiry && (
+                  <div className="msme-messages__product-info">
+                    <div className="msme-messages__product-header">
+                      <h4>Product Inquiry</h4>
+                    </div>
+                    <div className="msme-messages__product-details">
+                      {productInquiry.image && (
+                        <div className="msme-messages__product-image">
+                          <img 
+                            src={productInquiry.image} 
+                            alt={productInquiry.name}
+                            onLoad={(e) => {
+                              console.log('✅ MSME product image loaded successfully:', e.target.src);
+                            }}
+                            onError={(e) => {
+                              console.log('❌ MSME product image failed to load:', e.target.src);
+                              e.target.style.display = 'none';
+                              const parentDiv = e.target.parentElement;
+                              if (parentDiv) {
+                                parentDiv.innerHTML = `<div style="width: 80px; height: 80px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #6c757d; font-size: 12px;">No Image</div>`;
+                              }
+                            }}
+                          />
+                        </div>
+                      )}
+                      <div className="msme-messages__product-text">
+                        <h5 className="msme-messages__product-name">{productInquiry.name}</h5>
+                        {productInquiry.description && (
+                          <p className="msme-messages__product-description">{productInquiry.description}</p>
+                        )}
+                        <div className="msme-messages__product-price">₱{productInquiry.price}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
                 <div className="msme-messages__chat-messages">
                   {loading && messages.length === 0 ? (
                     <div className="msme-messages__loading-messages">
@@ -781,7 +910,89 @@ const MsmeMessage = () => {
                           className={`msme-messages__message ${isOwn ? 'msme-messages__message--own' : 'msme-messages__message--other'}`}
                         >
                           <div className="msme-messages__message-content">
-                            {message.message}
+                            {(() => {
+                              // Check if it's a product inquiry message
+                              let isProductInquiry = message.messageType === 'product_inquiry';
+                              let inquiryData = null;
+                              
+                              // Also check if the message content is a product inquiry JSON
+                              if (!isProductInquiry) {
+                                try {
+                                  const parsedMessage = JSON.parse(message.message);
+                                  if (parsedMessage.type === 'product_inquiry' && parsedMessage.product) {
+                                    isProductInquiry = true;
+                                    inquiryData = parsedMessage;
+                                  }
+                                } catch (e) {
+                                  // Not a JSON message, continue with regular rendering
+                                }
+                              } else {
+                                try {
+                                  inquiryData = JSON.parse(message.message);
+                                } catch (e) {
+                                  // Fallback to regular message if JSON parsing fails
+                                  isProductInquiry = false;
+                                }
+                              }
+                              
+                              if (isProductInquiry && inquiryData) {
+                                return (
+                                  <div className="msme-messages__product-inquiry-card">
+                                    <div className="product-inquiry-card">
+                                      <div className="product-inquiry-header">
+                                        <h4>Product Inquiry</h4>
+                                      </div>
+                                      <div className="product-inquiry-content">
+                                        {inquiryData.product.image && (
+                                          <div className="product-inquiry-image">
+                                            <img 
+                                              src={inquiryData.product.image} 
+                                              alt={inquiryData.product.name}
+                                              onError={(e) => e.target.style.display = 'none'}
+                                            />
+                                          </div>
+                                        )}
+                                        <div className="product-inquiry-details">
+                                          <h5 className="product-inquiry-name">{inquiryData.product.name}</h5>
+                                          {inquiryData.product.description && (
+                                            <p className="product-inquiry-description">{inquiryData.product.description}</p>
+                                          )}
+                                          <div className="product-inquiry-price">₱{inquiryData.product.price}</div>
+                                        </div>
+                                      </div>
+                                      {inquiryData.customerMessage && (
+                                        <div className="product-inquiry-message">
+                                          {inquiryData.customerMessage}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                );
+                              } else if (message.messageType === 'image') {
+                                return (
+                                  <div className="msme-messages__image-message">
+                                    <img 
+                                      src={message.message} 
+                                      alt="Shared image"
+                                      className="msme-messages__shared-image"
+                                      onError={(e) => {
+                                        e.target.style.display = 'none';
+                                        e.target.nextSibling.style.display = 'block';
+                                      }}
+                                    />
+                                    <div className="msme-messages__image-fallback" style={{display: 'none'}}>
+                                      🖼️ Image: {message.message}
+                                    </div>
+                                  </div>
+                                );
+                              } else {
+                                return (
+                                  <div className="msme-messages__text-message">
+                                    {message.message}
+                                  </div>
+                                );
+                              }
+                            })()}
                             {message.sending && (
                               <span className="msme-messages__message-sending">Sending...</span>
                             )}
