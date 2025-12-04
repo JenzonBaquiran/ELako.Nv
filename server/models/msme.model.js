@@ -24,6 +24,9 @@ const MSMESchema = new mongoose.Schema(
       enum: ["pending", "approved", "rejected"],
     },
     isVisible: { type: Boolean, default: true }, // Controls visibility on homepage and login access
+    visibilityReason: { type: String, default: "" }, // Reason for hiding the MSME
+    hiddenAt: { type: Date }, // Timestamp when MSME was hidden
+    hiddenBy: { type: String }, // Admin who hid the MSME
 
     // Certificate documents
     certificates: {

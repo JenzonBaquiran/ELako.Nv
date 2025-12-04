@@ -27,6 +27,10 @@ const AdminMsmeOversight = () => {
   const [showCertificateViewer, setShowCertificateViewer] = useState(false);
   const [currentCertificate, setCurrentCertificate] = useState({ title: '', url: '' });
   const [badgeData, setBadgeData] = useState([]);
+  const [showReasonModal, setShowReasonModal] = useState(false);
+  const [visibilityReason, setVisibilityReason] = useState('');
+  const [pendingToggleMsmeId, setPendingToggleMsmeId] = useState(null);
+
 
   // Fetch MSMEs from API
   const fetchMsmes = async () => {
@@ -57,7 +61,10 @@ const AdminMsmeOversight = () => {
           businessPermit: msme.clientProfilingNumber || 'N/A',
           taxId: 'N/A',
           isVisible: msme.isVisible !== undefined ? msme.isVisible : true, // Use API value or default to true
-          clientProfilingNumber: msme.clientProfilingNumber
+          clientProfilingNumber: msme.clientProfilingNumber,
+          visibilityReason: msme.visibilityReason || '',
+          hiddenAt: msme.hiddenAt,
+          hiddenBy: msme.hiddenBy || ''
         }));
         
         setMsmeData(transformedMsmes);
@@ -206,37 +213,103 @@ const AdminMsmeOversight = () => {
 
       const newVisibility = !msme.isVisible;
 
-      // Call API to update visibility
-      const response = await fetch(`http://localhost:1337/api/admin/msme/${msme._id}/visibility`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ isVisible: newVisibility })
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        // Update local state
-        setMsmeData(prev => prev.map(m =>
-          m.id === msmeId ? { ...m, isVisible: newVisibility } : m
-        ));
-
-        // Show success notification (you can implement this)
-        console.log(`${msme.businessName} is now ${newVisibility ? 'visible' : 'hidden'} on the homepage and ${newVisibility ? 'can' : 'cannot'} log in.`);
-      } else {
-        console.error('Error toggling visibility:', data.error);
-        // Show error notification
-        alert('Error updating visibility: ' + data.error);
+      // If turning OFF visibility, show the reason modal
+      if (!newVisibility) {
+        setPendingToggleMsmeId(msmeId);
+        setShowReasonModal(true);
+        return;
       }
+
+      // If turning ON visibility, proceed directly
+      await performVisibilityToggle(msmeId, newVisibility, '');
     } catch (error) {
       console.error('Error toggling visibility:', error);
       alert('Error updating visibility. Please try again.');
     }
   };
 
+  const performVisibilityToggle = async (msmeId, newVisibility, reason) => {
+    try {
+      const msme = msmeData.find(m => m.id === msmeId);
+      if (!msme) return;
+
+      console.log('Performing visibility toggle:', {
+        msmeId,
+        msme_id: msme._id,
+        newVisibility,
+        reason,
+        businessName: msme.businessName
+      });
+
+      // Call API to update visibility
+      const response = await fetch(`http://localhost:1337/api/admin/msme/${msme._id}/visibility`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          isVisible: newVisibility,
+          reason: reason,
+          adminName: 'Admin' // You can get this from logged-in admin context
+        })
+      });
+
+      const data = await response.json();
+      console.log('API Response:', data);
+
+      if (data.success) {
+        console.log('Updating local state with:', {
+          visibilityReason: data.msme.visibilityReason,
+          hiddenAt: data.msme.hiddenAt,
+          hiddenBy: data.msme.hiddenBy
+        });
+        
+        // Update local state
+        setMsmeData(prev => prev.map(m =>
+          m.id === msmeId ? { 
+            ...m, 
+            isVisible: newVisibility,
+            visibilityReason: data.msme.visibilityReason,
+            hiddenAt: data.msme.hiddenAt,
+            hiddenBy: data.msme.hiddenBy
+          } : m
+        ));
+
+        // Log success
+        console.log(`${msme.businessName} is now ${newVisibility ? 'visible' : 'hidden'} on the homepage and ${newVisibility ? 'can' : 'cannot'} log in.`);
+      } else {
+        console.error('Error toggling visibility:', data.error);
+      }
+    } catch (error) {
+      console.error('Error toggling visibility:', error);
+    }
+  };
+
+  const handleReasonSubmit = async () => {
+    if (!visibilityReason.trim()) {
+      return;
+    }
+
+    await performVisibilityToggle(pendingToggleMsmeId, false, visibilityReason);
+    
+    // Reset modal state
+    setShowReasonModal(false);
+    setVisibilityReason('');
+    setPendingToggleMsmeId(null);
+  };
+
+  const handleReasonCancel = () => {
+    setShowReasonModal(false);
+    setVisibilityReason('');
+    setPendingToggleMsmeId(null);
+  };
+
   const handleViewDetails = async (msme) => {
+    console.log('Selected MSME data:', msme);
+    console.log('Visibility Reason:', msme.visibilityReason);
+    console.log('Hidden At:', msme.hiddenAt);
+    console.log('Hidden By:', msme.hiddenBy);
+    
     setSelectedMsme(msme);
     setShowModal(true);
     setLoadingCertificates(true);
@@ -539,6 +612,33 @@ const AdminMsmeOversight = () => {
                     </span>
                   </div>
                 </div>
+                <div className="admin-msme-oversight__info-row">
+                  <div className="admin-msme-oversight__info-label">Visibility:</div>
+                  <div className="admin-msme-oversight__info-value">
+                    <span className={`admin-msme-oversight__visibility-badge ${selectedMsme.isVisible ? 'visible' : 'hidden'}`}>
+                      {selectedMsme.isVisible ? 'Visible' : 'Hidden'}
+                    </span>
+                  </div>
+                </div>
+                {!selectedMsme.isVisible && (
+                  <>
+                    <div className="admin-msme-oversight__info-row">
+                      <div className="admin-msme-oversight__info-label">Reason:</div>
+                      <div className="admin-msme-oversight__info-value admin-msme-oversight__reason-value">
+                        {selectedMsme.visibilityReason || 'No reason provided'}
+                      </div>
+                    </div>
+                    {(selectedMsme.hiddenBy || selectedMsme.hiddenAt) && (
+                      <div className="admin-msme-oversight__info-row">
+                        <div className="admin-msme-oversight__info-label">Hidden By:</div>
+                        <div className="admin-msme-oversight__info-value">
+                          {selectedMsme.hiddenBy || 'Admin'}
+                          {selectedMsme.hiddenAt && ` on ${new Date(selectedMsme.hiddenAt).toLocaleDateString()} at ${new Date(selectedMsme.hiddenAt).toLocaleTimeString()}`}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
 
               {/* Business Certificates */}
@@ -641,6 +741,51 @@ const AdminMsmeOversight = () => {
                   Download Document
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Visibility Reason Modal */}
+      {showReasonModal && (
+        <div className="admin-msme-oversight__reason-modal-overlay" onClick={handleReasonCancel}>
+          <div className="admin-msme-oversight__reason-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="admin-msme-oversight__reason-modal-header">
+              <h3>Reason for Hiding MSME</h3>
+              <button 
+                className="admin-msme-oversight__reason-modal-close" 
+                onClick={handleReasonCancel}
+              >
+                ×
+              </button>
+            </div>
+            <div className="admin-msme-oversight__reason-modal-body">
+              <p className="admin-msme-oversight__reason-modal-description">
+                Please provide a reason for hiding this MSME from the platform. This will be recorded for administrative purposes.
+              </p>
+              <textarea
+                className="admin-msme-oversight__reason-textarea"
+                placeholder="Enter reason for hiding this MSME..."
+                value={visibilityReason}
+                onChange={(e) => setVisibilityReason(e.target.value)}
+                rows={5}
+                autoFocus
+              />
+            </div>
+            <div className="admin-msme-oversight__reason-modal-footer">
+              <button 
+                className="admin-msme-oversight__reason-cancel-btn"
+                onClick={handleReasonCancel}
+              >
+                Cancel
+              </button>
+              <button 
+                className="admin-msme-oversight__reason-submit-btn"
+                onClick={handleReasonSubmit}
+                disabled={!visibilityReason.trim()}
+              >
+                Hide MSME
+              </button>
             </div>
           </div>
         </div>

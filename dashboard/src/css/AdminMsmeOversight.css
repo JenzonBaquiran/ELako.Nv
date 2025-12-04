@@ -400,6 +400,45 @@ input:checked + .admin-msme-oversight__toggle-slider:before {
   color: #fbbf24;
 }
 
+/* Visibility Reason on Card */
+.admin-msme-oversight__card-reason {
+  padding: 12px 20px;
+  background: #fff3cd;
+  border-top: 1px solid #ffc107;
+  margin: 0;
+}
+
+.admin-msme-oversight__card-reason-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: #856404;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.admin-msme-oversight__card-reason-icon {
+  font-size: 14px;
+}
+
+.admin-msme-oversight__card-reason-text {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.4;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 4px;
+  word-wrap: break-word;
+}
+
+.admin-msme-oversight__card-reason-meta {
+  font-size: 11px;
+  color: #856404;
+  font-style: italic;
+  font-family: 'Poppins', sans-serif;
+}
+
 /* Loading and Error States */
 .admin-msme-oversight__loading {
   text-align: center;
@@ -754,6 +793,17 @@ input:checked + .admin-msme-oversight__toggle-slider:before {
   font-size: 14px;
 }
 
+.admin-msme-oversight__reason-value {
+  background: #fff3cd;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border-left: 3px solid #ffc107;
+  color: #856404;
+  font-weight: 500;
+  max-width: 70%;
+  text-align: right;
+}
+
 .admin-msme-oversight__certificates-section h3 {
   margin: 0 0 16px 0;
   font-size: 18px;
@@ -1006,5 +1056,265 @@ input:checked + .admin-msme-oversight__toggle-slider:before {
   
   .admin-msme-oversight__modal-body {
     padding: 20px;
+  }
+}
+
+/* Visibility Reason Modal Styles */
+.admin-msme-oversight__reason-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.admin-msme-oversight__reason-modal-content {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 550px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.admin-msme-oversight__reason-modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+}
+
+.admin-msme-oversight__reason-modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.admin-msme-oversight__reason-modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #666;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.admin-msme-oversight__reason-modal-close:hover {
+  background: #e9ecef;
+  color: #333;
+}
+
+.admin-msme-oversight__reason-modal-body {
+  padding: 24px;
+}
+
+.admin-msme-oversight__reason-modal-description {
+  margin: 0 0 16px 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: 'Poppins', sans-serif;
+}
+
+.admin-msme-oversight__reason-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color 0.2s ease;
+}
+
+.admin-msme-oversight__reason-textarea:focus {
+  outline: none;
+  border-color: #7ed957;
+  box-shadow: 0 0 0 3px rgba(126, 217, 87, 0.1);
+}
+
+.admin-msme-oversight__reason-textarea::placeholder {
+  color: #adb5bd;
+}
+
+.admin-msme-oversight__reason-modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background: #f8f9fa;
+}
+
+.admin-msme-oversight__reason-cancel-btn,
+.admin-msme-oversight__reason-submit-btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+  border: none;
+}
+
+.admin-msme-oversight__reason-cancel-btn {
+  background: white;
+  color: #666;
+  border: 1px solid #dee2e6;
+}
+
+.admin-msme-oversight__reason-cancel-btn:hover {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+}
+
+.admin-msme-oversight__reason-submit-btn {
+  background: #dc3545;
+  color: white;
+  border: 1px solid #dc3545;
+}
+
+.admin-msme-oversight__reason-submit-btn:hover:not(:disabled) {
+  background: #c82333;
+  border-color: #bd2130;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+.admin-msme-oversight__reason-submit-btn:disabled {
+  background: #e9ecef;
+  color: #adb5bd;
+  cursor: not-allowed;
+  border-color: #e9ecef;
+}
+
+/* Visibility Reason Display in Details Modal */
+.admin-msme-oversight__info-row--full {
+  grid-column: 1 / -1;
+}
+
+.admin-msme-oversight__visibility-reason-container {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+}
+
+.admin-msme-oversight__visibility-reason-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-msme-oversight__visibility-reason-header strong {
+  color: #856404;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.admin-msme-oversight__visibility-reason-meta {
+  color: #856404;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.admin-msme-oversight__visibility-reason-text {
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 8px 12px;
+  background: white;
+  border-radius: 6px;
+  border-left: 3px solid #ffc107;
+  font-family: 'Poppins', sans-serif;
+}
+
+.admin-msme-oversight__visibility-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.admin-msme-oversight__visibility-badge.visible {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.admin-msme-oversight__visibility-badge.hidden {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Mobile Responsiveness for Reason Modal */
+@media (max-width: 768px) {
+  .admin-msme-oversight__reason-modal-content {
+    max-width: 95vw;
+  }
+
+  .admin-msme-oversight__reason-modal-header,
+  .admin-msme-oversight__reason-modal-body,
+  .admin-msme-oversight__reason-modal-footer {
+    padding: 16px;
+  }
+
+  .admin-msme-oversight__reason-modal-header h3 {
+    font-size: 18px;
+  }
+
+  .admin-msme-oversight__reason-modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .admin-msme-oversight__reason-cancel-btn,
+  .admin-msme-oversight__reason-submit-btn {
+    width: 100%;
   }
 }

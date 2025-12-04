@@ -2730,10 +2730,11 @@ app.put("/api/products/:id/visibility", async (req, res) => {
 app.put("/api/admin/msme/:id/visibility", async (req, res) => {
   try {
     const msmeId = req.params.id;
-    const { isVisible } = req.body;
+    const { isVisible, reason, adminName } = req.body;
 
     console.log(`Attempting to toggle visibility for MSME ID: ${msmeId}`);
     console.log(`New visibility setting: ${isVisible}`);
+    console.log(`Reason: ${reason}`);
 
     // Try to find by MongoDB _id first, then by custom id field
     let msme = await MSME.findById(msmeId);
@@ -2759,12 +2760,27 @@ app.put("/api/admin/msme/:id/visibility", async (req, res) => {
 
     // Update visibility using findByIdAndUpdate to avoid validation issues
     const newVisibility = isVisible !== undefined ? isVisible : !msme.isVisible;
+    
+    const updateFields = {
+      isVisible: newVisibility,
+      updatedAt: new Date(),
+    };
+
+    // If hiding the MSME, add visibility reason and metadata
+    if (!newVisibility && reason) {
+      updateFields.visibilityReason = reason;
+      updateFields.hiddenAt = new Date();
+      updateFields.hiddenBy = adminName || 'Admin';
+    } else if (newVisibility) {
+      // If showing the MSME, clear the reason
+      updateFields.visibilityReason = "";
+      updateFields.hiddenAt = null;
+      updateFields.hiddenBy = "";
+    }
+
     const updatedMsme = await MSME.findByIdAndUpdate(
       msme._id,
-      {
-        isVisible: newVisibility,
-        updatedAt: new Date(),
-      },
+      updateFields,
       {
         new: true,
         runValidators: false, // Skip validation to avoid required field errors
@@ -2787,6 +2803,9 @@ app.put("/api/admin/msme/:id/visibility", async (req, res) => {
         username: updatedMsme.username,
         isVisible: updatedMsme.isVisible,
         status: updatedMsme.status,
+        visibilityReason: updatedMsme.visibilityReason,
+        hiddenAt: updatedMsme.hiddenAt,
+        hiddenBy: updatedMsme.hiddenBy,
       },
     });
   } catch (err) {
