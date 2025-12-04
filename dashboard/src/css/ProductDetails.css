@@ -1475,7 +1475,7 @@
 
 /* Chat button styles */
 .product-details-chat-btn {
-  background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+  background: #313131;
   border: none;
   color: white;
   padding: 12px 20px;
@@ -1483,7 +1483,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   font-family: 'Poppins', sans-serif;
   display: flex;
   align-items: center;
@@ -1491,18 +1491,16 @@
   gap: 8px;
   white-space: nowrap;
   width: 100%;
-  box-shadow: 0 2px 8px rgba(0, 184, 148, 0.3);
 }
 
 .product-details-chat-btn:hover {
-  background: linear-gradient(135deg, #00a085 0%, #019874 100%);
+  background: #7ed957;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 184, 148, 0.4);
+  box-shadow: 0 4px 12px rgba(126, 217, 87, 0.3);
 }
 
 .product-details-chat-btn:active {
   transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(0, 184, 148, 0.3);
 }
 
 @media (min-width: 768px) {
