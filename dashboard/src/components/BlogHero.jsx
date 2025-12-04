@@ -78,9 +78,18 @@ const BlogHero = () => {
       case 'youtube':
         return post.mediaUrl;
       case 'video':
-        return `http://localhost:1337/uploads/${post.mediaUrl}`;
       case 'image':
       default:
+        // Handle both Cloudinary URLs and local files
+        if (!post.mediaUrl) return heroPic;
+        // If it's already a full URL (Cloudinary), use it directly
+        if (post.mediaUrl.startsWith('http')) {
+          return post.mediaUrl;
+        }
+        // If it contains folder structure like 'elako/blog/...', it's a Cloudinary public ID
+        if (post.mediaUrl.includes('/') && !post.mediaUrl.startsWith('uploads/')) {
+          return `https://res.cloudinary.com/dk9umulxw/image/upload/${post.mediaUrl}`;
+        }
         // Check if it's a local image from our pictures folder
         if (['WEAVING.png', 'BUKO PIE.png', 'CRAFTS1.png', 'PAINTINGS.png'].includes(post.mediaUrl)) {
           switch (post.mediaUrl) {

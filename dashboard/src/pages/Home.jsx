@@ -254,7 +254,7 @@ function Home() {
         topStores.map((store) => {
           const dashboard = store.dashboard;
           const storeImage = dashboard?.coverPhoto 
-            ? `http://localhost:1337/uploads/${dashboard.coverPhoto}` 
+            ? getImageUrl(dashboard.coverPhoto) 
             : (dashboard?.storeLogo 
                 ? getImageUrl(dashboard.storeLogo) 
                 : heroPic);

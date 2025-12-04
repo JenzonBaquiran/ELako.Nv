@@ -317,18 +317,28 @@ const BlogManagement = () => {
           </div>
         );
       case 'video':
+        const videoUrl = post.mediaUrl?.startsWith('http') 
+          ? post.mediaUrl 
+          : (post.mediaUrl?.includes('/') && !post.mediaUrl?.startsWith('uploads/')
+            ? `https://res.cloudinary.com/dk9umulxw/image/upload/${post.mediaUrl}`
+            : `http://localhost:1337/uploads/${post.mediaUrl}`);
         return (
           <div className="media-preview video">
             <video controls>
-              <source src={`http://localhost:1337/uploads/${post.mediaUrl}`} type="video/mp4" />
+              <source src={videoUrl} type="video/mp4" />
             </video>
           </div>
         );
       case 'image':
       default:
+        const imageUrl = post.mediaUrl?.startsWith('http') 
+          ? post.mediaUrl 
+          : (post.mediaUrl?.includes('/') && !post.mediaUrl?.startsWith('uploads/')
+            ? `https://res.cloudinary.com/dk9umulxw/image/upload/${post.mediaUrl}`
+            : `http://localhost:1337/uploads/${post.mediaUrl}`);
         return (
           <div className="media-preview image">
-            <img src={`http://localhost:1337/uploads/${post.mediaUrl}`} alt={post.title} />
+            <img src={imageUrl} alt={post.title} />
           </div>
         );
     }
@@ -521,11 +531,19 @@ const BlogManagement = () => {
                     <div className="preview">
                       {formData.mediaType === 'video' ? (
                         <video controls width="200">
-                          <source src={`http://localhost:1337/uploads/${formData.mediaUrl}`} />
+                          <source src={formData.mediaUrl?.startsWith('http') 
+                            ? formData.mediaUrl 
+                            : (formData.mediaUrl?.includes('/') && !formData.mediaUrl?.startsWith('uploads/')
+                              ? `https://res.cloudinary.com/dk9umulxw/image/upload/${formData.mediaUrl}`
+                              : `http://localhost:1337/uploads/${formData.mediaUrl}`)} />
                         </video>
                       ) : (
                         <img 
-                          src={`http://localhost:1337/uploads/${formData.mediaUrl}`} 
+                          src={formData.mediaUrl?.startsWith('http') 
+                            ? formData.mediaUrl 
+                            : (formData.mediaUrl?.includes('/') && !formData.mediaUrl?.startsWith('uploads/')
+                              ? `https://res.cloudinary.com/dk9umulxw/image/upload/${formData.mediaUrl}`
+                              : `http://localhost:1337/uploads/${formData.mediaUrl}`)} 
                           alt="Preview" 
                           width="200"
                         />

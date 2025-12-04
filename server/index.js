@@ -2848,7 +2848,7 @@ app.get("/api/msme/:msmeId/products/owner", async (req, res) => {
     if (category && category !== "all") filter.category = category;
     if (availability && availability !== "all")
       filter.availability = availability === "true";
-    if (visible && visible !== "all") filter.isVisible = visible === "true";
+    if (visible && visible !== "all") filter.visible = visible === "true";
 
     const products = await Product.find(filter).sort({ createdAt: -1 });
 
@@ -8773,6 +8773,17 @@ app.get("/api/hot-picks", async (req, res) => {
           ? product.pictures[0]
           : product.picture;
 
+      // Helper function to generate proper image URL
+      const getImageUrl = (imageValue) => {
+        if (!imageValue) return null;
+        // If it's already a full URL (Cloudinary), use it directly
+        if (imageValue.startsWith("http")) {
+          return imageValue;
+        }
+        // Otherwise, it's a legacy local file
+        return `http://localhost:1337/uploads/${imageValue}`;
+      };
+
       return {
         _id: product._id,
         productId: product._id,
@@ -8785,9 +8796,7 @@ app.get("/api/hot-picks", async (req, res) => {
         // Image handling
         mainImage: mainImage,
         images: product.pictures || (product.picture ? [product.picture] : []),
-        imageUrl: mainImage
-          ? `http://localhost:1337/uploads/${mainImage}`
-          : null,
+        imageUrl: getImageUrl(mainImage),
         // Rating information
         rating: averageRating,
         averageRating: averageRating,
@@ -8919,6 +8928,17 @@ app.get("/api/hot-picks/all", async (req, res) => {
           ? product.pictures[0]
           : product.picture;
 
+      // Helper function to generate proper image URL
+      const getImageUrl = (imageValue) => {
+        if (!imageValue) return null;
+        // If it's already a full URL (Cloudinary), use it directly
+        if (imageValue.startsWith("http")) {
+          return imageValue;
+        }
+        // Otherwise, it's a legacy local file
+        return `http://localhost:1337/uploads/${imageValue}`;
+      };
+
       return {
         _id: product._id,
         productId: product._id,
@@ -8931,9 +8951,7 @@ app.get("/api/hot-picks/all", async (req, res) => {
         // Image handling
         mainImage: mainImage,
         images: product.pictures || (product.picture ? [product.picture] : []),
-        imageUrl: mainImage
-          ? `http://localhost:1337/uploads/${mainImage}`
-          : null,
+        imageUrl: getImageUrl(mainImage),
         // Rating information
         rating: averageRating,
         averageRating: averageRating,

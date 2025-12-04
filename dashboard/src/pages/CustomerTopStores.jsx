@@ -191,7 +191,7 @@ function CustomerTopStores() {
                 const isNew = isNewStore(store.createdAt);
                 // Use cover photo or store logo, fallback to hero image
                 const storeImage = store.dashboard?.coverPhoto 
-                  ? `http://localhost:1337/uploads/${store.dashboard.coverPhoto}` 
+                  ? getImageUrl(store.dashboard.coverPhoto) 
                   : store.dashboard?.storeLogo 
                     ? getImageUrl(store.dashboard.storeLogo) 
                     : heroPic;

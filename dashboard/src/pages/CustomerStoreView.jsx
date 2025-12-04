@@ -260,7 +260,8 @@ const CustomerStoreView = () => {
     if (blog.mediaType === 'youtube') {
       return blog.mediaUrl;
     }
-    return `http://localhost:1337/uploads/${blog.mediaUrl}`;
+    // Use the getImageUrl helper to handle both Cloudinary and local files
+    return getImageUrl(blog.mediaUrl);
   };
 
   // Get YouTube thumbnail function (matching MSME dashboard)

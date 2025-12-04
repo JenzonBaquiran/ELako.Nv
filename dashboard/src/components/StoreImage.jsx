@@ -22,15 +22,30 @@ const StoreImage = ({ store, className, alt }) => {
       return getFallbackImage(store);
     }
 
+    // Helper function to get proper URL for Cloudinary or local files
+    const getProperImageUrl = (imageValue) => {
+      if (!imageValue) return null;
+      // If it's already a full URL (Cloudinary), use it directly
+      if (imageValue.startsWith('http')) {
+        return imageValue;
+      }
+      // If it contains folder structure like 'elako/...', it's a Cloudinary public ID
+      if (imageValue.includes('/') && !imageValue.startsWith('uploads/')) {
+        return `https://res.cloudinary.com/dk9umulxw/image/upload/${imageValue}`;
+      }
+      // Otherwise, it's a legacy local file
+      return `http://localhost:1337/uploads/${imageValue}`;
+    };
+
     // Priority: storeLogo > coverPhoto > fallback
     if (store.dashboard?.storeLogo) {
-      const logoUrl = `http://localhost:1337/uploads/${store.dashboard.storeLogo}`;
+      const logoUrl = getProperImageUrl(store.dashboard.storeLogo);
       console.log('Using storeLogo:', logoUrl);
       return logoUrl;
     }
     
     if (store.dashboard?.coverPhoto) {
-      const coverUrl = `http://localhost:1337/uploads/${store.dashboard.coverPhoto}`;
+      const coverUrl = getProperImageUrl(store.dashboard.coverPhoto);
       console.log('Using coverPhoto:', coverUrl);
       return coverUrl;
     }
