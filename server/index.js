@@ -2739,7 +2739,9 @@ app.put("/api/admin/msme/:id/visibility", async (req, res) => {
     if (!msme) {
       console.log(`MSME not found with either _id or id: ${msmeId}`);
     } else {
-      console.log(`Found MSME: ${msme.businessName}, current visibility: ${msme.isVisible}`);
+      console.log(
+        `Found MSME: ${msme.businessName}, current visibility: ${msme.isVisible}`
+      );
     }
 
     if (!msme) {
@@ -2753,19 +2755,21 @@ app.put("/api/admin/msme/:id/visibility", async (req, res) => {
     const newVisibility = isVisible !== undefined ? isVisible : !msme.isVisible;
     const updatedMsme = await MSME.findByIdAndUpdate(
       msme._id,
-      { 
+      {
         isVisible: newVisibility,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
-      { 
+      {
         new: true,
-        runValidators: false // Skip validation to avoid required field errors
+        runValidators: false, // Skip validation to avoid required field errors
       }
     );
 
     res.json({
       success: true,
-      message: `MSME ${updatedMsme.isVisible ? "shown" : "hidden"} successfully. ${
+      message: `MSME ${
+        updatedMsme.isVisible ? "shown" : "hidden"
+      } successfully. ${
         updatedMsme.isVisible
           ? "They can now log in and appear on homepage."
           : "They cannot log in or appear on homepage."
