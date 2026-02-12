@@ -98,6 +98,9 @@ const SearchBox = ({ placeholder = "Search for services, products, or stores... 
 
   const handleSearch = (e) => {
     e.preventDefault();
+    // Disabled search functionality - Enter key will not trigger search
+    return;
+    
     if (query.trim()) {
       setShowSuggestions(false);
       // Search results page has been removed
@@ -109,7 +112,8 @@ const SearchBox = ({ placeholder = "Search for services, products, or stores... 
   const handleKeyDown = (e) => {
     if (!showSuggestions || suggestions.length === 0) {
       if (e.key === 'Enter') {
-        handleSearch(e);
+        e.preventDefault(); // Prevent Enter key functionality
+        return;
       }
       return;
     }
@@ -130,12 +134,11 @@ const SearchBox = ({ placeholder = "Search for services, products, or stores... 
         break;
       
       case 'Enter':
-        e.preventDefault();
+        e.preventDefault(); // Disable Enter key functionality entirely
         if (selectedIndex >= 0 && suggestions[selectedIndex]) {
           handleSuggestionClick(suggestions[selectedIndex]);
-        } else {
-          handleSearch(e);
         }
+        // Removed: else { handleSearch(e); }
         break;
       
       case 'Escape':
